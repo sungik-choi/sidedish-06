@@ -31,6 +31,9 @@
                                 <state key="normal" title="Sign in with github">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signInGithub:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Nk-UO-Xen"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -48,7 +51,7 @@
         <!--Menu View Controller-->
         <scene sceneID="9tn-TA-0Lz">
             <objects>
-                <viewController storyboardIdentifier="MenuViewController" id="w6T-z1-2Zc" customClass="MenuViewController" customModule="SideDishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" modalPresentationStyle="fullScreen" id="w6T-z1-2Zc" customClass="MenuViewController" customModule="SideDishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZCT-I7-zv8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

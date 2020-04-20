@@ -10,8 +10,24 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var signInButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureConstraints()
+    }
+    
+    private func configureConstraints() {
+        let height = self.view.bounds.height
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: height/5).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        signInButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(height/5)).isActive = true
+        signInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
     }
 
 }

@@ -13,6 +13,7 @@
 		30E2F0CD244DBEFA00E45C03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E2F0CB244DBEFA00E45C03 /* Main.storyboard */; };
 		30E2F0CF244DBF0100E45C03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E2F0CE244DBF0100E45C03 /* Assets.xcassets */; };
 		30E2F0D2244DBF0100E45C03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E2F0D0244DBF0100E45C03 /* LaunchScreen.storyboard */; };
+		30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		30E2F0CE244DBF0100E45C03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30E2F0D1244DBF0100E45C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30E2F0D3244DBF0100E45C03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				30E2F0C9244DBEFA00E45C03 /* ViewController.swift */,
 				30E2F0CB244DBEFA00E45C03 /* Main.storyboard */,
 				30E2F0CE244DBF0100E45C03 /* Assets.xcassets */,
+				30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */,
 				30E2F0D0244DBF0100E45C03 /* LaunchScreen.storyboard */,
 				30E2F0D3244DBF0100E45C03 /* Info.plist */,
 			);
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */,
 				30E2F0CA244DBEFA00E45C03 /* ViewController.swift in Sources */,
 				30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */,
 				30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */,

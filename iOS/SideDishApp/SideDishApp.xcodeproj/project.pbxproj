@@ -17,6 +17,7 @@
 		30EF1611244EAD290074E4A4 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF1610244EAD290074E4A4 /* MenuTableView.swift */; };
 		30F2E9A4244EBFED00C8D289 /* NetworkSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9A3244EBFED00C8D289 /* NetworkSetting.swift */; };
 		30F2E9A6244EC05C00C8D289 /* NetworkErrorCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9A5244EC05C00C8D289 /* NetworkErrorCase.swift */; };
+		30F2E9A8244EC2F800C8D289 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9A7244EC2F800C8D289 /* NetworkManager.swift */; };
 		30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		30EF1610244EAD290074E4A4 /* MenuTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableView.swift; sourceTree = "<group>"; };
 		30F2E9A3244EBFED00C8D289 /* NetworkSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSetting.swift; sourceTree = "<group>"; };
 		30F2E9A5244EC05C00C8D289 /* NetworkErrorCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorCase.swift; sourceTree = "<group>"; };
+		30F2E9A7244EC2F800C8D289 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 			children = (
 				30F2E9A3244EBFED00C8D289 /* NetworkSetting.swift */,
 				30F2E9A5244EC05C00C8D289 /* NetworkErrorCase.swift */,
+				30F2E9A7244EC2F800C8D289 /* NetworkManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F2E9A8244EC2F800C8D289 /* NetworkManager.swift in Sources */,
 				30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */,
 				30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */,
 				30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */,

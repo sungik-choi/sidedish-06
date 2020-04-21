@@ -1,1 +1,0 @@
-insert into project values (null, '제');

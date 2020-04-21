@@ -50,7 +50,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private func configureUsecase() {
         NetworkUseCase.makeAllMenu(with: MenuViewController.networkManager) { data in
             self.allMenu = data
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 }

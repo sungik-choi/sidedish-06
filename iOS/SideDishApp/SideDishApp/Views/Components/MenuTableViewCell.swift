@@ -72,7 +72,7 @@ class MenuTableViewCell: UITableViewCell {
     
     //MARK:- functions
     
-    func configureCellData(title: String, description: String, originPrice: String?, newPrice: String, badges: [Discount] ) {
+    func configureCellData(title: String, description: String, originPrice: String?, newPrice: String, badges: [String] ) {
         menuTitle.text = title
         menuDescription.text = description
         previousPrice.text = originPrice
@@ -85,12 +85,12 @@ class MenuTableViewCell: UITableViewCell {
     
     // MARK:- private functions
     
-    private func makeBadgeLabel(badges: Discount) -> UILabel {
+    private func makeBadgeLabel(badges: String) -> UILabel {
         let label = UILabel()
         label.textColor = .white
         label.backgroundColor = #colorLiteral(red: 0.7156945001, green: 0.5062116534, blue: 0.9173937183, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 14.0)
-        label.text = badges.badge
+        label.text = badges
         return label
     }
     

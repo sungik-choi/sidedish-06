@@ -14,8 +14,14 @@ struct NetworkUseCase {
         manager.getResource(url: EndPoints.AllMenu, methodType: .get, body: nil) { result in
             switch result {
             case .success(let data):
-                guard let decodedData = try? JSONDecoder().decode(AllMenu.self, from: data) else { return }
-                completed(decodedData)
+                do {
+                    let decodedData = try? JSONDecoder().decode(AllMenu.self, from: data)
+                    let aa =  try JSONDecoder().decode(AllMenu.self, from: data)
+                    completed(decodedData!)
+                }catch {
+                    print(error.localizedDescription)
+                }
+                
             case .failure(let error):
                 //error handling 필요
                 print(error.localizedDescription)

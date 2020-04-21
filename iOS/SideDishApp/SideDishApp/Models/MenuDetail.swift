@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct MenuDetail {
+struct MenuDetail: Decodable {
     var hash: String
     var data: MenuDetailData
 }
 
-struct MenuDetailData {
+struct MenuDetailData: Decodable {
     var top_image: String
     var thumb_images: [ThumbImage]
     var product_description: String
@@ -24,14 +24,14 @@ struct MenuDetailData {
     var detail_section: [DetailImage]
 }
 
-struct ThumbImage {
+struct ThumbImage: Decodable {
     var image: String
 }
 
-struct Price {
+struct Price: Decodable {
     var price: String
 }
 
-struct DetailImage {
+struct DetailImage: Decodable {
     var detailImage: String
 }

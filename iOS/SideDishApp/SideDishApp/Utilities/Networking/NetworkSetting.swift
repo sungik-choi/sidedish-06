@@ -16,7 +16,7 @@ enum HTTPMethod: String {
 }
 
 enum EndPoints {
-    static let baseURL = URL(string: "")
+    static let AllMenu = URL(string: "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/main")
 }
 
 

@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct AllMenu {
+struct AllMenu: Decodable {
     var statusCode: Int
     var body: [Menu]
 }
 
-struct Menu {
+struct Menu: Decodable {
     var detail_hash: String
     var image: String
     var alt: String
@@ -25,11 +25,11 @@ struct Menu {
     var badge: [Discount]
 }
 
-struct Delivery {
+struct Delivery: Decodable {
     var type: String
 }
 
-struct Discount {
+struct Discount: Decodable {
     var badge: String
 }
 

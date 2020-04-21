@@ -10,8 +10,8 @@ import Foundation
 
 struct NetworkManager {
     
-    func getResource(url: URL, methodType: HTTPMethod, body: Data? = nil, completion: @escaping(Result<Data, NetworkErrorCase>) -> Void) {
-        var request = URLRequest(url: url)
+    func getResource(url: String, methodType: HTTPMethod, body: Data? = nil, completion: @escaping(Result<Data, NetworkErrorCase>) -> Void) {
+        var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body

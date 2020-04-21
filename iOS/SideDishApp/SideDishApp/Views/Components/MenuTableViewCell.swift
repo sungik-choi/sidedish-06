@@ -10,6 +10,8 @@ import UIKit
 
 class MenuTableViewCell: UITableViewCell {
     
+    // MARK:- initialize
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: "MenuTableViewCell")
         configure()
@@ -20,13 +22,14 @@ class MenuTableViewCell: UITableViewCell {
         configure()
     }
     
-    let menuImage: UIImageView = {
+    // MARK:- properties
+    private let menuImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         return image
     }()
     
-    let menuTitle: UILabel = {
+    private let menuTitle: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
@@ -34,7 +37,7 @@ class MenuTableViewCell: UITableViewCell {
         return label
     }()
     
-    let menuDescription: UILabel = {
+    private let menuDescription: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 15.0)
@@ -42,7 +45,7 @@ class MenuTableViewCell: UITableViewCell {
         return label
     }()
     
-    let previousPrice: UILabel = {
+    private let previousPrice: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14.0)
@@ -51,30 +54,49 @@ class MenuTableViewCell: UITableViewCell {
         return label
     }()
     
-    let price: UILabel = {
+    private let price: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 0.4078031928, green: 0.8572929886, blue: 0.7874471795, alpha: 1)
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
         return label
     }()
     
-    let badge: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.backgroundColor = #colorLiteral(red: 0.7156945001, green: 0.5062116534, blue: 0.9173937183, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 14.0)
-        return label
-    }()
-    
-    lazy var badgeStack: UIStackView = {
+    private lazy var badgeStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .fill
         stack.distribution = .fillProportionally
         stack.spacing = 5.0
-        stack.addArrangedSubview(badge)
         return stack
     }()
+    
+    //MARK:- functions
+    
+    func configureCellData(title: String, description: String, originPrice: String?, newPrice: String, badges: [Discount] ) {
+        menuTitle.text = title
+        menuDescription.text = description
+        previousPrice.text = originPrice
+        price.text = newPrice
+        for badge in badges {
+            let label = makeBadgeLabel(badges: badge)
+            addArrangedSubview(label: label)
+        }
+    }
+    
+    // MARK:- private functions
+    
+    private func makeBadgeLabel(badges: Discount) -> UILabel {
+        let label = UILabel()
+        label.textColor = .white
+        label.backgroundColor = #colorLiteral(red: 0.7156945001, green: 0.5062116534, blue: 0.9173937183, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.text = badges.badge
+        return label
+    }
+    
+    private func addArrangedSubview(label: UILabel) {
+        badgeStack.addArrangedSubview(label)
+    }
     
     private func configure() {
         self.contentView.addSubview(menuImage)

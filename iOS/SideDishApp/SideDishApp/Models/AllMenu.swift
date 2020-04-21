@@ -8,28 +8,28 @@
 
 import Foundation
 
-struct AllMenu: Decodable {
+struct AllMenu: Codable {
     var statusCode: Int
     var body: [Menu]
 }
 
-struct Menu: Decodable {
+struct Menu: Codable {
     var detail_hash: String
     var image: String
     var alt: String
     var delivery_type: [Delivery]
     var title: String
     var description: String
-    var n_price: String
+    var n_price: String?
     var s_price: String
-    var badge: [Discount]
+    var badge: [Discount]?
 }
 
-struct Delivery: Decodable {
+struct Delivery: Codable {
     var type: String
 }
 
-struct Discount: Decodable {
+struct Discount: Codable {
     var badge: String
 }
 

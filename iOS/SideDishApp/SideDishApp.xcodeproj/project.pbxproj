@@ -74,17 +74,15 @@
 		30E2F0C4244DBEFA00E45C03 /* SideDishApp */ = {
 			isa = PBXGroup;
 			children = (
+				30F2E9B1244EEA3B00C8D289 /* Views */,
+				30F2E9B0244EEA2600C8D289 /* ViewControllers */,
 				30F2E9AB244ED49E00C8D289 /* Models */,
 				30F2E9A0244EBE9000C8D289 /* Utilities */,
 				30F2E99F244EBE7000C8D289 /* Entry */,
-				30EF1610244EAD290074E4A4 /* MenuTableView.swift */,
-				30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */,
 				30E2F0CB244DBEFA00E45C03 /* Main.storyboard */,
 				30E2F0CE244DBF0100E45C03 /* Assets.xcassets */,
-				30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */,
 				30E2F0D0244DBF0100E45C03 /* LaunchScreen.storyboard */,
 				30E2F0D3244DBF0100E45C03 /* Info.plist */,
-				30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */,
 			);
 			path = SideDishApp;
 			sourceTree = "<group>";
@@ -124,6 +122,32 @@
 				30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		30F2E9B0244EEA2600C8D289 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */,
+				30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		30F2E9B1244EEA3B00C8D289 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				30EF1610244EAD290074E4A4 /* MenuTableView.swift */,
+				30F2E9B2244EEA4700C8D289 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		30F2E9B2244EEA4700C8D289 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

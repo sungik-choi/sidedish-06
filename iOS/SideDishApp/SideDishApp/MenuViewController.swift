@@ -15,9 +15,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuTableViewCell")
+        tableViewConfigure()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,6 +36,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell 
     }
-    
+
+    private func tableViewConfigure() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuTableViewCell")
+    }
 }
 

@@ -8,14 +8,9 @@
 
 import Foundation
 
-protocol NetworkManageable {
-    func getResource<T:Decodable>(url: URL, methodType: HTTPMethod, dataType: T.Type, body: Data?, handler: @escaping (Result<Data, NetworkErrorCase>) -> Void) throws
-}
-
 struct NetworkManager {
-    let decodeManager = DecodeManager()
     
-    func getResource<T:Decodable>(url: URL, methodType: HTTPMethod, dataType:T.Type, body: Data? = nil, completion: @escaping(Result<Any, NetworkErrorCase>) -> Void) {
+    func getResource(url: URL, methodType: HTTPMethod, body: Data? = nil, completion: @escaping(Result<Data, NetworkErrorCase>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -26,15 +21,7 @@ struct NetworkManager {
                 if let error = error as NSError?, error.domain == NSURLErrorDomain { completion(.failure(.InvalidURL)) }
                 return
             }
-            self.decodeManager.decode(data: data, dataType: dataType) { completion($0) }
+            completion(.success(data))
         }.resume()
-    }
-}
-
-struct DecodeManager {
-    func decode<T:Decodable>(data: Data, dataType:T.Type, completion: @escaping (Result<Any, NetworkErrorCase>) -> Void) {
-        let decoder = JSONDecoder()
-        guard let anyData = try? decoder.decode(dataType, from: data) else { completion(.failure(.DecodeError)); return }
-        completion(.success(anyData))
     }
 }

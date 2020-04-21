@@ -72,6 +72,19 @@ class MenuTableViewCell: UITableViewCell {
     
     //MARK:- functions
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        menuTitle.text = nil
+        menuTitle.text = nil
+        menuDescription.text = nil
+        previousPrice.text = nil
+        price.text = nil
+        
+        for view in badgeStack.subviews {
+            view.removeFromSuperview()
+        }
+    }
+    
     func configureCellData(title: String, description: String, originPrice: String?, newPrice: String, badges: [String] ) {
         menuTitle.text = title
         menuDescription.text = description

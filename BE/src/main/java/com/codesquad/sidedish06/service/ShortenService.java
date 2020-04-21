@@ -15,8 +15,8 @@ import static com.codesquad.sidedish06.utils.JsonUtils.data;
 @Service
 public class ShortenService {
 
-    public Shorten[] saveShortenInformation() throws URISyntaxException, IOException {
-        String url = BASE_URL + "/main";
+    public Shorten[] saveShortenInformation(String menu) throws URISyntaxException, IOException {
+        String url = BASE_URL + menu;
         String data = data(url);
 
         ObjectMapper objectMapper = new ObjectMapper();

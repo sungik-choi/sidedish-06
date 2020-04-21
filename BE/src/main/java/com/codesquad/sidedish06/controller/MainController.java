@@ -23,13 +23,13 @@ public class MainController {
     private Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @GetMapping("/")
-    public Shorten[] test() throws URISyntaxException, IOException {
-        return shortenService.saveShortenInformation();
+    public Shorten[] test(String menu) throws URISyntaxException, IOException {
+        return shortenService.saveShortenInformation(menu);
     }
 
     @GetMapping("/test")
     public Object test2() throws IOException, URISyntaxException {
-        Shorten[] shortens = test();
+        Shorten[] shortens = test("/main");
         for (Shorten shorten : shortens) {
             shortenDao.insert(shorten);
         }

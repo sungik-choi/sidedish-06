@@ -78,19 +78,20 @@ class MenuTableViewCell: UITableViewCell {
         previousPrice.text = originPrice
         price.text = newPrice
         for badge in badges {
-            let label = makeBadgeLabel(badges: badge)
+            let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
         }
     }
     
     // MARK:- private functions
     
-    private func makeBadgeLabel(badges: String) -> UILabel {
+    private func makeBadgeLabel(badge: String) -> UILabel {
         let label = UILabel()
         label.textColor = .white
         label.backgroundColor = #colorLiteral(red: 0.7156945001, green: 0.5062116534, blue: 0.9173937183, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 14.0)
-        label.text = badges
+        label.text = badge
+        
         return label
     }
     
@@ -130,18 +131,16 @@ class MenuTableViewCell: UITableViewCell {
         previousPrice.translatesAutoresizingMaskIntoConstraints = false
         previousPrice.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 6).isActive = true
         previousPrice.leadingAnchor.constraint(equalTo: menuDescription.leadingAnchor).isActive = true
+        previousPrice.bottomAnchor.constraint(equalTo: price.bottomAnchor).isActive = true
         
         price.translatesAutoresizingMaskIntoConstraints = false
-        price.topAnchor.constraint(equalTo: previousPrice.topAnchor).isActive = true
+        price.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 6).isActive = true
         price.leadingAnchor.constraint(equalTo: previousPrice.trailingAnchor, constant: 4).isActive = true
-        price.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8).isActive = true
         
         badgeStack.translatesAutoresizingMaskIntoConstraints = false
         badgeStack.topAnchor.constraint(equalTo: price.bottomAnchor, constant: 4).isActive = true
         badgeStack.leadingAnchor.constraint(equalTo: previousPrice.leadingAnchor).isActive = true
-        badgeStack.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8).isActive = true
         badgeStack.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
-        
         
     }
     

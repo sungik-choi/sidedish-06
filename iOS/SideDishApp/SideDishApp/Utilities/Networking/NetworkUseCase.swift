@@ -16,7 +16,6 @@ struct NetworkUseCase {
             case .success(let data):
                 do {
                     let decodedData = try? JSONDecoder().decode(AllMenu.self, from: data)
-                    let aa =  try JSONDecoder().decode(AllMenu.self, from: data)
                     completed(decodedData!)
                 }catch {
                     print(error.localizedDescription)

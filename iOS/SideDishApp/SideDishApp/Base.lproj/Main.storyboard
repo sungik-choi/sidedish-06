@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MenuTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IMX-D9-tuR" customClass="MenuTableView" customModule="SideDishApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="414" height="856"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="832"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MenuTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" id="myY-i9-Bej" customClass="MenuTableViewCell" customModule="SideDishApp" customModuleProvider="target">
@@ -73,7 +73,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="IMX-D9-tuR" firstAttribute="top" secondItem="ZCT-I7-zv8" secondAttribute="top" constant="20" symbolic="YES" id="1Dv-Zv-Syg"/>
+                            <constraint firstItem="IMX-D9-tuR" firstAttribute="top" secondItem="UW5-A8-SMm" secondAttribute="top" id="1Dv-Zv-Syg"/>
                             <constraint firstItem="IMX-D9-tuR" firstAttribute="leading" secondItem="UW5-A8-SMm" secondAttribute="leading" id="ME3-z6-Gyp"/>
                             <constraint firstItem="IMX-D9-tuR" firstAttribute="trailing" secondItem="UW5-A8-SMm" secondAttribute="trailing" id="SI6-zy-bur"/>
                             <constraint firstAttribute="bottom" secondItem="IMX-D9-tuR" secondAttribute="bottom" constant="20" symbolic="YES" id="bxR-qA-nm2"/>

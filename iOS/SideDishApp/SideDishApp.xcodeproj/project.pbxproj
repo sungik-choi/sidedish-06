@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB3DC1245021710022C15E /* MenuHeaderView.swift */; };
 		30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */; };
 		30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */; };
 		30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30CB3DC1245021710022C15E /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		30E2F0C2244DBEFA00E45C03 /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */,
+				30CB3DC1245021710022C15E /* MenuHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */,
 				30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */,
 				30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */,
+				30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */,
 				30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */,
 				30EF1611244EAD290074E4A4 /* MenuTableView.swift in Sources */,
 				30F2E9A6244EC05C00C8D289 /* NetworkErrorCase.swift in Sources */,
@@ -379,6 +383,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NC28R53QWB;
 				INFOPLIST_FILE = SideDishApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -397,6 +402,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NC28R53QWB;
 				INFOPLIST_FILE = SideDishApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

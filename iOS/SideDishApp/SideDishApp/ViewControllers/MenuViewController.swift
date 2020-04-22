@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Toaster
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     static let networkManager = NetworkManager()
     private let sections:[String] = ["국","찌개","반찬"]
     @IBOutlet var tableView: MenuTableView!
@@ -45,6 +46,16 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
         cell.configureCellData(menu: allMenu?.body[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(touchedSectionHeader(recognizer:)))
+        view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func touchedSectionHeader(recognizer: UITapGestureRecognizer) {
+        let toaster = Toast(text: "몇개 몇개 서버에서 받아서 띄워주기")
+        toaster.show()
     }
     
     private func configureTableView() {

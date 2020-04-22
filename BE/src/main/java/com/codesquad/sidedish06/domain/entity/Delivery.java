@@ -1,4 +1,4 @@
-package com.codesquad.sidedish06.domain.dto;
+package com.codesquad.sidedish06.domain.entity;
 
 import lombok.*;
 
@@ -9,5 +9,5 @@ import lombok.*;
 @ToString
 public class Delivery {
 
-    private String delivery_type;
+    private String type;
 }

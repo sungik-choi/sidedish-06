@@ -1,4 +1,4 @@
-package com.codesquad.sidedish06.domain.dto;
+package com.codesquad.sidedish06.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

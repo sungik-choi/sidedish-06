@@ -18,14 +18,14 @@ CREATE TABLE shorten
 
 CREATE TABLE delivery
 (
-    detail_hash   VARCHAR(64) REFERENCES shorten (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
-    delivery_type VARCHAR(64)
+    detail_hash VARCHAR(64) REFERENCES shorten (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    type        VARCHAR(64)
 );
 
 CREATE TABLE badge
 (
     detail_hash VARCHAR(64) REFERENCES shorten (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
-    badge       VARCHAR(32)
+    event       VARCHAR(32)
 );
 
 # CREATE TABLE banchan

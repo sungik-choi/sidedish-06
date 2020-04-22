@@ -1,0 +1,6 @@
+module Pods_SideDishApp {
+  umbrella header "Pods-SideDishApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

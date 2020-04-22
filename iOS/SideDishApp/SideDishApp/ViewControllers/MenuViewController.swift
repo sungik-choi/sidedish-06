@@ -46,7 +46,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.configureCellData(title: allMenu?.body[indexPath.row].title ?? "", description: allMenu?.body[indexPath.row].description ?? "", originPrice: allMenu?.body[indexPath.row].n_price ?? "", newPrice: allMenu?.body[indexPath.row].s_price ?? "", badges: allMenu?.body[indexPath.row].badge ?? [])
         return cell
     }
-
+    
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self

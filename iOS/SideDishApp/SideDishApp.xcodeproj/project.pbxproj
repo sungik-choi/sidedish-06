@@ -9,23 +9,39 @@
 /* Begin PBXBuildFile section */
 		30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */; };
 		30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */; };
-		30E2F0CA244DBEFA00E45C03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C9244DBEFA00E45C03 /* ViewController.swift */; };
+		30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */; };
 		30E2F0CD244DBEFA00E45C03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E2F0CB244DBEFA00E45C03 /* Main.storyboard */; };
 		30E2F0CF244DBF0100E45C03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E2F0CE244DBF0100E45C03 /* Assets.xcassets */; };
 		30E2F0D2244DBF0100E45C03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E2F0D0244DBF0100E45C03 /* LaunchScreen.storyboard */; };
 		30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */; };
+		30EF1611244EAD290074E4A4 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF1610244EAD290074E4A4 /* MenuTableView.swift */; };
+		30F2E9A4244EBFED00C8D289 /* NetworkSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9A3244EBFED00C8D289 /* NetworkSetting.swift */; };
+		30F2E9A6244EC05C00C8D289 /* NetworkErrorCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9A5244EC05C00C8D289 /* NetworkErrorCase.swift */; };
+		30F2E9A8244EC2F800C8D289 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9A7244EC2F800C8D289 /* NetworkManager.swift */; };
+		30F2E9AA244ECBDD00C8D289 /* NetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9A9244ECBDD00C8D289 /* NetworkUseCase.swift */; };
+		30F2E9AD244EDCDE00C8D289 /* AllMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9AC244EDCDE00C8D289 /* AllMenu.swift */; };
+		30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */; };
+		30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30E2F0C2244DBEFA00E45C03 /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		30E2F0C9244DBEFA00E45C03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30E2F0CC244DBEFA00E45C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30E2F0CE244DBF0100E45C03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30E2F0D1244DBF0100E45C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30E2F0D3244DBF0100E45C03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		30EF1610244EAD290074E4A4 /* MenuTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableView.swift; sourceTree = "<group>"; };
+		30F2E9A3244EBFED00C8D289 /* NetworkSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSetting.swift; sourceTree = "<group>"; };
+		30F2E9A5244EC05C00C8D289 /* NetworkErrorCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorCase.swift; sourceTree = "<group>"; };
+		30F2E9A7244EC2F800C8D289 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		30F2E9A9244ECBDD00C8D289 /* NetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUseCase.swift; sourceTree = "<group>"; };
+		30F2E9AC244EDCDE00C8D289 /* AllMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMenu.swift; sourceTree = "<group>"; };
+		30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetail.swift; sourceTree = "<group>"; };
+		30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +74,80 @@
 		30E2F0C4244DBEFA00E45C03 /* SideDishApp */ = {
 			isa = PBXGroup;
 			children = (
-				30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */,
-				30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */,
-				30E2F0C9244DBEFA00E45C03 /* ViewController.swift */,
+				30F2E9B1244EEA3B00C8D289 /* Views */,
+				30F2E9B0244EEA2600C8D289 /* ViewControllers */,
+				30F2E9AB244ED49E00C8D289 /* Models */,
+				30F2E9A0244EBE9000C8D289 /* Utilities */,
+				30F2E99F244EBE7000C8D289 /* Entry */,
 				30E2F0CB244DBEFA00E45C03 /* Main.storyboard */,
 				30E2F0CE244DBF0100E45C03 /* Assets.xcassets */,
-				30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */,
 				30E2F0D0244DBF0100E45C03 /* LaunchScreen.storyboard */,
 				30E2F0D3244DBF0100E45C03 /* Info.plist */,
 			);
 			path = SideDishApp;
+			sourceTree = "<group>";
+		};
+		30F2E99F244EBE7000C8D289 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */,
+				30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */,
+			);
+			path = Entry;
+			sourceTree = "<group>";
+		};
+		30F2E9A0244EBE9000C8D289 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				30F2E9A2244EBEA600C8D289 /* Networking */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		30F2E9A2244EBEA600C8D289 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				30F2E9A3244EBFED00C8D289 /* NetworkSetting.swift */,
+				30F2E9A5244EC05C00C8D289 /* NetworkErrorCase.swift */,
+				30F2E9A7244EC2F800C8D289 /* NetworkManager.swift */,
+				30F2E9A9244ECBDD00C8D289 /* NetworkUseCase.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		30F2E9AB244ED49E00C8D289 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				30F2E9AC244EDCDE00C8D289 /* AllMenu.swift */,
+				30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		30F2E9B0244EEA2600C8D289 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */,
+				30E2F0D9244DC8C100E45C03 /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		30F2E9B1244EEA3B00C8D289 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				30EF1610244EAD290074E4A4 /* MenuTableView.swift */,
+				30F2E9B2244EEA4700C8D289 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		30F2E9B2244EEA4700C8D289 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +221,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F2E9AD244EDCDE00C8D289 /* AllMenu.swift in Sources */,
+				30F2E9AA244ECBDD00C8D289 /* NetworkUseCase.swift in Sources */,
+				30F2E9A8244EC2F800C8D289 /* NetworkManager.swift in Sources */,
 				30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */,
-				30E2F0CA244DBEFA00E45C03 /* ViewController.swift in Sources */,
+				30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */,
+				30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */,
+				30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */,
 				30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */,
+				30EF1611244EAD290074E4A4 /* MenuTableView.swift in Sources */,
+				30F2E9A6244EC05C00C8D289 /* NetworkErrorCase.swift in Sources */,
 				30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */,
+				30F2E9A4244EBFED00C8D289 /* NetworkSetting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

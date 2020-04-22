@@ -31,6 +31,9 @@
                                 <state key="normal" title="Sign in with github">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signInGithub:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Nk-UO-Xen"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -44,6 +47,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="138.61607142857142"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="9tn-TA-0Lz">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" modalPresentationStyle="fullScreen" id="w6T-z1-2Zc" customClass="MenuViewController" customModule="SideDishApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZCT-I7-zv8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MenuTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IMX-D9-tuR" customClass="MenuTableView" customModule="SideDishApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="414" height="856"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MenuTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" id="myY-i9-Bej" customClass="MenuTableViewCell" customModule="SideDishApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="myY-i9-Bej" id="1jE-Nz-c0P">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IMX-D9-tuR" firstAttribute="top" secondItem="ZCT-I7-zv8" secondAttribute="top" constant="20" symbolic="YES" id="1Dv-Zv-Syg"/>
+                            <constraint firstItem="IMX-D9-tuR" firstAttribute="leading" secondItem="UW5-A8-SMm" secondAttribute="leading" id="ME3-z6-Gyp"/>
+                            <constraint firstItem="IMX-D9-tuR" firstAttribute="trailing" secondItem="UW5-A8-SMm" secondAttribute="trailing" id="SI6-zy-bur"/>
+                            <constraint firstAttribute="bottom" secondItem="IMX-D9-tuR" secondAttribute="bottom" constant="20" symbolic="YES" id="bxR-qA-nm2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UW5-A8-SMm"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wem-Ru-jaY"/>
+                    <connections>
+                        <outlet property="tableView" destination="IMX-D9-tuR" id="a2X-Fm-RdB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OCZ-bO-cuf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1989.8550724637682" y="135.9375"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nkn-6e-tfP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="iNt-ch-PoO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z8i-aA-FEc">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="w6T-z1-2Zc" kind="relationship" relationship="rootViewController" id="0N1-uh-4MW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q08-vs-jXB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079.7101449275362" y="135.9375"/>
         </scene>
     </scenes>
 </document>

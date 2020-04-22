@@ -18,6 +18,11 @@ class LoginViewController: UIViewController {
         configureConstraints()
     }
     
+    @IBAction func signInGithub(_ sender: UIButton) {
+        guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") else { return }
+        self.present(menuViewController, animated: true)
+    }
+    
     private func configureConstraints() {
         let height = self.view.bounds.height
         

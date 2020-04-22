@@ -1,15 +1,9 @@
 package com.codesquad.sidedish06.controller;
 
-import com.codesquad.sidedish06.dao.DetailDao;
-import com.codesquad.sidedish06.dao.OverviewDao;
-import com.codesquad.sidedish06.domain.entity.Detail;
-import com.codesquad.sidedish06.domain.entity.Overview;
-import com.codesquad.sidedish06.utils.JsonUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.codesquad.sidedish06.service.OverviewService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -19,24 +13,16 @@ import java.net.URISyntaxException;
 @RestController
 public class MainController {
 
-    private final OverviewDao overviewDao;
+    private final OverviewService overviewService;
 
-    private final DetailDao detailDao;
+//    @GetMapping("/overview/dblist")
+//    public Object listDbOverview() {
+//        return overviewDao.listOverview();
+//    }
 
-    private final Logger logger = LoggerFactory.getLogger(MainController.class);
-
-    @GetMapping("/overview/dblist")
-    public Object test() {
-        return overviewDao.listOverview();
-    }
-
-    @GetMapping("/overview/mockup")
-    public Object test2() throws IOException, URISyntaxException {
-        Overview[] overviews = JsonUtils.listOverview("/main/");
-        for (Overview overview : overviews) {
-            overviewDao.insert(overview);
-        }
-        return overviews;
+    @GetMapping("/{menu}")
+    public Object saveOverview(@PathVariable String menu) throws IOException, URISyntaxException {
+        return overviewService.list(menu);
     }
 
 //    @GetMapping("/detail/dblist")
@@ -44,9 +30,12 @@ public class MainController {
 //        return detailDao.listOverview();
 //    }
 
-    @GetMapping("/detail/mockup")
-    public Object detail() throws URISyntaxException, JsonProcessingException {
-        Detail[] details = JsonUtils.listDetail();
-        return details;
-    }
+//    @GetMapping("/detail/mockup")
+//    public Object detail() throws URISyntaxException, JsonProcessingException {
+//        Detail[] details = listDetail();
+//        for (Detail detail : details) {
+//            detailDao.insert(detail);
+//        }
+//        return details;
+//    }
 }

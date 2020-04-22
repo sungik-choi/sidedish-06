@@ -1,7 +1,9 @@
 package com.codesquad.sidedish06.dao;
 
+import com.codesquad.sidedish06.domain.dto.RequestOverviewDTO;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.entity.Badge;
+import com.codesquad.sidedish06.domain.entity.Banchan;
 import com.codesquad.sidedish06.domain.entity.Delivery;
 import com.codesquad.sidedish06.domain.entity.Overview;
 import org.slf4j.Logger;
@@ -23,22 +25,21 @@ public class OverviewDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
     private final Logger logger = LoggerFactory.getLogger(OverviewDao.class);
 
     @Autowired
     public OverviewDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    public Overview insert(Overview overview) {
+    public Banchan insert(RequestOverviewDTO overview, String menu) {
 
-        String sql = "insert into overview(detail_hash, image, alt, title, description, n_price, s_price)" +
-                "values (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into banchan (food_type, hash, image, alt, title, description, n_price, s_price)" +
+                "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        jdbcTemplate.update(sql, overview.getDetail_hash(),
+        jdbcTemplate.update(sql,
+                menu,
+                overview.getDetail_hash(),
                 overview.getImage(),
                 overview.getAlt(),
                 overview.getTitle(),
@@ -67,7 +68,7 @@ public class OverviewDao {
             }
         }
 
-        return overview;
+        return banchan;
     }
 
     private List<String> deliveries(ResponseOverview response) {

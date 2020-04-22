@@ -1,6 +1,9 @@
 package com.codesquad.sidedish06.dao;
 
-import com.codesquad.sidedish06.domain.entity.*;
+import com.codesquad.sidedish06.domain.entity.Detail;
+import com.codesquad.sidedish06.domain.entity.DetailSection;
+import com.codesquad.sidedish06.domain.entity.Price;
+import com.codesquad.sidedish06.domain.entity.ThumbImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,4 +68,27 @@ public class DetailDao {
 
         return detail;
     }
+
+//    public List<ResponseDetail> listOverview() {
+//        String sql = "select * from detail";
+//
+//        RowMapper<ResponseDetail> responseDetailRowMapper = new RowMapper<ResponseDetail>() {
+//            @Override
+//            public ResponseDetail mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                ResponseDetail response = new ResponseDetail();
+//                response.setDetail_hash(rs.getString("detail_hash"));
+//                response.setImage(rs.getString("image"));
+//                response.setAlt(rs.getString("alt"));
+//                response.setDelivery_type(deliveries(response));
+//                response.setTitle(rs.getString("title"));
+//                response.setDescription(rs.getString("description"));
+//                response.setN_price(rs.getString("n_price"));
+//                response.setS_price(rs.getString("s_price"));
+//                response.setBadge(badges(response));
+//                return response;
+//            }
+//        };
+//
+//        return this.jdbcTemplate.query(sql, responseOverviewRowMapper);
+//    }
 }

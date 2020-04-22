@@ -1,5 +1,6 @@
 package com.codesquad.sidedish06.utils;
 
+import com.codesquad.sidedish06.domain.dto.RequestOverviewDTO;
 import com.codesquad.sidedish06.domain.entity.Detail;
 import com.codesquad.sidedish06.domain.entity.Overview;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,7 +36,7 @@ public class JsonUtils {
         return restTemplate.getForObject(uri, String.class);
     }
 
-    public static Overview[] listOverview(String menu) throws URISyntaxException, IOException {
+    public static RequestOverviewDTO[] listOverview(String menu) throws URISyntaxException, IOException {
         String url = BASE_URL + menu;
         String data = data(url);
 
@@ -44,7 +45,7 @@ public class JsonUtils {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("body");
-        Overview[] overviews = objectMapper.convertValue(jsonNode, Overview[].class);
+        RequestOverviewDTO[] overviews = objectMapper.convertValue(jsonNode, RequestOverviewDTO[].class);
         return overviews;
     }
 

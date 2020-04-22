@@ -23,6 +23,7 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     // MARK:- properties
+    
     private let menuImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -85,11 +86,12 @@ class MenuTableViewCell: UITableViewCell {
         }
     }
     
-    func configureCellData(title: String, description: String, originPrice: String?, newPrice: String, badges: [String] ) {
-        menuTitle.text = title
-        menuDescription.text = description
-        previousPrice.text = originPrice
-        price.text = newPrice
+    func configureCellData(menu: Menu) {
+        menuTitle.text = menu.title
+        menuDescription.text = menu.description
+        previousPrice.text = menu.n_price
+        price.text = menu.s_price
+        guard let badges = menu.badge else { return }
         for badge in badges {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)

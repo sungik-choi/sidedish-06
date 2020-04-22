@@ -50,8 +50,6 @@ class MenuTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14.0)
-        let attrString = NSAttributedString(string: "", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-        label.attributedText = attrString
         return label
     }()
     
@@ -86,10 +84,11 @@ class MenuTableViewCell: UITableViewCell {
         }
     }
     
-    func configureCellData(menu: Menu) {
+    func configureCellData(menu: Menu?) {
+        guard let menu = menu else { return }
         menuTitle.text = menu.title
         menuDescription.text = menu.description
-        previousPrice.text = menu.n_price
+        previousPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.n_price ?? ""))", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         price.text = menu.s_price
         guard let badges = menu.badge else { return }
         for badge in badges {

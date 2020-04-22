@@ -43,9 +43,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
-        var menu: Menu!
-        if let menuData = allMenu?.body[indexPath.row] { menu = menuData }
-        cell.configureCellData(menu: menu)
+        cell.configureCellData(menu: allMenu?.body[indexPath.row])
         return cell
     }
     

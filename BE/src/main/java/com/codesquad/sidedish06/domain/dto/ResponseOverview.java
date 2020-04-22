@@ -1,8 +1,11 @@
-package com.codesquad.sidedish06.domain.entity;
+package com.codesquad.sidedish06.domain.dto;
 
+import com.codesquad.sidedish06.domain.entity.Badge;
+import com.codesquad.sidedish06.domain.entity.Delivery;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -10,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Shorten {
+public class ResponseOverview {
 
     @JsonProperty
     private String detail_hash;
@@ -22,7 +25,7 @@ public class Shorten {
     private String alt;
 
     @JsonProperty
-    private List<Delivery> delivery_type;
+    private List<String> delivery_type;
 
     @JsonProperty
     private String title;
@@ -37,5 +40,5 @@ public class Shorten {
     private String s_price;
 
     @JsonProperty
-    private List<Badge> badge;
+    private List<String> badge;
 }

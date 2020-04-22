@@ -1,6 +1,6 @@
 package com.codesquad.sidedish06.utils;
 
-import com.codesquad.sidedish06.domain.entity.Shorten;
+import com.codesquad.sidedish06.domain.entity.Overview;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +20,7 @@ public class JsonUtils {
         return restTemplate.getForObject(uri, String.class);
     }
 
-    public static Shorten[] listShorten(String menu) throws URISyntaxException, IOException {
+    public static Overview[] listOverview(String menu) throws URISyntaxException, IOException {
         String url = BASE_URL + menu;
         String data = data(url);
 
@@ -29,7 +29,7 @@ public class JsonUtils {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("body");
-        Shorten[] shortens = objectMapper.convertValue(jsonNode, Shorten[].class);
-        return shortens;
+        Overview[] overviews = objectMapper.convertValue(jsonNode, Overview[].class);
+        return overviews;
     }
 }

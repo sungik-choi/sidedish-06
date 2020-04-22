@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS shorten;
+DROP TABLE IF EXISTS overview;
 DROP TABLE IF EXISTS delivery;
 DROP TABLE IF EXISTS badge;
 # DROP TABLE IF EXISTS thumb_image;
 # DROP TABLE IF EXISTS detail_section;
 # DROP TABLE IF EXISTS banchan;
 
-CREATE TABLE shorten
+CREATE TABLE overview
 (
     detail_hash VARCHAR(64) PRIMARY KEY,
     image       VARCHAR(256),
@@ -18,13 +18,13 @@ CREATE TABLE shorten
 
 CREATE TABLE delivery
 (
-    detail_hash VARCHAR(64) REFERENCES shorten (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    detail_hash VARCHAR(64) REFERENCES overview (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
     type        VARCHAR(64)
 );
 
 CREATE TABLE badge
 (
-    detail_hash VARCHAR(64) REFERENCES shorten (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    detail_hash VARCHAR(64) REFERENCES overview (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
     event       VARCHAR(32)
 );
 

@@ -36,7 +36,7 @@ export const lnbList = [
   },
 ];
 
-export const categoryList = [
+export const menuList = [
   {
     id: 0,
     name: '밑반찬',

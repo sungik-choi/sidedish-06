@@ -11,7 +11,7 @@ function Header(props) {
       <LocalNavBar list={props.lnbList} />
       <Logo />
       <SearchBar />
-      <MenuBar list={props.categoryList} />
+      <MenuBar list={props.menuList} />
     </header>
   );
 }

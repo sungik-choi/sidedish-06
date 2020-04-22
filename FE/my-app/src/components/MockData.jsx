@@ -1,4 +1,42 @@
-const categoryList = [
+export const lnbList = [
+  {
+    id: 0,
+    name: '로그인',
+    type: 'none',
+  },
+  {
+    id: 1,
+    name: '회원가입',
+    type: 'none',
+  },
+  {
+    id: 2,
+    name: '마이페이지',
+    type: 'dropdown',
+  },
+  {
+    id: 3,
+    name: '고객센터',
+    type: 'dropdown',
+  },
+  {
+    id: 4,
+    name: '새벽배송 지역검색',
+    type: 'none',
+  },
+  {
+    id: 5,
+    name: '이벤트 게시판',
+    type: 'none',
+  },
+  {
+    id: 6,
+    name: '장바구니',
+    type: 'primary',
+  },
+];
+
+export const categoryList = [
   {
     id: 0,
     name: '밑반찬',
@@ -60,5 +98,3 @@ const categoryList = [
     subList: ['반찬가게', '반찬 장인', '전국맛집', '키즈관'],
   },
 ];
-
-export default categoryList;

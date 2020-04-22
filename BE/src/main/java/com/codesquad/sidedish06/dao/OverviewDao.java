@@ -4,6 +4,7 @@ import com.codesquad.sidedish06.domain.dto.RequestOverviewDTO;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Repository
 public class OverviewDao {
 
     private final JdbcTemplate jdbcTemplate;
-
-    private final Logger logger = LoggerFactory.getLogger(OverviewDao.class);
 
     @Autowired
     public OverviewDao(DataSource dataSource) {
@@ -31,8 +31,8 @@ public class OverviewDao {
 
     public void insert(RequestOverviewDTO overview, String menu) {
 
-        String sql = "insert into banchan (hash, food_type, image, alt, title, description, n_price, s_price, top_image, point, delivery_info, delivery_fee)" +
-                "values (?, ?, ?, ?, ?, ?, ?, ?, null, null, null, null)";
+        String sql = "insert into banchan (hash, food_type, image, alt, title, description, n_price, s_price)" +
+                "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
                 overview.getDetail_hash(),

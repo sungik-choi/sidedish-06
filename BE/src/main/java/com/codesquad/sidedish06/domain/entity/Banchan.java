@@ -9,9 +9,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class SideDish {
+public class Banchan {
 
-    private String detail_hash;
+    private String hash;
 
     private String food_type;
 

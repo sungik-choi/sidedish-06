@@ -20,10 +20,10 @@ public class MainController {
 //        return overviewDao.listOverview();
 //    }
 
-    @GetMapping("/{menu}")
-    public Object saveOverview(@PathVariable String menu) throws IOException, URISyntaxException {
-        return overviewService.list(menu);
-    }
+//    @GetMapping("/{menu}")
+//    public Object saveOverview(@PathVariable String menu) throws IOException, URISyntaxException {
+//        return overviewService.list(menu);
+//    }
 
 //    @GetMapping("/detail/dblist")
 //    public Object listDetail() {

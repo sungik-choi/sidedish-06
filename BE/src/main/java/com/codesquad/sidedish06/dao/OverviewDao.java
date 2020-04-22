@@ -3,15 +3,12 @@ package com.codesquad.sidedish06.dao;
 import com.codesquad.sidedish06.domain.dto.RequestOverviewDTO;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.entity.Badge;
-import com.codesquad.sidedish06.domain.entity.Banchan;
 import com.codesquad.sidedish06.domain.entity.Delivery;
-import com.codesquad.sidedish06.domain.entity.Overview;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -29,17 +26,17 @@ public class OverviewDao {
 
     @Autowired
     public OverviewDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Banchan insert(RequestOverviewDTO overview, String menu) {
+    public void insert(RequestOverviewDTO overview, String menu) {
 
-        String sql = "insert into banchan (food_type, hash, image, alt, title, description, n_price, s_price)" +
-                "values (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into banchan (hash, food_type, image, alt, title, description, n_price, s_price, top_image, point, delivery_info, delivery_fee)" +
+                "values (?, ?, ?, ?, ?, ?, ?, ?, null, null, null, null)";
 
         jdbcTemplate.update(sql,
-                menu,
                 overview.getDetail_hash(),
+                menu,
                 overview.getImage(),
                 overview.getAlt(),
                 overview.getTitle(),
@@ -48,7 +45,7 @@ public class OverviewDao {
                 overview.getS_price()
         );
 
-        sql = "insert into delivery(detail_hash, type) VALUES (?, ?)";
+        sql = "insert into delivery(hash, type) VALUES (?, ?)";
 
         if (overview.getDelivery_type() == null) {
             jdbcTemplate.update(sql, overview.getDetail_hash(), null);
@@ -58,7 +55,7 @@ public class OverviewDao {
             }
         }
 
-        sql = "insert into badge(detail_hash, event) VALUES (?, ?)";
+        sql = "insert into badge(hash, event) VALUES (?, ?)";
 
         if (overview.getBadge() == null) {
             jdbcTemplate.update(sql, overview.getDetail_hash(), null);
@@ -67,8 +64,6 @@ public class OverviewDao {
                 jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getEvent());
             }
         }
-
-        return banchan;
     }
 
     private List<String> deliveries(ResponseOverview response) {

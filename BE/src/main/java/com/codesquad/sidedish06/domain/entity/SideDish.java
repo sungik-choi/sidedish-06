@@ -9,17 +9,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Banchan {
+public class SideDish {
 
-    private String foodType;
+    private String detail_hash;
 
-    private String hash;
+    private String food_type;
 
     private String image;
 
     private String alt;
 
-    private List<Delivery> deliveryType;
+    private List<Delivery> delivery_type;
 
     private String title;
 

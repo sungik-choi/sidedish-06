@@ -1,6 +1,9 @@
 package com.codesquad.sidedish06.controller;
 
+import com.codesquad.sidedish06.dao.DetailDao;
+import com.codesquad.sidedish06.service.DetailService;
 import com.codesquad.sidedish06.service.OverviewService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,20 +18,22 @@ public class MainController {
 
     private final OverviewService overviewService;
 
+    private final DetailService detailService;
+
 //    @GetMapping("/overview/dblist")
 //    public Object listDbOverview() {
-//        return overviewDao.listOverview();
+//        return overviewService.listDbOverview("main");
 //    }
 
     @GetMapping("/{menu}")
     public Object saveOverview(@PathVariable String menu) throws IOException, URISyntaxException {
-        return overviewService.list(menu);
+        return overviewService.create(menu);
     }
 
-//    @GetMapping("/detail/dblist")
-//    public Object listDetail() {
-//        return detailDao.listOverview();
-//    }
+    @GetMapping("/detail/create")
+    public Object saveDetail() throws URISyntaxException, JsonProcessingException {
+        return detailService.create();
+    }
 
 //    @GetMapping("/detail/mockup")
 //    public Object detail() throws URISyntaxException, JsonProcessingException {

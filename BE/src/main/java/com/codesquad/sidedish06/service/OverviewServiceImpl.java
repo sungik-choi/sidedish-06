@@ -17,7 +17,7 @@ public class OverviewServiceImpl implements OverviewService {
     private final OverviewDao overviewDao;
 
     @Override
-    public Object list(String menu) throws IOException, URISyntaxException {
+    public Object create(String menu) throws IOException, URISyntaxException {
         RequestOverviewDTO[] overviews = listOverview("/" + menu);
         for (RequestOverviewDTO overview : overviews) {
             overviewDao.insert(overview, menu);

@@ -5,8 +5,6 @@ import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

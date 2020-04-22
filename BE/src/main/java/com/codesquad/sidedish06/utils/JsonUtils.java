@@ -1,5 +1,6 @@
 package com.codesquad.sidedish06.utils;
 
+import com.codesquad.sidedish06.domain.dto.RequestDetailDTO;
 import com.codesquad.sidedish06.domain.dto.RequestOverviewDTO;
 import com.codesquad.sidedish06.domain.entity.Detail;
 import com.codesquad.sidedish06.domain.entity.Overview;
@@ -49,8 +50,8 @@ public class JsonUtils {
         return overviews;
     }
 
-    public static Detail[] listDetail() throws URISyntaxException, JsonProcessingException {
-        Detail[] details = new Detail[HASHES.length];
+    public static RequestDetailDTO[] listDetail() throws URISyntaxException, JsonProcessingException {
+        RequestDetailDTO[] details = new RequestDetailDTO[HASHES.length];
 
         for (int i = 0; i < HASHES.length; i++) {
             String url = BASE_URL + "/detail/" + HASHES[i];
@@ -62,9 +63,13 @@ public class JsonUtils {
 
             JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("data");
 
-            log.info("jsonNode : {}", jsonNode);
+            details[i] = objectMapper.convertValue(jsonNode, RequestDetailDTO.class);
 
-            details[i] = objectMapper.convertValue(jsonNode, Detail.class);
+            if(details[i]!=null) {
+                details[i].setHash(HASHES[i]);
+            }
+
+            log.info("detail : {}", details[i]);
         }
         return details;
     }

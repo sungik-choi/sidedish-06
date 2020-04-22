@@ -1,8 +1,10 @@
 DROP TABLE IF EXISTS overview;
 DROP TABLE IF EXISTS delivery;
 DROP TABLE IF EXISTS badge;
-# DROP TABLE IF EXISTS thumb_image;
-# DROP TABLE IF EXISTS detail_section;
+DROP TABLE IF EXISTS thumb_image;
+DROP TABLE IF EXISTS detail_section;
+DROP TABLE IF EXISTS price;
+DROP TABLE IF EXISTS detail;
 # DROP TABLE IF EXISTS banchan;
 
 CREATE TABLE overview
@@ -26,6 +28,34 @@ CREATE TABLE badge
 (
     detail_hash VARCHAR(64) REFERENCES overview (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
     event       VARCHAR(32)
+);
+
+CREATE TABLE detail
+(
+    detail_hash         VARCHAR(64) REFERENCES overview (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    top_image           varchar(256),
+    product_description varchar(256),
+    point               varchar(64),
+    delivery_info       varchar(256),
+    delivery_fee        varchar(256)
+);
+
+CREATE TABLE detail_section
+(
+    detail_hash VARCHAR(64) REFERENCES detail (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    imageUrl    VARCHAR(256)
+);
+
+CREATE TABLE price
+(
+    detail_hash VARCHAR(64) REFERENCES detail (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    price       VARCHAR(256)
+);
+
+CREATE TABLE thumb_image
+(
+    detail_hash VARCHAR(64) REFERENCES detail (detail_hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    imageUrl    VARCHAR(256)
 );
 
 # CREATE TABLE banchan

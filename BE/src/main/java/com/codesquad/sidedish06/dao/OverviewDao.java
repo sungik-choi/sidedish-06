@@ -132,9 +132,6 @@ public class OverviewDao {
                 response.setN_price(rs.getString("n_price"));
                 response.setS_price(rs.getString("s_price"));
                 response.setBadge(badges(response));
-
-                logger.info("response : {}", response);
-
                 return response;
             }
         };

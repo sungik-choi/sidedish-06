@@ -20,7 +20,6 @@ struct NetworkUseCase {
                 }catch {
                     print(error.localizedDescription)
                 }
-                
             case .failure(let error):
                 //error handling 필요
                 print(error.localizedDescription)

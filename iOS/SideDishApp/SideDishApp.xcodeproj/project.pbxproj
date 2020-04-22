@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB3DC1245021710022C15E /* MenuHeaderView.swift */; };
 		30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */; };
 		30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */; };
 		30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */; };
@@ -22,9 +23,12 @@
 		30F2E9AD244EDCDE00C8D289 /* AllMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9AC244EDCDE00C8D289 /* AllMenu.swift */; };
 		30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */; };
 		30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */; };
+		B9AED54F524AF2D6179B0215 /* libPods-SideDishApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95A19B1BF397AE6384399C4 /* libPods-SideDishApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11121757DA479AE946A24C42 /* Pods-SideDishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.release.xcconfig"; sourceTree = "<group>"; };
+		30CB3DC1245021710022C15E /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		30E2F0C2244DBEFA00E45C03 /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +46,8 @@
 		30F2E9AC244EDCDE00C8D289 /* AllMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMenu.swift; sourceTree = "<group>"; };
 		30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetail.swift; sourceTree = "<group>"; };
 		30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		DB4D7076D4EFE94E69D59E80 /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F95A19B1BF397AE6384399C4 /* libPods-SideDishApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SideDishApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9AED54F524AF2D6179B0215 /* libPods-SideDishApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +67,8 @@
 			children = (
 				30E2F0C4244DBEFA00E45C03 /* SideDishApp */,
 				30E2F0C3244DBEFA00E45C03 /* Products */,
+				93D5FF1B350311F1AFD34BCC /* Pods */,
+				7A699480A43FEB83B0342067 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,8 +155,27 @@
 			isa = PBXGroup;
 			children = (
 				30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */,
+				30CB3DC1245021710022C15E /* MenuHeaderView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		7A699480A43FEB83B0342067 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F95A19B1BF397AE6384399C4 /* libPods-SideDishApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		93D5FF1B350311F1AFD34BCC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB4D7076D4EFE94E69D59E80 /* Pods-SideDishApp.debug.xcconfig */,
+				11121757DA479AE946A24C42 /* Pods-SideDishApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +185,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30E2F0D6244DBF0100E45C03 /* Build configuration list for PBXNativeTarget "SideDishApp" */;
 			buildPhases = (
+				1F4B115F82B9DE4562C3F8A5 /* [CP] Check Pods Manifest.lock */,
 				30E2F0BE244DBEFA00E45C03 /* Sources */,
 				30E2F0BF244DBEFA00E45C03 /* Frameworks */,
 				30E2F0C0244DBEFA00E45C03 /* Resources */,
@@ -216,6 +245,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1F4B115F82B9DE4562C3F8A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SideDishApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		30E2F0BE244DBEFA00E45C03 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -228,6 +282,7 @@
 				30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */,
 				30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */,
 				30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */,
+				30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */,
 				30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */,
 				30EF1611244EAD290074E4A4 /* MenuTableView.swift in Sources */,
 				30F2E9A6244EC05C00C8D289 /* NetworkErrorCase.swift in Sources */,
@@ -374,11 +429,13 @@
 		};
 		30E2F0D7244DBF0100E45C03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB4D7076D4EFE94E69D59E80 /* Pods-SideDishApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NC28R53QWB;
 				INFOPLIST_FILE = SideDishApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -392,11 +449,13 @@
 		};
 		30E2F0D8244DBF0100E45C03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11121757DA479AE946A24C42 /* Pods-SideDishApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NC28R53QWB;
 				INFOPLIST_FILE = SideDishApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

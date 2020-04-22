@@ -23,6 +23,7 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     // MARK:- properties
+    
     private let menuImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -49,8 +50,6 @@ class MenuTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14.0)
-        let attrString = NSAttributedString(string: "", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-        label.attributedText = attrString
         return label
     }()
     
@@ -85,11 +84,13 @@ class MenuTableViewCell: UITableViewCell {
         }
     }
     
-    func configureCellData(title: String, description: String, originPrice: String?, newPrice: String, badges: [String] ) {
-        menuTitle.text = title
-        menuDescription.text = description
-        previousPrice.text = originPrice
-        price.text = newPrice
+    func configureCellData(menu: Menu?) {
+        guard let menu = menu else { return }
+        menuTitle.text = menu.title
+        menuDescription.text = menu.description
+        previousPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.n_price ?? ""))", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+        price.text = menu.s_price
+        guard let badges = menu.badge else { return }
         for badge in badges {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
@@ -129,7 +130,6 @@ class MenuTableViewCell: UITableViewCell {
         menuImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8).isActive = true
         menuImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.25).isActive = true
         menuImage.heightAnchor.constraint(equalTo: menuImage.widthAnchor).isActive = true
-        menuImage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
         
         menuTitle.translatesAutoresizingMaskIntoConstraints = false
         menuTitle.topAnchor.constraint(equalTo: menuImage.topAnchor).isActive = true

@@ -1,0 +1,7 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '13.0'
+
+target 'SideDishApp' do
+  use_modular_headers!
+pod 'Toaster', :git => 'https://github.com/devxoul/Toaster.git', :branch => 'master'
+end

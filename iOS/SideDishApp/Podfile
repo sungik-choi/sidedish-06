@@ -6,5 +6,5 @@ target 'SideDishApp' do
   use_frameworks!
 
   # Pods for SideDishApp
-
+  pod 'Toaster'
 end

@@ -13,7 +13,7 @@ public class Detail {
 
     private String top_image;
 
-    private List<ThumbImage> thumn_images;
+    private List<ThumbImage> thumb_images;
 
     private String product_description;
 

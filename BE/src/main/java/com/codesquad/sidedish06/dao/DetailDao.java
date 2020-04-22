@@ -1,14 +1,10 @@
 package com.codesquad.sidedish06.dao;
 
-import com.codesquad.sidedish06.domain.entity.Badge;
-import com.codesquad.sidedish06.domain.entity.Delivery;
-import com.codesquad.sidedish06.domain.entity.Detail;
-import com.codesquad.sidedish06.domain.entity.Overview;
+import com.codesquad.sidedish06.domain.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -25,40 +21,48 @@ public class DetailDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Detail insert(Overview overview) {
+    public Detail insert(Detail detail) {
 
-        String sql = "insert into overview(detail_hash, image, alt, title, description, n_price, s_price)" +
-                "values (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into detail(detail_hash, top_image, product_description, point, delivery_info, delivery_fee)" +
+                "values (null, ?, ?, ?, ?, ?)";
 
-        jdbcTemplate.update(sql, overview.getDetail_hash(),
-                overview.getImage(),
-                overview.getAlt(),
-                overview.getTitle(),
-                overview.getDescription(),
-                overview.getN_price(),
-                overview.getS_price()
+        jdbcTemplate.update(sql, detail.getTop_image(),
+                detail.getProduct_description(),
+                detail.getPoint(),
+                detail.getDelivery_info(),
+                detail.getDelivery_fee()
         );
 
-        sql = "insert into delivery(detail_hash, type) VALUES (?, ?)";
+        sql = "insert into detail_section(detail_hash, image_url) VALUES (null, ?)";
 
-        if (overview.getDelivery_type() == null) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), null);
+        if (detail.getDetail_section() == null) {
+            jdbcTemplate.update(sql, detail.getDetail_section(), null);
         } else {
-            for (Delivery delivery : overview.getDelivery_type()) {
-                jdbcTemplate.update(sql, overview.getDetail_hash(), delivery.getType());
+            for (DetailSection detailSection : detail.getDetail_section()) {
+                jdbcTemplate.update(sql, null, detailSection.getImageUrl());
             }
         }
 
-        sql = "insert into badge(detail_hash, event) VALUES (?, ?)";
+        sql = "insert into price(detail_hash, price) VALUES (null, ?)";
 
-        if (overview.getBadge() == null) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), null);
+        if (detail.getPrices() == null) {
+            jdbcTemplate.update(sql, detail.getPrices(), null);
         } else {
-            for (Badge badge : overview.getBadge()) {
-                jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getEvent());
+            for (Price price : detail.getPrices()) {
+                jdbcTemplate.update(sql, null, price.getPrice());
             }
         }
 
-        return overview;
+        sql = "insert into thumb_image(detail_hash, image_url) VALUES (null, ?)";
+
+        if (detail.getThumb_images() == null) {
+            jdbcTemplate.update(sql, detail.getThumb_images(), null);
+        } else {
+            for (ThumbImage thumbImage : detail.getThumb_images()) {
+                jdbcTemplate.update(sql, null, thumbImage.getImageUrl());
+            }
+        }
+
+        return detail;
     }
 }

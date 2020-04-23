@@ -95,6 +95,31 @@ class MenuTableViewCell: UITableViewCell {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
         }
+        
+        
+        if let cachedImage = MenuViewController.imageCache.object(forKey: menu.image as NSString) {
+            menuImage.image = cachedImage
+        }else {
+            guard let image = makeUIImage(string: menu.image) else { return }
+            setObject(key: menu.image, image: image)
+        }
+    }
+    
+    //얘는 cacher로 빼도 될듯
+    func makeUIImage(string: String) -> UIImage? {
+        let url = URL(string: string)
+        var data: Data?
+        do {
+            data = try Data(contentsOf: url!)
+        } catch { //error handling
+            print(error)
+        }
+        return UIImage(data: data!)
+    }
+    
+    func setObject(key string: String, image: UIImage) {
+        let cacheKey = string as NSString
+        MenuViewController.imageCache.setObject(image, forKey: cacheKey)
     }
     
     // MARK:- private functions

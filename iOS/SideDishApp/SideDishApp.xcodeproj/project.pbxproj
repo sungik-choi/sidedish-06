@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		307D1E7A24516A11004D52EA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D1E7924516A11004D52EA /* ImageCache.swift */; };
 		30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB3DC1245021710022C15E /* MenuHeaderView.swift */; };
 		30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */; };
 		30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */; };
@@ -29,7 +28,6 @@
 
 /* Begin PBXFileReference section */
 		11121757DA479AE946A24C42 /* Pods-SideDishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.release.xcconfig"; sourceTree = "<group>"; };
-		307D1E7924516A11004D52EA /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		30CB3DC1245021710022C15E /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		30E2F0C2244DBEFA00E45C03 /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,14 +62,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3051449C24507DF40051EB62 /* ImageLoader */ = {
-			isa = PBXGroup;
-			children = (
-				307D1E7924516A11004D52EA /* ImageCache.swift */,
-			);
-			path = ImageLoader;
-			sourceTree = "<group>";
-		};
 		30E2F0B9244DBEFA00E45C03 = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +108,6 @@
 		30F2E9A0244EBE9000C8D289 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				3051449C24507DF40051EB62 /* ImageLoader */,
 				30F2E9A2244EBEA600C8D289 /* Networking */,
 			);
 			path = Utilities;
@@ -297,7 +286,6 @@
 				30EF1611244EAD290074E4A4 /* MenuTableView.swift in Sources */,
 				30F2E9A6244EC05C00C8D289 /* NetworkErrorCase.swift in Sources */,
 				30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */,
-				307D1E7A24516A11004D52EA /* ImageCache.swift in Sources */,
 				30F2E9A4244EBFED00C8D289 /* NetworkSetting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

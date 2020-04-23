@@ -12,6 +12,7 @@ import Toaster
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     static let networkManager = NetworkManager()
+    static let imageCache = NSCache<NSString, UIImage>()
     private let sections:[String] = ["국","찌개","반찬"]
     @IBOutlet var tableView: MenuTableView!
     

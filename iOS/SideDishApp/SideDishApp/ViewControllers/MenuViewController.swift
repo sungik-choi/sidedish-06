@@ -11,13 +11,14 @@ import Toaster
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: - properties
     static let networkManager = NetworkManager()
     static let imageCacheManager = ImageCacheManager()
     private let sections:[String] = ["국","찌개","반찬"]
+    private var allMenu: AllMenu?
     @IBOutlet var tableView: MenuTableView!
     
-    private var allMenu: AllMenu?
-    
+    // MARK: - functions
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -62,6 +63,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         toaster.show()
     }
     
+    // MARK: - private functions
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self

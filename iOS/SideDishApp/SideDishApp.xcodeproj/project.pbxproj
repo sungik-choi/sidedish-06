@@ -62,6 +62,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3051449C24507DF40051EB62 /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageLoader;
+			sourceTree = "<group>";
+		};
 		30E2F0B9244DBEFA00E45C03 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +115,7 @@
 		30F2E9A0244EBE9000C8D289 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3051449C24507DF40051EB62 /* ImageLoader */,
 				30F2E9A2244EBEA600C8D289 /* Networking */,
 			);
 			path = Utilities;
@@ -174,7 +182,6 @@
 				DB4D7076D4EFE94E69D59E80 /* Pods-SideDishApp.debug.xcconfig */,
 				11121757DA479AE946A24C42 /* Pods-SideDishApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

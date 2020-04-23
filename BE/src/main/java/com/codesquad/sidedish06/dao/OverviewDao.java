@@ -1,7 +1,8 @@
 package com.codesquad.sidedish06.dao;
 
-import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
+import com.codesquad.sidedish06.domain.dto.ResponseOverview;
+import com.codesquad.sidedish06.domain.dto.ResponseOverviewData;
 import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,9 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Repository
@@ -22,15 +25,28 @@ public class OverviewDao {
 
     private final JdbcTemplate jdbcTemplate;
 
+    private final Map<String, String[]> menuInfo;
+
     @Autowired
     public OverviewDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.menuInfo = new HashMap<>();
+
+        this.menuInfo.put("main", new String[]{"밥과 함께", "언제먹어도 든든한 반찬"});
+        this.menuInfo.put("soup", new String[]{"국, 찌개", "김이 모락모락 국, 찌개"});
+        this.menuInfo.put("side", new String[]{"밑반찬", "언제먹어도 든든한 밑반찬"});
     }
 
     public void insert(RequestOverview overview, String menu) {
 
         String sql = "insert into babchan (hash, food_type, image, alt, title, description, n_price, s_price)" +
                 "values (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        String normalPrice = overview.getN_price();
+
+        if(normalPrice!=null) {
+            normalPrice += "원";
+        }
 
         jdbcTemplate.update(sql,
                 overview.getDetail_hash(),
@@ -64,8 +80,44 @@ public class OverviewDao {
         }
     }
 
-    private List<String> deliveries(RequestOverview response) {
-        String sql = "select type from delivery where detail_hash = ?";
+    public ResponseOverview listMenuOverview(String menu) {
+        String[] informations = menuInfo.get(menu);
+
+        return new ResponseOverview(
+                informations[0],
+                informations[1],
+                listMenuOverviewData(menu)
+        );
+    }
+
+    public List<ResponseOverviewData> listMenuOverviewData(String menu) {
+        String sql = "select * from babchan where food_type = ?";
+
+        RowMapper<ResponseOverviewData> responseOverviewRowMapper = new RowMapper<ResponseOverviewData>() {
+            @Override
+            public ResponseOverviewData mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+                String hash = rs.getString("hash");
+
+                ResponseOverviewData data = new ResponseOverviewData();
+                data.setHash(hash);
+                data.setImage(rs.getString("image"));
+                data.setAlt(rs.getString("alt"));
+                data.setDelivery_type(deliveries(hash));
+                data.setTitle(rs.getString("title"));
+                data.setDescription(rs.getString("description"));
+                data.setOriginPrice(rs.getString("n_price"));
+                data.setSalePrice(rs.getString("s_price"));
+                data.setBadge(badges(hash));
+                return data;
+            }
+        };
+
+        return this.jdbcTemplate.query(sql, new Object[]{menu}, responseOverviewRowMapper);
+    }
+
+    private List<String> deliveries(String hash) {
+        String sql = "select type from delivery where hash = ?";
 
         RowMapper<Delivery> deliveryRowMapper = new RowMapper<Delivery>() {
             @Override
@@ -76,7 +128,7 @@ public class OverviewDao {
             }
         };
 
-        List<Delivery> deliveries = this.jdbcTemplate.query(sql, new Object[]{response.getDetail_hash()}, deliveryRowMapper);
+        List<Delivery> deliveries = this.jdbcTemplate.query(sql, new Object[]{hash}, deliveryRowMapper);
 
         List<String> types = new ArrayList<>();
 
@@ -87,8 +139,8 @@ public class OverviewDao {
         return types;
     }
 
-    private List<String> badges(RequestOverview response) {
-        String sql = "select event from badge where detail_hash = ?";
+    private List<String> badges(String hash) {
+        String sql = "select event from badge where hash = ?";
 
         RowMapper<Badge> badgeRowMapper = new RowMapper<Badge>() {
             @Override
@@ -99,7 +151,7 @@ public class OverviewDao {
             }
         };
 
-        List<Badge> badges = this.jdbcTemplate.query(sql, new Object[]{response.getDetail_hash()}, badgeRowMapper);
+        List<Badge> badges = this.jdbcTemplate.query(sql, new Object[]{hash}, badgeRowMapper);
 
         List<String> events = new ArrayList<>();
 
@@ -109,27 +161,4 @@ public class OverviewDao {
 
         return events;
     }
-
-//    public List<ResponseOverview> listOverview() {
-//        String sql = "select * from babchan";
-//
-//        RowMapper<ResponseOverview> responseOverviewRowMapper = new RowMapper<ResponseOverview>() {
-//            @Override
-//            public ResponseOverview mapRow(ResultSet rs, int rowNum) throws SQLException {
-//                ResponseOverview response = new ResponseOverview();
-//                response.setDetail_hash(rs.getString("detail_hash"));
-//                response.setImage(rs.getString("image"));
-//                response.setAlt(rs.getString("alt"));
-//                response.setDelivery_type(deliveries(response));
-//                response.setTitle(rs.getString("title"));
-//                response.setDescription(rs.getString("description"));
-//                response.setN_price(rs.getString("n_price"));
-//                response.setS_price(rs.getString("s_price"));
-//                response.setBadge(badges(response));
-//                return response;
-//            }
-//        };
-//
-//        return this.jdbcTemplate.query(sql, responseOverviewRowMapper);
-//    }
 }

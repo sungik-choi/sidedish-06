@@ -2,6 +2,8 @@ package com.codesquad.sidedish06.domain.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,5 +15,5 @@ public class ResponseOverview {
 
     private String menuTypeTitle;
 
-    private ResponseOverviewData data;
+    private List<ResponseOverviewData> data;
 }

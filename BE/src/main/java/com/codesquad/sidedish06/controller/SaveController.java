@@ -26,12 +26,6 @@ public class SaveController {
         return HttpStatus.OK;
     }
 
-//    @GetMapping("/overview/dblist")
-//    public Object listDbOverview() {
-//        return overviewService.listDbOverview("main");
-//    }
-
-
 //    @GetMapping("/detail/mockup")
 //    public Object detail() throws URISyntaxException, JsonProcessingException {
 //        Detail[] details = listDetail();

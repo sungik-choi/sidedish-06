@@ -27,9 +27,9 @@ class MenuHeaderView: UITableViewHeaderFooterView {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.isEnabled = false
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
         button.setTitleColor(.lightGray, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 10)
+        button.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 8)
         return button
     }()
     

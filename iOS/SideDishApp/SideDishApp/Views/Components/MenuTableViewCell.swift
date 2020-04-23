@@ -114,7 +114,8 @@ class MenuTableViewCell: UITableViewCell {
         } catch { //error handling
             print(error)
         }
-        return UIImage(data: data!)
+        guard let image = data else { return nil }
+        return UIImage(data: image)
     }
     
     func setObject(key string: String, image: UIImage) {

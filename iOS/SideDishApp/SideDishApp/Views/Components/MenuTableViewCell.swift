@@ -102,6 +102,7 @@ class MenuTableViewCell: UITableViewCell {
         }else {
             guard let image = makeUIImage(string: menu.image) else { return }
             setObject(key: menu.image, image: image)
+            menuImage.image = image
         }
     }
     

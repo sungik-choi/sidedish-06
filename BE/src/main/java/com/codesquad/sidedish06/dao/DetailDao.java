@@ -2,7 +2,6 @@ package com.codesquad.sidedish06.dao;
 
 import com.codesquad.sidedish06.domain.dto.RequestDetail;
 import com.codesquad.sidedish06.domain.dto.ResponseDetail;
-import com.codesquad.sidedish06.domain.entity.Delivery;
 import com.codesquad.sidedish06.domain.entity.DetailSection;
 import com.codesquad.sidedish06.domain.entity.ThumbImage;
 import lombok.extern.slf4j.Slf4j;
@@ -90,7 +89,7 @@ public class DetailDao {
         return this.jdbcTemplate.queryForObject(sql, new Object[]{hash}, responseDetailRowMapper);
     }
 
-    private List<String> thumbImages (String hash) {
+    private List<String> thumbImages(String hash) {
         String sql = "select imageUrl from thumb_image where hash = ?";
 
         RowMapper<ThumbImage> thumbImageRowMapper = new RowMapper<ThumbImage>() {

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.validation.Errors;
 
 import javax.sql.DataSource;
 import javax.validation.Valid;
@@ -53,7 +52,7 @@ public class OverviewDao {
         return count == 0;
     }
 
-    public void insertOverview(RequestOverview overview, String menu) {
+    private void insertOverview(RequestOverview overview, String menu) {
 
         String sql = "insert into babchan (hash, food_type, image, alt, title, description, n_price, s_price)" +
                 "values (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -76,7 +75,7 @@ public class OverviewDao {
         );
     }
 
-    public void insertDelivery(RequestOverview overview) {
+    private void insertDelivery(RequestOverview overview) {
         String sql = "insert into delivery(hash, type) VALUES (?, ?)";
 
         if (overview.getDelivery_type() == null) {
@@ -88,7 +87,7 @@ public class OverviewDao {
         }
     }
 
-    public void insertBadge(RequestOverview overview) {
+    private void insertBadge(RequestOverview overview) {
         String sql = "insert into badge(hash, event) VALUES (?, ?)";
 
         if (overview.getBadge() == null) {
@@ -136,49 +135,24 @@ public class OverviewDao {
         return this.jdbcTemplate.query(sql, new Object[]{menu}, responseOverviewRowMapper);
     }
 
-    private List<String> deliveries(String hash) {
-        String sql = "select type from delivery where hash = ?";
-
-        RowMapper<Delivery> deliveryRowMapper = new RowMapper<Delivery>() {
-            @Override
-            public Delivery mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Delivery delivery = new Delivery();
-                delivery.setType(rs.getString("type"));
-                return delivery;
-            }
-        };
-
-        List<Delivery> deliveries = this.jdbcTemplate.query(sql, new Object[]{hash}, deliveryRowMapper);
-
-        List<String> types = new ArrayList<>();
-
-        for (Delivery delivery : deliveries) {
-            types.add(delivery.getType());
-        }
-
-        return types;
+    public List<String> deliveries(String hash) {
+        return convertListObject2ListString("type","delivery", hash);
     }
 
     private List<String> badges(String hash) {
-        String sql = "select event from badge where hash = ?";
+        return convertListObject2ListString("event", "badge", hash);
+    }
 
-        RowMapper<Badge> badgeRowMapper = new RowMapper<Badge>() {
+    private List<String> convertListObject2ListString(String field, String className, String hash) {
+        String sql = "select " + field + " from " + className + " where hash = ?";
+
+        RowMapper<String> badgeRowMapper = new RowMapper<String>() {
             @Override
-            public Badge mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Badge badge = new Badge();
-                badge.setEvent(rs.getString("event"));
-                return badge;
+            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getString(1);
             }
         };
 
-        List<Badge> badges = this.jdbcTemplate.query(sql, new Object[]{hash}, badgeRowMapper);
-
-        List<String> events = new ArrayList<>();
-
-        for (Badge badge : badges) {
-            events.add(badge.getEvent());
-        }
-
-        return events;
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, badgeRowMapper);
     }
 }

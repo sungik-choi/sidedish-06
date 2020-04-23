@@ -2,6 +2,7 @@ package com.codesquad.sidedish06.service;
 
 import com.codesquad.sidedish06.dao.OverviewDao;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
+import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

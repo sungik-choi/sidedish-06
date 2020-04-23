@@ -2,6 +2,7 @@ package com.codesquad.sidedish06.utils;
 
 import com.codesquad.sidedish06.domain.dto.RequestDetail;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
+import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;

@@ -1,9 +1,6 @@
 package com.codesquad.sidedish06.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -12,30 +9,9 @@ import java.util.List;
 @ToString
 public class ResponseOverview {
 
-    @JsonProperty
-    private String detail_hash;
+    private String menuType;
 
-    @JsonProperty
-    private String image;
+    private String menuTypeTitle;
 
-    @JsonProperty
-    private String alt;
-
-    @JsonProperty
-    private List<String> delivery_type;
-
-    @JsonProperty
-    private String title;
-
-    @JsonProperty
-    private String description;
-
-    @JsonProperty
-    private String n_price;
-
-    @JsonProperty
-    private String s_price;
-
-    @JsonProperty
-    private List<String> badge;
+    private ResponseOverviewData data;
 }

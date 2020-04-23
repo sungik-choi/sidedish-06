@@ -1,7 +1,7 @@
 package com.codesquad.sidedish06.dao;
 
-import com.codesquad.sidedish06.domain.dto.RequestOverview;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
+import com.codesquad.sidedish06.domain.dto.RequestOverview;
 import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
 import lombok.extern.slf4j.Slf4j;
@@ -64,7 +64,7 @@ public class OverviewDao {
         }
     }
 
-    private List<String> deliveries(ResponseOverview response) {
+    private List<String> deliveries(RequestOverview response) {
         String sql = "select type from delivery where detail_hash = ?";
 
         RowMapper<Delivery> deliveryRowMapper = new RowMapper<Delivery>() {
@@ -87,7 +87,7 @@ public class OverviewDao {
         return types;
     }
 
-    private List<String> badges(ResponseOverview response) {
+    private List<String> badges(RequestOverview response) {
         String sql = "select event from badge where detail_hash = ?";
 
         RowMapper<Badge> badgeRowMapper = new RowMapper<Badge>() {
@@ -110,26 +110,26 @@ public class OverviewDao {
         return events;
     }
 
-    public List<ResponseOverview> listOverview() {
-        String sql = "select * from overview";
-
-        RowMapper<ResponseOverview> responseOverviewRowMapper = new RowMapper<ResponseOverview>() {
-            @Override
-            public ResponseOverview mapRow(ResultSet rs, int rowNum) throws SQLException {
-                ResponseOverview response = new ResponseOverview();
-                response.setDetail_hash(rs.getString("detail_hash"));
-                response.setImage(rs.getString("image"));
-                response.setAlt(rs.getString("alt"));
-                response.setDelivery_type(deliveries(response));
-                response.setTitle(rs.getString("title"));
-                response.setDescription(rs.getString("description"));
-                response.setN_price(rs.getString("n_price"));
-                response.setS_price(rs.getString("s_price"));
-                response.setBadge(badges(response));
-                return response;
-            }
-        };
-
-        return this.jdbcTemplate.query(sql, responseOverviewRowMapper);
-    }
+//    public List<ResponseOverview> listOverview() {
+//        String sql = "select * from babchan";
+//
+//        RowMapper<ResponseOverview> responseOverviewRowMapper = new RowMapper<ResponseOverview>() {
+//            @Override
+//            public ResponseOverview mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                ResponseOverview response = new ResponseOverview();
+//                response.setDetail_hash(rs.getString("detail_hash"));
+//                response.setImage(rs.getString("image"));
+//                response.setAlt(rs.getString("alt"));
+//                response.setDelivery_type(deliveries(response));
+//                response.setTitle(rs.getString("title"));
+//                response.setDescription(rs.getString("description"));
+//                response.setN_price(rs.getString("n_price"));
+//                response.setS_price(rs.getString("s_price"));
+//                response.setBadge(badges(response));
+//                return response;
+//            }
+//        };
+//
+//        return this.jdbcTemplate.query(sql, responseOverviewRowMapper);
+//    }
 }

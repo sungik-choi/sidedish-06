@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import _v from '../Variables';
 import { IoIosSearch } from 'react-icons/io';
 
 const SearchBarForm = styled.form`
@@ -14,7 +13,7 @@ const SearchBarInput = styled.input`
   padding: 0.5rem 2rem 0.5rem 0.5rem;
   font-size: 1rem;
   &:hover {
-    border: 1px solid ${_v.green};
+    border: 1px solid var(--green);
   }
 `;
 
@@ -27,23 +26,27 @@ const SearchBarButton = styled.button`
   padding-top: 0.3rem;
   appearance: none;
   font-size: 1.5rem;
-  color: ${_v.gray2};
+  color: var(--gray-2);
   background-color: transparent;
   border: none;
   &:hover {
-    color: ${_v.gray1};
+    color: var(--gray-1);
   }
 `;
 
-function SearchBar() {
+const submitHandler = e => {
+  e.preventDefault();
+};
+
+const SearchBar = () => {
   return (
-    <SearchBarForm>
+    <SearchBarForm onSubmit={submitHandler}>
       <SearchBarInput type="text" />
       <SearchBarButton>
         <IoIosSearch />
       </SearchBarButton>
     </SearchBarForm>
   );
-}
+};
 
 export default SearchBar;

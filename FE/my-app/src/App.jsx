@@ -5,18 +5,23 @@ import GlobalStyle from './components/GlobalStyle';
 import { API_URL, useFetch } from './components/Fetch';
 import { lnbList, menuList } from './components/MockData';
 
-function App() {
+const App = () => {
   const [mainList, setMainList] = useState({ body: [] });
-  useFetch(API_URL.main(), setMainList);
-  const mainProductList = mainList.body.map(productList => <ProductList list={productList} />);
+  const isMainListLoading = useFetch(API_URL.main(), setMainList);
 
+  if (!isMainListLoading)
+    return (
+      <>
+        <div>Loading...</div>
+      </>
+    );
   return (
     <>
       <GlobalStyle />
       <Header lnbList={lnbList} menuList={menuList} />
-      {mainProductList}
+      <ProductList list={mainList} />
     </>
   );
-}
+};
 
 export default App;

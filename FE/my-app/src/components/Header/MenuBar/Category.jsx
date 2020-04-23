@@ -1,7 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import _v from '../../Variables';
 import SubList from './SubList';
+
+const SubListUl = styled.ul`
+  cursor: default;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  width: 10rem;
+  padding: 1.5rem 0 1.5rem 1rem;
+  border: 1px solid var(--shadow);
+  border-top: none;
+  font-weight: 500;
+  background-color: var(--white);
+  &:hover {
+    display: block;
+  }
+`;
 
 const CategoryLi = styled.li`
   cursor: pointer;
@@ -11,35 +27,38 @@ const CategoryLi = styled.li`
   justify-content: center;
   width: 100%;
   margin-top: 0.25rem;
-  border: 1px solid ${_v.brown};
-  color: ${_v.white};
+  padding-bottom: 0.25rem;
+  border: 1px solid var(--brown);
+  color: var(--white);
   font-size: 0.875rem;
   font-weight: 600;
   &:hover {
-    background-color: ${_v.white};
-    color: ${_v.green};
-    border: 1px solid ${_v.shadow};
+    background-color: var(--white);
+    color: var(--green);
+    border: 1px solid var(--shadow);
     border-bottom: none;
-    ul {
+    ${SubListUl} {
       display: block;
     }
   }
   &:last-child {
-    ul {
-      left: -100%;
+    ${SubListUl} {
+      left: calc(-100% + 1px);
       text-align: right;
       padding: 1.5rem 1rem 1.5rem 0;
     }
   }
 `;
 
-function Category(props) {
+const Category = ({ name, list }) => {
   return (
     <CategoryLi>
-      <a>{props.name}</a>
-      <SubList list={props.list} />
+      {name}
+      <SubListUl>
+        <SubList list={list} />
+      </SubListUl>
     </CategoryLi>
   );
-}
+};
 
 export default Category;

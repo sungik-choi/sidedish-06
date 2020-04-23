@@ -1,14 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 
-function Logo() {
+const Logo = () => {
   return (
     <h1>
-      <a>
-        <img src="/images/logo.png" />
+      <a href="#none">
+        <img src="/images/logo.png" alt="배민 찬 로고" />
       </a>
     </h1>
   );
-}
+};
 
 export default Logo;

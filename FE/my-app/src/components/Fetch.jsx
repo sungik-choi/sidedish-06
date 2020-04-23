@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const BASE_URL = 'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan';
 
@@ -25,14 +25,20 @@ export const API_URL = {
   },
 };
 
-export function useFetch(url, setState) {
+export const useFetch = (url, setState) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const fetchData = async () => {
     const response = await fetch(url);
     const data = await response.json();
     setState(data);
+    setIsLoading(true);
+    console.log(data);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-}
+
+  return isLoading;
+};

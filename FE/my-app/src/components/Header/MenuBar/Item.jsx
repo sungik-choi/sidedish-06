@@ -1,23 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import _v from '../../Variables';
 
 const ItemLi = styled.li`
   cursor: pointer;
   padding: 0.5rem 0;
   &:hover {
-    color: ${_v.green};
+    color: var(--green);
     font-weight: 600;
     text-decoration: underline;
   }
 `;
 
-function Item(props) {
-  return (
-    <ItemLi>
-      <a>{props.name}</a>
-    </ItemLi>
-  );
-}
+const Item = ({ name }) => {
+  return <ItemLi>{name}</ItemLi>;
+};
 
 export default Item;

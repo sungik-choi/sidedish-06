@@ -1,30 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import _v from '../Variables';
 import LocalNavBar from './LocalNavBar/LocalNavBar';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 import MenuBar from './MenuBar/MenuBar';
 
-const LogoWrapDiv = styled.div`
+const LogoWrap = styled.div`
   display: flex;
   align-items: center;
-  width: ${_v.width};
+  width: var(--width);
   margin: 0 auto;
   padding: 1rem 0;
 `;
 
-function Header(props) {
+const Header = ({ lnbList, menuList }) => {
   return (
     <header>
-      <LocalNavBar list={props.lnbList} />
-      <LogoWrapDiv>
+      <LocalNavBar list={lnbList} />
+      <LogoWrap>
         <Logo />
         <SearchBar />
-      </LogoWrapDiv>
-      <MenuBar list={props.menuList} />
+      </LogoWrap>
+      <MenuBar list={menuList} />
     </header>
   );
-}
+};
 
 export default Header;

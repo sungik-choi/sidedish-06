@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import _v from '../Variables';
+import Slider from './Slider/Slider';
+import Title from './Title';
 
-function ProductList(props) {
+const ProductList = ({ list }) => {
   return (
     <div>
-      <img src={props.list.image} />
+      <img src={list.image} />
     </div>
   );
-}
+};
 
 export default ProductList;

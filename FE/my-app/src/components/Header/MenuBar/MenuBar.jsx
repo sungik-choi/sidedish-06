@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import _v from '../../Variables';
 import Category from './Category';
 
 const MenuDiv = styled.div`
-  background-color: ${_v.brown};
+  background-color: var(--brown);
 `;
 
 const MenuNav = styled.nav`
-  width: ${_v.width};
+  width: var(--width);
   height: 3rem;
   margin: 0 auto;
 `;
@@ -19,8 +18,8 @@ const CategoryUl = styled.ul`
   height: 100%;
 `;
 
-function MenuBar(props) {
-  const category = props.list.map(category => <Category key={category.id} name={category.name} list={category.subList} />);
+const MenuBar = ({ list }) => {
+  const category = list.map(category => <Category key={category.id} name={category.name} list={category.subList} />);
 
   return (
     <MenuDiv>
@@ -29,6 +28,6 @@ function MenuBar(props) {
       </MenuNav>
     </MenuDiv>
   );
-}
+};
 
 export default MenuBar;

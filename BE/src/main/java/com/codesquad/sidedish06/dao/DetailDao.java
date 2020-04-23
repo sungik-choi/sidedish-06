@@ -1,6 +1,6 @@
 package com.codesquad.sidedish06.dao;
 
-import com.codesquad.sidedish06.domain.dto.RequestDetailDTO;
+import com.codesquad.sidedish06.domain.dto.RequestDetail;
 import com.codesquad.sidedish06.domain.entity.DetailSection;
 import com.codesquad.sidedish06.domain.entity.ThumbImage;
 import lombok.extern.slf4j.Slf4j;
@@ -21,22 +21,20 @@ public class DetailDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void create(RequestDetailDTO detail) {
+    public void create(RequestDetail detail) {
 
         if (detail == null) {
             return;
         }
 
-        String sql = "update banchan set top_image = ?, point = ?, delivery_info = ?, delivery_fee = ? where title = ?";
-
-        log.info("detail : {}", detail);
+        String sql = "update babchan set top_image = ?, point = ?, delivery_info = ?, delivery_fee = ? where hash = ?";
 
         this.jdbcTemplate.update(sql,
                 detail.getTop_image(),
                 detail.getPoint(),
                 detail.getDelivery_info(),
                 detail.getDelivery_fee(),
-                detail.getProduct_description()
+                detail.getHash()
         );
 
         sql = "insert into thumb_image(hash, imageUrl) VALUES (?, ?)";

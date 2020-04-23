@@ -5,5 +5,5 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.net.URISyntaxException;
 
 public interface DetailService {
-    public Object create() throws URISyntaxException, JsonProcessingException;
+    public Object save() throws URISyntaxException, JsonProcessingException;
 }

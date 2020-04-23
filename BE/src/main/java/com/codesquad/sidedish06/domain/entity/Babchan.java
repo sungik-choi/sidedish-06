@@ -1,7 +1,5 @@
-package com.codesquad.sidedish06.domain.dto;
+package com.codesquad.sidedish06.domain.entity;
 
-import com.codesquad.sidedish06.domain.entity.Badge;
-import com.codesquad.sidedish06.domain.entity.Delivery;
 import lombok.*;
 
 import java.util.List;
@@ -11,9 +9,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class RequestOverviewDTO {
+public class Babchan {
 
-    private String detail_hash;
+    private String hash;
+
+    private String food_type;
 
     private String image;
 
@@ -30,4 +30,17 @@ public class RequestOverviewDTO {
     private String s_price;
 
     private List<Badge> badge;
+
+    private String top_image;
+
+    private List<ThumbImage> thumb_image;
+
+    private String point;
+
+    private String delivery_info;
+
+    private String delivery_fee;
+
+    private List<DetailSection> detail_section;
+
 }

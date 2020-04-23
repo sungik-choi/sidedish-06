@@ -1,7 +1,7 @@
 package com.codesquad.sidedish06.service;
 
 import com.codesquad.sidedish06.dao.DetailDao;
-import com.codesquad.sidedish06.domain.dto.RequestDetailDTO;
+import com.codesquad.sidedish06.domain.dto.RequestDetail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ public class DetailServiceImpl implements DetailService {
     private final DetailDao detailDao;
 
     @Override
-    public Object create() throws URISyntaxException, JsonProcessingException {
-        RequestDetailDTO[] details = listDetail();
-        for (RequestDetailDTO detail : details) {
+    public Object save() throws URISyntaxException, JsonProcessingException {
+        RequestDetail[] details = listDetail();
+        for (RequestDetail detail : details) {
             detailDao.create(detail);
         }
         return details;

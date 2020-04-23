@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS banchan;
+DROP TABLE IF EXISTS babchan;
 DROP TABLE IF EXISTS delivery;
 DROP TABLE IF EXISTS badge;
 DROP TABLE IF EXISTS thumb_image;
 DROP TABLE IF EXISTS detail_section;
 
-CREATE TABLE banchan
+CREATE TABLE babchan
 (
     hash          VARCHAR(32) PRIMARY KEY,
     food_type     VARCHAR(64),
@@ -22,24 +22,24 @@ CREATE TABLE banchan
 
 CREATE TABLE delivery
 (
-    hash VARCHAR(32) REFERENCES banchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    hash VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
     type VARCHAR(64)
 );
 
 CREATE TABLE badge
 (
-    hash  VARCHAR(32) REFERENCES banchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    hash  VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
     event VARCHAR(32)
 );
 
 CREATE TABLE detail_section
 (
-    hash     VARCHAR(32) REFERENCES banchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    hash     VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
     imageUrl VARCHAR(256)
 );
 
 CREATE TABLE thumb_image
 (
-    hash     VARCHAR(32) REFERENCES banchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    hash     VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
     imageUrl VARCHAR(256)
 );

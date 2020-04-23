@@ -1,9 +1,7 @@
 package com.codesquad.sidedish06.utils;
 
-import com.codesquad.sidedish06.domain.dto.RequestDetailDTO;
-import com.codesquad.sidedish06.domain.dto.RequestOverviewDTO;
-import com.codesquad.sidedish06.domain.entity.Detail;
-import com.codesquad.sidedish06.domain.entity.Overview;
+import com.codesquad.sidedish06.domain.dto.RequestDetail;
+import com.codesquad.sidedish06.domain.dto.RequestOverview;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -37,7 +35,7 @@ public class JsonUtils {
         return restTemplate.getForObject(uri, String.class);
     }
 
-    public static RequestOverviewDTO[] listOverview(String menu) throws URISyntaxException, IOException {
+    public static RequestOverview[] listOverview(String menu) throws URISyntaxException, IOException {
         String url = BASE_URL + menu;
         String data = data(url);
 
@@ -46,12 +44,12 @@ public class JsonUtils {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("body");
-        RequestOverviewDTO[] overviews = objectMapper.convertValue(jsonNode, RequestOverviewDTO[].class);
+        RequestOverview[] overviews = objectMapper.convertValue(jsonNode, RequestOverview[].class);
         return overviews;
     }
 
-    public static RequestDetailDTO[] listDetail() throws URISyntaxException, JsonProcessingException {
-        RequestDetailDTO[] details = new RequestDetailDTO[HASHES.length];
+    public static RequestDetail[] listDetail() throws URISyntaxException, JsonProcessingException {
+        RequestDetail[] details = new RequestDetail[HASHES.length];
 
         for (int i = 0; i < HASHES.length; i++) {
             String url = BASE_URL + "/detail/" + HASHES[i];
@@ -63,13 +61,11 @@ public class JsonUtils {
 
             JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("data");
 
-            details[i] = objectMapper.convertValue(jsonNode, RequestDetailDTO.class);
+            details[i] = objectMapper.convertValue(jsonNode, RequestDetail.class);
 
             if(details[i]!=null) {
                 details[i].setHash(HASHES[i]);
             }
-
-            log.info("detail : {}", details[i]);
         }
         return details;
     }

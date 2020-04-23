@@ -1,5 +1,8 @@
-package com.codesquad.sidedish06.domain.entity;
+package com.codesquad.sidedish06.domain.dto;
 
+import com.codesquad.sidedish06.domain.entity.DetailSection;
+import com.codesquad.sidedish06.domain.entity.Price;
+import com.codesquad.sidedish06.domain.entity.ThumbImage;
 import lombok.*;
 
 import java.util.List;
@@ -9,7 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Detail {
+public class RequestDetail {
+
+    private String hash;
 
     private String top_image;
 

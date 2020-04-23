@@ -1,6 +1,6 @@
 package com.codesquad.sidedish06.dao;
 
-import com.codesquad.sidedish06.domain.dto.RequestOverviewDTO;
+import com.codesquad.sidedish06.domain.dto.RequestOverview;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
@@ -27,9 +27,9 @@ public class OverviewDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void insert(RequestOverviewDTO overview, String menu) {
+    public void insert(RequestOverview overview, String menu) {
 
-        String sql = "insert into banchan (hash, food_type, image, alt, title, description, n_price, s_price)" +
+        String sql = "insert into babchan (hash, food_type, image, alt, title, description, n_price, s_price)" +
                 "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,

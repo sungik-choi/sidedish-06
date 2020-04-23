@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public interface OverviewService {
-    public Object create(String menu) throws IOException, URISyntaxException;
+    public Object save() throws IOException, URISyntaxException;
 }

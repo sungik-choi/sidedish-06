@@ -2,9 +2,9 @@ package com.codesquad.sidedish06.controller;
 
 import com.codesquad.sidedish06.service.DetailService;
 import com.codesquad.sidedish06.service.OverviewService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +22,7 @@ public class SaveController {
     @GetMapping("/save")
     public HttpStatus saveOverview() throws IOException, URISyntaxException {
         overviewService.save();
-        detailService.save();
+//        detailService.save();
         return HttpStatus.OK;
     }
 

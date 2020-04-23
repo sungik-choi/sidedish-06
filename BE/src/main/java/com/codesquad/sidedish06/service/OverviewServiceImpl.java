@@ -2,9 +2,9 @@ package com.codesquad.sidedish06.service;
 
 import com.codesquad.sidedish06.dao.OverviewDao;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
-import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,7 +23,7 @@ public class OverviewServiceImpl implements OverviewService {
         for (String menu : menus) {
             RequestOverview[] overviews = listOverview("/" + menu);
             for (int i = 0; i < overviews.length; i++) {
-                if(overviews[i]==null) {
+                if (overviews[i] == null) {
                     continue;
                 }
                 overviewDao.insert(overviews[i], menu);

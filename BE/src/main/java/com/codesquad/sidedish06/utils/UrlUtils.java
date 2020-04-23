@@ -1,19 +1,19 @@
 package com.codesquad.sidedish06.utils;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static com.codesquad.sidedish06.utils.JsonUtils.BASE_URL;
 
 public class UrlUtils {
 
+    public static final String BASE_URL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan";
+
+    private UrlUtils() {}
+
     public static List<String> urls() {
-        List<String> menuUrls = new ArrayList<>();
-
-        menuUrls.add(BASE_URL + "/main");
-        menuUrls.add(BASE_URL + "/soup");
-        menuUrls.add(BASE_URL + "/side");
-
-        return menuUrls;
+        return Arrays.asList(
+                BASE_URL + "/main",
+                BASE_URL + "/soup",
+                BASE_URL + "/side"
+        );
     }
 }

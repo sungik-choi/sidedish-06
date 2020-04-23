@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.Errors;
 
 import javax.sql.DataSource;
+import javax.validation.Valid;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,14 +39,28 @@ public class OverviewDao {
         this.menuInfo.put("side", new String[]{"밑반찬", "언제먹어도 든든한 밑반찬"});
     }
 
-    public void insert(RequestOverview overview, String menu) {
+    public void insert(@Valid RequestOverview overview, String menu) {
+        if (isNotDuplicatedHash(overview)) {
+            insertOverview(overview, menu);
+            insertDelivery(overview);
+            insertBadge(overview);
+        }
+    }
+
+    private boolean isNotDuplicatedHash(RequestOverview overview) {
+        String sql = "select count(*) from babchan where hash = ?";
+        int count = this.jdbcTemplate.queryForObject(sql, Integer.class, overview.getDetail_hash());
+        return count == 0;
+    }
+
+    public void insertOverview(RequestOverview overview, String menu) {
 
         String sql = "insert into babchan (hash, food_type, image, alt, title, description, n_price, s_price)" +
                 "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         String normalPrice = overview.getN_price();
 
-        if(normalPrice!=null) {
+        if (normalPrice != null) {
             normalPrice += "원";
         }
 
@@ -58,25 +74,29 @@ public class OverviewDao {
                 normalPrice,
                 overview.getS_price()
         );
+    }
 
-        sql = "insert into delivery(hash, type) VALUES (?, ?)";
+    public void insertDelivery(RequestOverview overview) {
+        String sql = "insert into delivery(hash, type) VALUES (?, ?)";
 
         if (overview.getDelivery_type() == null) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), null);
-        } else {
-            for (Delivery delivery : overview.getDelivery_type()) {
-                jdbcTemplate.update(sql, overview.getDetail_hash(), delivery.getType());
-            }
+            return;
         }
 
-        sql = "insert into badge(hash, event) VALUES (?, ?)";
+        for (Delivery delivery : overview.getDelivery_type()) {
+            jdbcTemplate.update(sql, overview.getDetail_hash(), delivery.getType());
+        }
+    }
+
+    public void insertBadge(RequestOverview overview) {
+        String sql = "insert into badge(hash, event) VALUES (?, ?)";
 
         if (overview.getBadge() == null) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), null);
-        } else {
-            for (Badge badge : overview.getBadge()) {
-                jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getEvent());
-            }
+            return;
+        }
+
+        for (Badge badge : overview.getBadge()) {
+            jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getEvent());
         }
     }
 

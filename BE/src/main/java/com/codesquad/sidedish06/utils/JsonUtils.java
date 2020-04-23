@@ -2,7 +2,6 @@ package com.codesquad.sidedish06.utils;
 
 import com.codesquad.sidedish06.domain.dto.RequestDetail;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
-import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,9 +13,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static com.codesquad.sidedish06.utils.UrlUtils.BASE_URL;
+
 @Slf4j
 public class JsonUtils {
-    public static final String[] HASHES = {
+
+    protected static final String[] HASHES = {
             "H9881", "HDF4C", "H7F20", "HA567", "H206E",
             "H75A2", "H4AAA", "H206E", "HA8B9", "E055F",
             "FDAEB", "H762E", "H05FB", "H0699", "HBDEF",
@@ -28,8 +30,10 @@ public class JsonUtils {
             "H26C7", "HFFF9", "HBBCC", "H1939", "H8EA5",
             "H602F", "H9F0B", "H0FC6", "HCCFE", "HB9C1"
     };
-    public static final String BASE_URL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan";
+
     private static final RestTemplate restTemplate = new RestTemplate();
+
+    private JsonUtils() {}
 
     public static String data(String url) throws URISyntaxException {
         URI uri = new URI(url);
@@ -41,12 +45,11 @@ public class JsonUtils {
         String data = data(url);
 
         ObjectMapper objectMapper = new ObjectMapper();
-
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("body");
-        RequestOverview[] overviews = objectMapper.convertValue(jsonNode, RequestOverview[].class);
-        return overviews;
+
+        return objectMapper.convertValue(jsonNode, RequestOverview[].class);
     }
 
     public static RequestDetail[] listDetail() throws URISyntaxException, JsonProcessingException {
@@ -57,17 +60,17 @@ public class JsonUtils {
             String data = data(url);
 
             ObjectMapper objectMapper = new ObjectMapper();
-
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
             JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("data");
 
             details[i] = objectMapper.convertValue(jsonNode, RequestDetail.class);
 
-            if(details[i]!=null) {
+            if (details[i] != null) {
                 details[i].setHash(HASHES[i]);
             }
         }
+
         return details;
     }
 }

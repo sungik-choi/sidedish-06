@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import _v from '../../Variables';
 
 const ItemLi = styled.li`
-  background-color: blue;
+  padding: 0.5rem 0;
+  &:hover {
+    color: ${_v.green};
+    font-weight: 600;
+    text-decoration: underline;
+  }
 `;
 
 function Item(props) {

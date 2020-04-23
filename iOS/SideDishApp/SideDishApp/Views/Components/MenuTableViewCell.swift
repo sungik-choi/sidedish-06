@@ -97,37 +97,10 @@ class MenuTableViewCell: UITableViewCell {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
         }
-        existCachedImage(key: menu.image)
+        menuImage.image = MenuViewController.imageCacheManager.existCachedImage(key: menu.image)
     }
     
     // MARK:- private functions
-    
-    private func existCachedImage(key: String) {
-        if let cachedImage = MenuViewController.imageCache.object(forKey: key as NSString) {
-            menuImage.image = cachedImage
-        }else {
-            guard let image = makeUIImage(string: key) else { return }
-            setObject(key: key, image: image)
-            menuImage.image = image
-        }
-    }
-    
-    private func makeUIImage(string: String) -> UIImage? {
-        let url = URL(string: string)
-        var data: Data?
-        do {
-            data = try Data(contentsOf: url!)
-        } catch { //error handling
-            print(error)
-        }
-        guard let image = data else { return nil }
-        return UIImage(data: image)
-    }
-    
-    private func setObject(key string: String, image: UIImage) {
-        let cacheKey = string as NSString
-        MenuViewController.imageCache.setObject(image, forKey: cacheKey)
-    }
     
     private func makeBadgeLabel(badge: String) -> UILabel {
         let label = UILabel()

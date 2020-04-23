@@ -11,11 +11,15 @@ import java.util.List;
 @ToString
 public class ResponseDetail {
 
+    private String hash;
+
+    private String title;
+
     private String top_image;
 
     private List<String> thumb_images;
 
-    private String product_description;
+    private String description;
 
     private String point;
 
@@ -23,7 +27,9 @@ public class ResponseDetail {
 
     private String delivery_fee;
 
-    private List<String> prices;
+    private String originPrice;
+
+    private String salePrice;
 
     private List<String> detail_section;
 }

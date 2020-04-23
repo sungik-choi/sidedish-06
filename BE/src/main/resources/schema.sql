@@ -32,14 +32,15 @@ CREATE TABLE badge
     event VARCHAR(32)
 );
 
+CREATE TABLE thumb_image
+(
+    hash     VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    imageUrl VARCHAR(256)
+);
+
 CREATE TABLE detail_section
 (
     hash     VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
     imageUrl VARCHAR(256)
 );
 
-CREATE TABLE thumb_image
-(
-    hash     VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
-    imageUrl VARCHAR(256)
-);

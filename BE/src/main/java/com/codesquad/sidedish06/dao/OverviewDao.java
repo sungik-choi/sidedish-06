@@ -55,7 +55,7 @@ public class OverviewDao {
                 overview.getAlt(),
                 overview.getTitle(),
                 overview.getDescription(),
-                overview.getN_price(),
+                normalPrice,
                 overview.getS_price()
         );
 

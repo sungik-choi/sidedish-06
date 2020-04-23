@@ -28,7 +28,7 @@ public class JsonUtils {
             "H26C7", "HFFF9", "HBBCC", "H1939", "H8EA5",
             "H602F", "H9F0B", "H0FC6", "HCCFE", "HB9C1"
     };
-    private static final String BASE_URL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan";
+    public static final String BASE_URL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan";
     private static final RestTemplate restTemplate = new RestTemplate();
 
     public static String data(String url) throws URISyntaxException {

@@ -50,12 +50,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(touchedSectionHeader(recognizer:)))
+        let gesture = SectionHeaderTapGestureRecognizer(target: self, action: #selector(touchedSectionHeader(recognizer:)))
+        gesture.index = section
+        
         view.addGestureRecognizer(gesture)
     }
     
-    @objc func touchedSectionHeader(recognizer: UITapGestureRecognizer) {
-        let toaster = Toast(text: "몇개 몇개 서버에서 받아서 띄워주기")
+    @objc func touchedSectionHeader(recognizer: SectionHeaderTapGestureRecognizer) {
+        guard let index = recognizer.index else { return }
+        let toaster = Toast(text: "\(sections[index]) \(tableView.numberOfRows(inSection: index))개 재고 보유")
         toaster.show()
     }
     

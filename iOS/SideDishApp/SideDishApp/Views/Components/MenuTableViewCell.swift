@@ -96,18 +96,20 @@ class MenuTableViewCell: UITableViewCell {
             addArrangedSubview(label: label)
         }
         
-        
-        if let cachedImage = MenuViewController.imageCache.object(forKey: menu.image as NSString) {
+        existCachedImage(key: menu.image)
+    }
+    
+    private func existCachedImage(key: String) {
+        if let cachedImage = MenuViewController.imageCache.object(forKey: key as NSString) {
             menuImage.image = cachedImage
         }else {
-            guard let image = makeUIImage(string: menu.image) else { return }
-            setObject(key: menu.image, image: image)
+            guard let image = makeUIImage(string: key) else { return }
+            setObject(key: key, image: image)
             menuImage.image = image
         }
     }
     
-    //얘는 cacher로 빼도 될듯
-    func makeUIImage(string: String) -> UIImage? {
+    private func makeUIImage(string: String) -> UIImage? {
         let url = URL(string: string)
         var data: Data?
         do {
@@ -119,7 +121,7 @@ class MenuTableViewCell: UITableViewCell {
         return UIImage(data: image)
     }
     
-    func setObject(key string: String, image: UIImage) {
+    private func setObject(key string: String, image: UIImage) {
         let cacheKey = string as NSString
         MenuViewController.imageCache.setObject(image, forKey: cacheKey)
     }

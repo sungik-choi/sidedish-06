@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import _v from '../../Variables';
 
 const ItemLi = styled.li`
+  cursor: pointer;
   padding: 0.5rem 0;
   &:hover {
     color: ${_v.green};

@@ -4,6 +4,7 @@ import _v from '../../Variables';
 import Item from './Item';
 
 const SubListUl = styled.ul`
+  cursor: default;
   display: none;
   position: absolute;
   top: 100%;
@@ -13,6 +14,7 @@ const SubListUl = styled.ul`
   border: 1px solid ${_v.shadow};
   border-top: none;
   font-weight: 500;
+  background-color: ${_v.white};
   &:hover {
     display: block;
   }

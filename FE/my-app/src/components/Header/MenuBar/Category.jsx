@@ -4,6 +4,7 @@ import _v from '../../Variables';
 import SubList from './SubList';
 
 const CategoryLi = styled.li`
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;

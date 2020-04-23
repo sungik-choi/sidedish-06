@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const ItemLi = styled.li`
+  background-color: blue;
+`;
+
 function Item(props) {
   return (
-    <li>
+    <ItemLi>
       <a>{props.name}</a>
-    </li>
+    </ItemLi>
   );
 }
 

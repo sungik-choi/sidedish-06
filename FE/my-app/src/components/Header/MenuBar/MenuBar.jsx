@@ -19,12 +19,12 @@ const CategoryUl = styled.ul`
 `;
 
 const MenuBar = ({ list }) => {
-  const category = list.map(category => <Category key={category.id} name={category.name} list={category.subList} />);
+  const categories = list.map(category => <Category key={category.id} name={category.name} list={category.subList} />);
 
   return (
     <MenuDiv>
       <MenuNav>
-        <CategoryUl>{category}</CategoryUl>
+        <CategoryUl>{categories}</CategoryUl>
       </MenuNav>
     </MenuDiv>
   );

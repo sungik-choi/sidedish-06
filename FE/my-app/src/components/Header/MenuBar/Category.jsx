@@ -4,6 +4,7 @@ import SubList from './SubList';
 
 const SubListUl = styled.ul`
   cursor: default;
+  z-index: 20;
   display: none;
   position: absolute;
   top: 100%;

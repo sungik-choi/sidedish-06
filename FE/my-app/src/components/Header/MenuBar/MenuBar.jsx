@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import Category from './Category';
 
 const MenuDiv = styled.div`
+  z-index: 10;
   background-color: var(--brown);
 `;
 
 const MenuNav = styled.nav`
   width: var(--width);
-  height: 3rem;
+  height: 3.25rem;
   margin: 0 auto;
 `;
 

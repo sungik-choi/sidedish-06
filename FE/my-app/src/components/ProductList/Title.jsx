@@ -3,13 +3,15 @@ import styled from 'styled-components';
 
 const TitleWrap = styled.div`
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 `;
+
 const MenuType = styled.h3`
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   color: var(--gray-4);
 `;
+
 const MenuTypeTitle = styled.h2`
   font-size: 2.125rem;
   font-weight: 300;

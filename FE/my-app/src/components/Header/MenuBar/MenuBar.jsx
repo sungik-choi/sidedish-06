@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Category from './Category';
 
 const MenuDiv = styled.div`
+  z-index: 10;
   background-color: var(--brown);
 `;
 

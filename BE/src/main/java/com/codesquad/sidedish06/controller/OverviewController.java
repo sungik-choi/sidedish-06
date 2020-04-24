@@ -12,7 +12,7 @@ public class OverviewController {
 
     private final OverviewDao overviewDao;
 
-    @GetMapping("/{menu}")
+    @GetMapping("/overview/{menu}")
     public Object list(@PathVariable String menu) {
         return overviewDao.listMenuOverview(menu);
     }

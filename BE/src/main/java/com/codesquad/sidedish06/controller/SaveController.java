@@ -22,16 +22,7 @@ public class SaveController {
     @GetMapping("/save")
     public HttpStatus saveOverview() throws IOException, URISyntaxException {
         overviewService.save();
-//        detailService.save();
+        detailService.save();
         return HttpStatus.OK;
     }
-
-//    @GetMapping("/detail/mockup")
-//    public Object detail() throws URISyntaxException, JsonProcessingException {
-//        Detail[] details = listDetail();
-//        for (Detail detail : details) {
-//            detailDao.insert(detail);
-//        }
-//        return details;
-//    }
 }

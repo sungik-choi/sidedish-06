@@ -20,7 +20,9 @@ public class DetailServiceImpl implements DetailService {
     public Object save() throws URISyntaxException, JsonProcessingException {
         RequestDetail[] details = listDetail();
         for (RequestDetail detail : details) {
-            detailDao.create(detail);
+            if(detail!=null) {
+                detailDao.create(detail);
+            }
         }
         return details;
     }

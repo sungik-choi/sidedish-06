@@ -28,11 +28,6 @@ public class DetailDao {
     }
 
     public void create(RequestDetail detail) {
-
-        if (detail == null) {
-            return;
-        }
-
         String sql = "update babchan set top_image = ?, point = ?, delivery_info = ?, delivery_fee = ? where hash = ?";
 
         this.jdbcTemplate.update(sql,

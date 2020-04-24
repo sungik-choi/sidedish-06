@@ -3,11 +3,11 @@ DROP TABLE IF EXISTS delivery;
 DROP TABLE IF EXISTS badge;
 DROP TABLE IF EXISTS thumb_image;
 DROP TABLE IF EXISTS detail_section;
+DROP TABLE IF EXISTS food_type;
 
 CREATE TABLE babchan
 (
     hash          VARCHAR(32) PRIMARY KEY,
-    food_type     VARCHAR(64),
     image         VARCHAR(128),
     alt           VARCHAR(64),
     title         VARCHAR(128),
@@ -18,6 +18,14 @@ CREATE TABLE babchan
     point         VARCHAR(128),
     delivery_info VARCHAR(128),
     delivery_fee  VARCHAR(128)
+);
+
+CREATE TABLE food_type
+(
+    hash VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    type VARCHAR(64),
+    sub_title VARCHAR(64),
+    main_title VARCHAR(64)
 );
 
 CREATE TABLE delivery
@@ -43,4 +51,3 @@ CREATE TABLE detail_section
     hash     VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
     imageUrl VARCHAR(256)
 );
-

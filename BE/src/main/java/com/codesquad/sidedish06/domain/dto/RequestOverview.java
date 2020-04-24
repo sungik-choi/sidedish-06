@@ -25,7 +25,6 @@ public class RequestOverview {
     @JsonProperty
     private String alt;
 
-    @NotNull
     private List<Delivery> delivery_type;
 
     @JsonProperty
@@ -40,6 +39,5 @@ public class RequestOverview {
     @JsonProperty
     private String s_price;
 
-    @NotNull
     private List<Badge> badge;
 }

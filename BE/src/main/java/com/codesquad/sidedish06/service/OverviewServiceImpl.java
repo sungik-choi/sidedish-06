@@ -4,7 +4,6 @@ import com.codesquad.sidedish06.dao.OverviewDao;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

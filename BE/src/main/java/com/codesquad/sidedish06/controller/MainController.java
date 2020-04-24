@@ -18,9 +18,4 @@ public class MainController {
     public List<String> urls() {
         return UrlUtils.urls();
     }
-
-    @GetMapping("/test")
-    public Object test() {
-        return overviewDao.deliveries("H077F");
-    }
 }

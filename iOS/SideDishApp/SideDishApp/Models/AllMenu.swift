@@ -9,19 +9,20 @@
 import Foundation
 
 struct AllMenu: Codable {
-    var statusCode: Int
-    var body: [Menu]
+    var menuType: String
+    var menuTypeTitle: String
+    var data: [Menu]
 }
 
 struct Menu: Codable {
-    var detail_hash: String
+    var hash: String
     var image: String
     var alt: String
     var delivery_type: [String]
     var title: String
     var description: String
-    var n_price: String?
-    var s_price: String
+    var originPrice: String?
+    var salePrice: String
     var badge: [String]?
 }
 

@@ -27,7 +27,6 @@ class MenuTableViewCell: UITableViewCell {
     private let menuImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.layer.cornerRadius = image.frame.height/2
         return image
     }()
     
@@ -97,7 +96,10 @@ class MenuTableViewCell: UITableViewCell {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
         }
-        menuImage.image = MenuViewController.imageCacheManager.existCachedImage(key: menu.image)
+        DispatchQueue.main.async {
+            self.menuImage.image = MenuViewController.imageCacheManager.existCachedImage(key: menu.image)
+        }
+        
     }
     
     // MARK:- private functions

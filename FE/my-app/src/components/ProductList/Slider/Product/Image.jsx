@@ -9,12 +9,17 @@ const DeliveryTypeSpan = styled.span`
 `;
 
 const DeliveryTypeWrap = styled.div`
+  pointer-events: none;
   display: ${props => (props.isMouseOver ? 'flex' : 'none')};
   flex-direction: column;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  span:first-child {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
 `;
 
 const ImageWrap = styled.div`
@@ -31,7 +36,7 @@ const ThumbImage = styled.img`
 
 const Image = ({ alt, src, deliveryType }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
-  const deliveryTypeSpans = deliveryType.map(type => <DeliveryTypeSpan>{type}</DeliveryTypeSpan>);
+  const deliveryTypeSpans = deliveryType.map((type, index) => <DeliveryTypeSpan key={index}>{type}</DeliveryTypeSpan>);
 
   const mouseEnterHandler = () => {
     setIsMouseOver(true);

@@ -4,7 +4,6 @@ import Slider from './Slider/Slider';
 import Title from './Title';
 
 const ProductListWrap = styled.div`
-  border: 1px solid red;
   margin: 0 auto;
   padding: 8rem 0;
 `;

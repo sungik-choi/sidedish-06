@@ -3,13 +3,10 @@ import styled from 'styled-components';
 import Product from './Product/Product';
 import NavButton from './NavButton';
 
-const SliderWrap = styled.div`
-  border: 1px solid blue;
-`;
+const SliderWrap = styled.div``;
 
 const ProductUl = styled.ul`
   display: flex;
-  border: 1px solid green;
 `;
 
 const Slider = ({ list }) => {

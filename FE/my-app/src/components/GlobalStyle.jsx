@@ -14,6 +14,7 @@ const variables = css`
     --gray-4: #999;
     --green: #1fcbc7;
     --brown: #483f35;
+    --beige: #c6a8a5;
   }
 `;
 

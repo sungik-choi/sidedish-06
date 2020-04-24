@@ -14,8 +14,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - properties
     static let networkManager = NetworkManager()
     static let imageCacheManager = ImageCacheManager()
-    private let sections:[String] = ["국","찌개","반찬"]
-    private var allMenu: AllMenu?
+    private var allMenus: [Int : AllMenu] = [:]
     @IBOutlet var tableView: MenuTableView!
     
     // MARK: - functions
@@ -26,13 +25,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        //server에서 받아온 데이터로 변경하기
-        return sections.count
+        return allMenus.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderView") as! MenuHeaderView
-        header.configureHeaderData(badge: "국.찌개", title: "김이 모락모락 국.찌개")
+        header.configureHeaderData(badge: allMenus[section]?.menuType ?? "", title: allMenus[section]?.menuTypeTitle ?? "")
         return header
     }
     
@@ -41,12 +39,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMenu?.body.count ?? 0
+        return allMenus[section]?.data.count ??  0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
-        cell.configureCellData(menu: allMenu?.body[indexPath.row])
+        cell.configureCellData(menu: allMenus[indexPath.section]?.data[indexPath.row])
         return cell
     }
     
@@ -59,7 +57,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func touchedSectionHeader(recognizer: SectionHeaderTapGestureRecognizer) {
         guard let index = recognizer.index else { return }
-        let toaster = Toast(text: "\(sections[index]) \(tableView.numberOfRows(inSection: index))개 재고 보유")
+        let toaster = Toast(text: "\(allMenus[index]!.menuType) \(tableView.numberOfRows(inSection: index))개 재고 보유")
         toaster.show()
     }
     
@@ -72,12 +70,24 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func configureUsecase() {
-        NetworkUseCase.makeMenu(with: MenuViewController.networkManager, url: EndPoints.MainMenu) { data in
-            self.allMenu = data
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+//        NetworkUseCase.makeMenu(with: MenuViewController.networkManager, url: EndPoints.MainMenu) { data in
+//            self.allMenu = data
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
+        NetworkUseCase.makeMenu(with: MockNetworkSuccessSideStub()) { all in
+            self.allMenus.updateValue(all, forKey: all.menuIndex)
         }
+
+        NetworkUseCase.makeMenu(with: MockNetworkSuccessMainStub()) { all in
+            self.allMenus.updateValue(all, forKey: all.menuIndex)
+        }
+        
+        NetworkUseCase.makeMenu(with: MockNetworkSuccessSoupStub()) { all in
+            self.allMenus.updateValue(all, forKey: all.menuIndex)
+        }
+        
     }
 }
 

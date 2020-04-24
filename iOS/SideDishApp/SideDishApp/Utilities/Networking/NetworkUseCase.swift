@@ -10,8 +10,8 @@ import Foundation
 
 struct NetworkUseCase {
     
-    static func makeMenu(with manager: NetworkManager, url: String, completed: @escaping (AllMenu) -> ()) {
-        manager.getResource(url: url, methodType: .get, body: nil) { result in
+    static func makeMenu(with manager: NetworkManageable, completed: @escaping (AllMenu) -> ()) {
+        manager.getResource(url: EndPoints.MainMenu, methodType: .get, body: nil) { result in
             switch result {
             case .success(let data):
                 do {

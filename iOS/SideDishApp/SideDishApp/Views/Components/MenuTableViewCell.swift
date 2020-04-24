@@ -89,8 +89,8 @@ class MenuTableViewCell: UITableViewCell {
         guard let menu = menu else { return }
         menuTitle.text = menu.title
         menuDescription.text = menu.description
-        previousPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.n_price ?? ""))", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-        price.text = menu.s_price
+        previousPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.originPrice ?? ""))", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+        price.text = menu.salePrice
         let badges = menu.badge ?? [""]
         for badge in badges {
             let label = makeBadgeLabel(badge: badge)

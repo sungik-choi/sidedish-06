@@ -4,6 +4,7 @@ import com.codesquad.sidedish06.domain.dto.RequestDetail;
 import com.codesquad.sidedish06.domain.dto.ResponseDetail;
 import com.codesquad.sidedish06.domain.entity.DetailSection;
 import com.codesquad.sidedish06.domain.entity.ThumbImage;
+import com.codesquad.sidedish06.utils.RowMapperUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,7 +28,24 @@ public class DetailDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void create(RequestDetail detail) {
+    public void insert(RequestDetail detail) {
+        validate(detail);
+        insertDetail(detail);
+        insertThumbImages(detail);
+        insertDetailSections(detail);
+    }
+
+    private void validate(RequestDetail detail) {
+        if(detail.getThumb_images()==null) {
+            detail.setThumb_images(new ArrayList<>());
+        }
+
+        if(detail.getDetail_section()==null) {
+            detail.setDetail_section(new ArrayList<>());
+        }
+    }
+
+    private void insertDetail(RequestDetail detail) {
         String sql = "update babchan set top_image = ?, point = ?, delivery_info = ?, delivery_fee = ? where hash = ?";
 
         this.jdbcTemplate.update(sql,
@@ -37,25 +55,21 @@ public class DetailDao {
                 detail.getDelivery_fee(),
                 detail.getHash()
         );
+    }
 
-        sql = "insert into thumb_image(hash, imageUrl) VALUES (?, ?)";
+    private void insertThumbImages(RequestDetail detail) {
+        String sql = "insert into thumb_image(hash, imageUrl) VALUES (?, ?)";
 
-        if (detail.getThumb_images() == null) {
-            jdbcTemplate.update(sql, detail.getHash(), null);
-        } else {
-            for (ThumbImage thumbImage : detail.getThumb_images()) {
-                jdbcTemplate.update(sql, detail.getHash(), thumbImage.getImageUrl());
-            }
+        for (ThumbImage thumbImage : detail.getThumb_images()) {
+            jdbcTemplate.update(sql, detail.getHash(), thumbImage.getImageUrl());
         }
+    }
 
-        sql = "insert into detail_section(hash, imageUrl) VALUES (?, ?)";
+    private void insertDetailSections(RequestDetail detail) {
+        String sql = "insert into detail_section(hash, imageUrl) VALUES (?, ?)";
 
-        if (detail.getDetail_section() == null) {
-            jdbcTemplate.update(sql, detail.getHash(), null);
-        } else {
-            for (DetailSection detailSection : detail.getDetail_section()) {
-                jdbcTemplate.update(sql, detail.getHash(), detailSection.getImageUrl());
-            }
+        for (DetailSection detailSection : detail.getDetail_section()) {
+            jdbcTemplate.update(sql, detail.getHash(), detailSection.getImageUrl());
         }
     }
 
@@ -87,46 +101,12 @@ public class DetailDao {
     private List<String> thumbImages(String hash) {
         String sql = "select imageUrl from thumb_image where hash = ?";
 
-        RowMapper<ThumbImage> thumbImageRowMapper = new RowMapper<ThumbImage>() {
-            @Override
-            public ThumbImage mapRow(ResultSet rs, int rowNum) throws SQLException {
-                ThumbImage thumbImage = new ThumbImage();
-                thumbImage.setImageUrl(rs.getString("imageUrl"));
-                return thumbImage;
-            }
-        };
-
-        List<ThumbImage> thumbImageList = this.jdbcTemplate.query(sql, new Object[]{hash}, thumbImageRowMapper);
-
-        List<String> imageUrls = new ArrayList<>();
-
-        for (ThumbImage image : thumbImageList) {
-            imageUrls.add(image.getImageUrl());
-        }
-
-        return imageUrls;
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, RowMapperUtils.getFirstColumns());
     }
 
     private List<String> sections(String hash) {
         String sql = "select imageUrl from detail_section where hash = ?";
-
-        RowMapper<DetailSection> detailSectionRowMapper = new RowMapper<DetailSection>() {
-            @Override
-            public DetailSection mapRow(ResultSet rs, int rowNum) throws SQLException {
-                DetailSection detailSection = new DetailSection();
-                detailSection.setImageUrl(rs.getString("imageUrl"));
-                return detailSection;
-            }
-        };
-
-        List<DetailSection> sectionList = this.jdbcTemplate.query(sql, new Object[]{hash}, detailSectionRowMapper);
-
-        List<String> sections = new ArrayList<>();
-
-        for (DetailSection section : sectionList) {
-            sections.add(section.getImageUrl());
-        }
-
-        return sections;
+        
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, RowMapperUtils.getFirstColumns());
     }
 }

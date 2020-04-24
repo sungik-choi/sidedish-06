@@ -21,7 +21,7 @@ public class DetailServiceImpl implements DetailService {
         RequestDetail[] details = listDetail();
         for (RequestDetail detail : details) {
             if(detail!=null) {
-                detailDao.create(detail);
+                detailDao.insert(detail);
             }
         }
         return details;

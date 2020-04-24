@@ -1,0 +1,33 @@
+import React from 'react';
+import styled from 'styled-components';
+import Category from './Category';
+
+const MenuDiv = styled.div`
+  background-color: var(--brown);
+`;
+
+const MenuNav = styled.nav`
+  width: var(--width);
+  height: 3rem;
+  margin: 0 auto;
+`;
+
+const CategoryUl = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+`;
+
+const MenuBar = ({ list }) => {
+  const categories = list.map(category => <Category key={category.id} name={category.name} list={category.subList} />);
+
+  return (
+    <MenuDiv>
+      <MenuNav>
+        <CategoryUl>{categories}</CategoryUl>
+      </MenuNav>
+    </MenuDiv>
+  );
+};
+
+export default MenuBar;

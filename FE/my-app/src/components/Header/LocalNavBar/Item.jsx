@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 const ItemLi = styled.li`
   cursor: pointer;
-  padding: 0.5rem 0;
+  padding: 0 0.5rem;
+  border-right: 1px solid var(--gray-3);
+  &:last-child {
+    border-right: none;
+  }
   &:hover {
     color: var(--green);
-    font-weight: 600;
-    text-decoration: underline;
   }
 `;
 

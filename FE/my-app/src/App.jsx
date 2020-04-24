@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Header from './components/Header/Header';
+import ProductList from './components/ProductList/ProductList';
+import GlobalStyle from './components/GlobalStyle';
+import { API_URL, useFetch } from './components/Fetch';
+import { lnbList, menuList } from './components/MockData';
 
-function App() {
+const App = () => {
+  const [mainList, setMainList] = useState({ body: [] });
+  const isMainListLoading = useFetch(API_URL.main(), setMainList);
+
+  if (!isMainListLoading)
+    return (
+      <>
+        <div>Loading...</div>
+      </>
+    );
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Header lnbList={lnbList} menuList={menuList} />
+      <ProductList list={mainList} />
+    </>
   );
-}
+};
 
 export default App;

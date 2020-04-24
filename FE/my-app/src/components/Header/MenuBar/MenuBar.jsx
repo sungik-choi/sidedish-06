@@ -9,7 +9,7 @@ const MenuDiv = styled.div`
 
 const MenuNav = styled.nav`
   width: var(--width);
-  height: 3rem;
+  height: 3.25rem;
   margin: 0 auto;
 `;
 

@@ -5,7 +5,7 @@ import Title from './Title';
 
 const ProductListWrap = styled.div`
   margin: 0 auto;
-  padding: 4rem 0;
+  padding: 6rem 0;
 `;
 
 const ProductList = ({ list }) => {

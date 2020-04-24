@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const TitleWrap = styled.div`
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 `;
 
 const MenuType = styled.h3`

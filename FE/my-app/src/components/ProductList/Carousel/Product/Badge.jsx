@@ -8,7 +8,7 @@ const BadgeWrap = styled.div`
 const BadgeDiv = styled.div`
   display: inline-block;
   background-color: var(--beige);
-  margin: 0 0.25rem;
+  margin: 0 0.25rem !important;
   padding: 0.25rem 0.4rem;
   font-size: 0.75rem;
   color: var(--white);

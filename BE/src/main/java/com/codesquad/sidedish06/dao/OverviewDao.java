@@ -51,7 +51,6 @@ public class OverviewDao {
     }
 
 
-
     private boolean isNotDuplicatedHash(RequestOverview overview) {
         String sql = "select count(*) from babchan where hash = ?";
 
@@ -99,7 +98,7 @@ public class OverviewDao {
         }
     }
 
-    public ResponseOverview listMenuOverview(String menu) {
+    public ResponseOverview listMenu(String menu) {
         String sql = "select distinct sub_title, main_title from food_type where type = ?";
 
         RowMapper<List<String>> rowMapper = new RowMapper<List<String>>() {

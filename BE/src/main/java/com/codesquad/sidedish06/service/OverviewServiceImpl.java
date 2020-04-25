@@ -2,6 +2,7 @@ package com.codesquad.sidedish06.service;
 
 import com.codesquad.sidedish06.dao.OverviewDao;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
+import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +24,18 @@ public class OverviewServiceImpl implements OverviewService {
         for (String menu : menus) {
             RequestOverview[] overviews = listOverview("/" + menu);
             for (int i = 0; i < overviews.length; i++) {
-                if (overviews[i] == null) {
-                    continue;
+                if (overviews[i] != null) {
+                    validate(overviews[i]);
+                    overviewDao.insert(overviews[i], menu);
                 }
-                validate(overviews[i]);
-                overviewDao.insert(overviews[i], menu);
             }
         }
         return "OK";
+    }
+
+    @Override
+    public ResponseOverview listMenu(String menu) {
+        return overviewDao.listMenu(menu);
     }
 
     private void validate(RequestOverview overview) {

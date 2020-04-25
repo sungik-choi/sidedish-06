@@ -2,6 +2,7 @@ package com.codesquad.sidedish06.service;
 
 import com.codesquad.sidedish06.dao.DetailDao;
 import com.codesquad.sidedish06.domain.dto.RequestDetail;
+import com.codesquad.sidedish06.domain.dto.ResponseDetail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class DetailServiceImpl implements DetailService {
             }
         }
         return details;
+    }
+
+    @Override
+    public ResponseDetail read(String hash) {
+        return detailDao.read(hash);
     }
 
     private void validate(RequestDetail detail) {

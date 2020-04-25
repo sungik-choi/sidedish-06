@@ -16,9 +16,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Repository
@@ -114,7 +112,10 @@ public class OverviewDao {
     }
 
     public List<ResponseOverviewData> listMenuOverviewData(String menu) {
-        String sql = "select * from babchan where hash in (select hash from food_type where type = ?)";
+        String sql = "SELECT bab.hash, image, alt, title, description, n_price, s_price " +
+                "FROM babchan bab " +
+                "JOIN food_type ft ON bab.hash = ft.hash " +
+                "WHERE type = ?";
 
         RowMapper<ResponseOverviewData> responseOverviewRowMapper = new RowMapper<ResponseOverviewData>() {
             @Override

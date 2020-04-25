@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.codesquad.sidedish06.utils.UrlUtils.BASE_URL;
+import static com.codesquad.sidedish06.utils.JsonUtils.BASE_URL;
 
 @Slf4j
 @Repository

@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.codesquad.sidedish06.utils.UrlUtils.BASE_URL;
-
 @Slf4j
 public class JsonUtils {
+
+    public static final String BASE_URL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan";
 
     protected static final String[] HASHES = {
             "H9881", "HDF4C", "H7F20", "HA567", "H206E",
@@ -33,7 +33,8 @@ public class JsonUtils {
 
     private static final RestTemplate restTemplate = new RestTemplate();
 
-    private JsonUtils() {}
+    private JsonUtils() {
+    }
 
     public static String data(String url) throws URISyntaxException {
         URI uri = new URI(url);

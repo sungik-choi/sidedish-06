@@ -4,7 +4,7 @@ import com.codesquad.sidedish06.domain.dto.RequestDetail;
 import com.codesquad.sidedish06.domain.dto.ResponseDetail;
 import com.codesquad.sidedish06.domain.entity.DetailSection;
 import com.codesquad.sidedish06.domain.entity.ThumbImage;
-import com.codesquad.sidedish06.utils.RowMapperUtils;
+import com.codesquad.sidedish06.utils.DaoUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -89,12 +89,12 @@ public class DetailDao {
     private List<String> thumbImages(String hash) {
         String sql = "select imageUrl from thumb_image where hash = ?";
 
-        return this.jdbcTemplate.query(sql, new Object[]{hash}, RowMapperUtils.getFirstColumns());
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, DaoUtils.getFirstColumns());
     }
 
     private List<String> sections(String hash) {
         String sql = "select imageUrl from detail_section where hash = ?";
 
-        return this.jdbcTemplate.query(sql, new Object[]{hash}, RowMapperUtils.getFirstColumns());
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, DaoUtils.getFirstColumns());
     }
 }

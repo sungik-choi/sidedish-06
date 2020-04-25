@@ -106,7 +106,7 @@ public class DetailDao {
 
     private List<String> sections(String hash) {
         String sql = "select imageUrl from detail_section where hash = ?";
-        
+
         return this.jdbcTemplate.query(sql, new Object[]{hash}, RowMapperUtils.getFirstColumns());
     }
 }

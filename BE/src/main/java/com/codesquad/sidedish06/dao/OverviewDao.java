@@ -5,6 +5,7 @@ import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.dto.ResponseOverviewData;
 import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
+import com.codesquad.sidedish06.utils.RowMapperUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,9 +35,9 @@ public class OverviewDao {
 
     private void setTitles() {
         this.menuInfo = new HashMap<>();
-        this.menuInfo.put("main", new String[]{"밥과 함께", "언제먹어도 든든한 반찬"});
+        this.menuInfo.put("main", new String[]{"밥과 함께", "언제 먹어도 든든한 반찬"});
         this.menuInfo.put("soup", new String[]{"국, 찌개", "김이 모락모락 국, 찌개"});
-        this.menuInfo.put("side", new String[]{"밑반찬", "언제먹어도 든든한 밑반찬"});
+        this.menuInfo.put("side", new String[]{"밑반찬", "언제 먹어도 든든한 밑반찬"});
     }
 
     public void insert(RequestOverview overview, String menu) {
@@ -66,6 +67,7 @@ public class OverviewDao {
 
     private boolean isNotDuplicatedHash(RequestOverview overview) {
         String sql = "select count(*) from babchan where hash = ?";
+
         return this.jdbcTemplate.queryForObject(sql, new Object[]{overview.getDetail_hash()}, Integer.class) == 0;
     }
 
@@ -113,10 +115,12 @@ public class OverviewDao {
     public ResponseOverview listMenuOverview(String menu) {
 
         String[] titles = menuInfo.get(menu);
+        String subTitle = titles[0];
+        String mainTitle = titles[1];
 
         return new ResponseOverview(
-                titles[0],
-                titles[1],
+                subTitle,
+                mainTitle,
                 listMenuOverviewData(menu)
         );
     }
@@ -148,23 +152,14 @@ public class OverviewDao {
     }
 
     public List<String> deliveries(String hash) {
-        return convertListObject2ListString("type", "delivery", hash);
+        String sql = "select type from delivery where hash = ?";
+
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, RowMapperUtils.getFirstColumns());
     }
 
     private List<String> badges(String hash) {
-        return convertListObject2ListString("event", "badge", hash);
-    }
+        String sql = "select event from badge where hash = ?";
 
-    private List<String> convertListObject2ListString(String field, String className, String hash) {
-        String sql = "select " + field + " from " + className + " where hash = ?";
-
-        RowMapper<String> badgeRowMapper = new RowMapper<String>() {
-            @Override
-            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return rs.getString(1);
-            }
-        };
-
-        return this.jdbcTemplate.query(sql, new Object[]{hash}, badgeRowMapper);
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, RowMapperUtils.getFirstColumns());
     }
 }

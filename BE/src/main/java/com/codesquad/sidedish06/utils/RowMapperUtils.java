@@ -10,13 +10,11 @@ public class RowMapperUtils {
     private RowMapperUtils() {}
 
     public static RowMapper<String> getFirstColumns() {
-        RowMapper<String> rowMapper = new RowMapper<String>() {
+        return new RowMapper<String>() {
             @Override
             public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return rs.getString(1);
             }
         };
-
-        return rowMapper;
     }
 }

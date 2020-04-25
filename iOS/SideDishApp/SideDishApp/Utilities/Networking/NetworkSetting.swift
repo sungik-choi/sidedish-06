@@ -22,10 +22,6 @@ enum EndPoints: String, CaseIterable {
     
     static let BaseURL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
     static let MenuDetail = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/detail"
-    
-    func endpoint(item: EndPoints) -> String {
-        return EndPoints.BaseURL + item.rawValue
-    }
 }
 
 

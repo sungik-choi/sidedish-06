@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import static com.codesquad.sidedish06.utils.JsonUtils.listDetail;
 
@@ -21,9 +22,20 @@ public class DetailServiceImpl implements DetailService {
         RequestDetail[] details = listDetail();
         for (RequestDetail detail : details) {
             if(detail!=null) {
+                validate(detail);
                 detailDao.insert(detail);
             }
         }
         return details;
+    }
+
+    private void validate(RequestDetail detail) {
+        if(detail.getThumb_images()==null) {
+            detail.setThumb_images(new ArrayList<>());
+        }
+
+        if(detail.getDetail_section()==null) {
+            detail.setDetail_section(new ArrayList<>());
+        }
     }
 }

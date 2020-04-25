@@ -42,7 +42,6 @@ public class OverviewDao {
 
     public void insert(RequestOverview overview, String menu) {
         setTitles();
-        validate(overview);
         if (isNotDuplicatedHash(overview)) {
             insertOverview(overview);
             insertFoodType(overview, menu);
@@ -51,19 +50,7 @@ public class OverviewDao {
         }
     }
 
-    private void validate(RequestOverview overview) {
-        if (overview.getN_price() != null) {
-            overview.setN_price(overview.getN_price() + "원");
-        }
 
-        if (overview.getDelivery_type() == null) {
-            overview.setDelivery_type(new ArrayList<>());
-        }
-
-        if (overview.getBadge() == null) {
-            overview.setBadge(new ArrayList<>());
-        }
-    }
 
     private boolean isNotDuplicatedHash(RequestOverview overview) {
         String sql = "select count(*) from babchan where hash = ?";

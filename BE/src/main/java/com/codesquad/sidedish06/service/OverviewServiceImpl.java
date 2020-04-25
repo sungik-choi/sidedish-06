@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import static com.codesquad.sidedish06.utils.JsonUtils.listOverview;
 
@@ -25,9 +26,24 @@ public class OverviewServiceImpl implements OverviewService {
                 if (overviews[i] == null) {
                     continue;
                 }
+                validate(overviews[i]);
                 overviewDao.insert(overviews[i], menu);
             }
         }
         return "OK";
+    }
+
+    private void validate(RequestOverview overview) {
+        if (overview.getN_price() != null) {
+            overview.setN_price(overview.getN_price() + "원");
+        }
+
+        if (overview.getDelivery_type() == null) {
+            overview.setDelivery_type(new ArrayList<>());
+        }
+
+        if (overview.getBadge() == null) {
+            overview.setBadge(new ArrayList<>());
+        }
     }
 }

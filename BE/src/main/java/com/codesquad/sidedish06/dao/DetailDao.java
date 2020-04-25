@@ -29,20 +29,9 @@ public class DetailDao {
     }
 
     public void insert(RequestDetail detail) {
-        validate(detail);
         insertDetail(detail);
         insertThumbImages(detail);
         insertDetailSections(detail);
-    }
-
-    private void validate(RequestDetail detail) {
-        if(detail.getThumb_images()==null) {
-            detail.setThumb_images(new ArrayList<>());
-        }
-
-        if(detail.getDetail_section()==null) {
-            detail.setDetail_section(new ArrayList<>());
-        }
     }
 
     private void insertDetail(RequestDetail detail) {

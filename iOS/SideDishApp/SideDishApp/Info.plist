@@ -64,6 +64,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>www.mocky.io</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubDomains</key>
+				<true/>
+			</dict>
 			<key>public.codesquad.kr</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

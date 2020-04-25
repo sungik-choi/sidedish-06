@@ -69,22 +69,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func configureUsecase() {
-//        NetworkUseCase.makeMenu(with: MenuViewController.networkManager, url: EndPoints.MainMenu) { data in
-//            self.allMenu = data
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-        NetworkUseCase.makeMenu(with: MockNetworkSuccessSideStub()) { all in
-            self.allMenus.updateValue(all, forKey: all.menuIndex)
-        }
-
-        NetworkUseCase.makeMenu(with: MockNetworkSuccessMainStub()) { all in
-            self.allMenus.updateValue(all, forKey: all.menuIndex)
-        }
         
-        NetworkUseCase.makeMenu(with: MockNetworkSuccessSoupStub()) { all in
-            self.allMenus.updateValue(all, forKey: all.menuIndex)
+        NetworkUseCase.makeStub(with: MenuViewController.networkManager) { data in
+            self.allMenus.updateValue(data, forKey: data.menuIndex)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         
     }

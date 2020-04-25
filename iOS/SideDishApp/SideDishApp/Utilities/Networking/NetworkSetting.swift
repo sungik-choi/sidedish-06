@@ -15,11 +15,17 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
-enum EndPoints {
-    static let MainMenu = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/main"
-    static let SoupMenu = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/soup"
-    static let SideMenu = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/side"
+enum EndPoints: String, CaseIterable {
+    case main = "main"
+    case soup = "soup"
+    case side = "side"
+    
+    static let BaseURL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
     static let MenuDetail = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/detail"
+    
+    func endpoint(item: EndPoints) -> String {
+        return EndPoints.BaseURL + item.rawValue
+    }
 }
 
 

@@ -11,7 +11,7 @@ import Foundation
 struct NetworkUseCase {
     
     static func makeMenu(with manager: NetworkManageable, completed: @escaping (AllMenu) -> ()) {
-        manager.getResource(url: EndPoints.MainMenu, methodType: .get, body: nil) { result in
+        manager.getResource(url: EndPoints.BaseURL, methodType: .get, body: nil) { result in
             switch result {
             case .success(let data):
                 do {

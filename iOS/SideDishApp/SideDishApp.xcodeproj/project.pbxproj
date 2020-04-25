@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		307EE45B2451C024004C6A29 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307EE45A2451C024004C6A29 /* ImageCacheManager.swift */; };
 		307EE45D2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307EE45C2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift */; };
-		3090BC342452D02700388166 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090BC332452D02700388166 /* APIRouter.swift */; };
+		30955F8A24531533004D8940 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30955F8924531533004D8940 /* ImageCache.swift */; };
 		30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB3DC1245021710022C15E /* MenuHeaderView.swift */; };
 		30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */; };
 		30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */; };
@@ -33,7 +33,7 @@
 		11121757DA479AE946A24C42 /* Pods-SideDishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.release.xcconfig"; sourceTree = "<group>"; };
 		307EE45A2451C024004C6A29 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		307EE45C2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderTapGestureRecognizer.swift; sourceTree = "<group>"; };
-		3090BC332452D02700388166 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		30955F8924531533004D8940 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		30CB3DC1245021710022C15E /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		30E2F0C2244DBEFA00E45C03 /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				307EE45A2451C024004C6A29 /* ImageCacheManager.swift */,
+				30955F8924531533004D8940 /* ImageCache.swift */,
 			);
 			path = ImageLoader;
 			sourceTree = "<group>";
@@ -135,7 +136,6 @@
 				30F2E9A5244EC05C00C8D289 /* NetworkErrorCase.swift */,
 				30F2E9A7244EC2F800C8D289 /* NetworkManager.swift */,
 				30F2E9A9244ECBDD00C8D289 /* NetworkUseCase.swift */,
-				3090BC332452D02700388166 /* APIRouter.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -293,10 +293,10 @@
 			files = (
 				30F2E9AD244EDCDE00C8D289 /* AllMenu.swift in Sources */,
 				307EE45D2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift in Sources */,
+				30955F8A24531533004D8940 /* ImageCache.swift in Sources */,
 				30F2E9AA244ECBDD00C8D289 /* NetworkUseCase.swift in Sources */,
 				30F2E9A8244EC2F800C8D289 /* NetworkManager.swift in Sources */,
 				30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */,
-				3090BC342452D02700388166 /* APIRouter.swift in Sources */,
 				30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */,
 				30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */,
 				30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */,

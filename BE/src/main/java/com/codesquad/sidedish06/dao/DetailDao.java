@@ -62,7 +62,9 @@ public class DetailDao {
     }
 
     public ResponseDetail read(String hash) {
-        String sql = "select * from babchan where hash = ?";
+        String sql = "SELECT hash, title, top_image, description, point, delivery_info, delivery_fee, n_price, s_price " +
+                "FROM babchan " +
+                "WHERE hash = ?";
 
         RowMapper<ResponseDetail> responseDetailRowMapper = new RowMapper<ResponseDetail>() {
             @Override
@@ -70,7 +72,7 @@ public class DetailDao {
                 ResponseDetail response = new ResponseDetail();
                 response.setHash(hash);
                 response.setTitle(rs.getString("title"));
-                response.setTop_image(rs.getString("image"));
+                response.setTop_image(rs.getString("top_image"));
                 response.setThumb_images(thumbImages(hash));
                 response.setDescription(rs.getString("description"));
                 response.setPoint(rs.getString("point"));

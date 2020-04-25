@@ -96,9 +96,13 @@ class MenuTableViewCell: UITableViewCell {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
         }
-        
+    }
+    
+    // MARK:- private functions
+    
+    private func loadData(urlString: String) {
         DispatchQueue.main.async {
-            ImageLoader.shared.load(urlString: menu.image) { result in
+            ImageLoader.shared.load(urlString: urlString) { result in
                 switch result {
                 case .success(let data):
                     self.menuImage.image = UIImage(data: data)
@@ -108,10 +112,7 @@ class MenuTableViewCell: UITableViewCell {
                 }
             }
         }
-        
     }
-    
-    // MARK:- private functions
     
     private func makeBadgeLabel(badge: String) -> UILabel {
         let label = UILabel()

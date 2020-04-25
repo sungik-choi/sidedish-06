@@ -113,13 +113,25 @@ public class OverviewDao {
     }
 
     public ResponseOverview listMenuOverview(String menu) {
+        String sql = "select distinct sub_title, main_title from food_type where type = ?";
 
-        String[] titles = menuInfo.get(menu);
-        String subTitle = titles[0];
-        String mainTitle = titles[1];
+        RowMapper<List<String>> rowMapper = new RowMapper<List<String>>() {
+            @Override
+            public List<String> mapRow(ResultSet rs, int rowNum) throws SQLException {
+                List<String> titles = new ArrayList<>();
+                titles.add(rs.getString("sub_title"));
+                titles.add(rs.getString("main_title"));
+                return titles;
+            }
+        };
+
+        List<String> titles = this.jdbcTemplate.queryForObject(sql, new Object[]{menu}, rowMapper);
+
+        String subtitle = titles.get(0);
+        String mainTitle = titles.get(1);
 
         return new ResponseOverview(
-                subTitle,
+                subtitle,
                 mainTitle,
                 listMenuOverviewData(menu)
         );

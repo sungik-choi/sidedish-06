@@ -24,15 +24,7 @@ extension ImageCache {
     
     func save(_ urlString: String, content data: Data) {
         let url = cacheDirectoryURL.appendingPathComponent(urlString)
-        
-        do {
-            if FileManager.default.fileExists(atPath: url.path) {
-                try FileManager.default.removeItem(at: url)
-            }
-            FileManager.default.createFile(atPath: url.path, contents: data, attributes: nil)
-        } catch {
-            print(error.localizedDescription)
-        }
+        FileManager.default.createFile(atPath: url.path, contents: data, attributes: nil)
     }
 }
 

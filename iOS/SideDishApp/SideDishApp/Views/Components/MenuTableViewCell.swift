@@ -96,8 +96,17 @@ class MenuTableViewCell: UITableViewCell {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
         }
+        
         DispatchQueue.main.async {
-            self.menuImage.image = MenuViewController.imageCacheManager.existCachedImage(key: menu.image)
+            ImageLoader.shared.load(urlString: menu.image) { result in
+                switch result {
+                case .success(let data):
+                    self.menuImage.image = UIImage(data: data)
+                case .failure(let error):
+                    //error handling 필요
+                    print(error)
+                }
+            }
         }
         
     }

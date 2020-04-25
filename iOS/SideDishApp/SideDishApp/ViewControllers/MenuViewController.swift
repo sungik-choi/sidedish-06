@@ -13,7 +13,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - properties
     static let networkManager = NetworkManager()
-    static let imageCacheManager = ImageCacheManager()
     private var allMenus: [Int : AllMenu] = [:]
     @IBOutlet var tableView: MenuTableView!
     

@@ -78,6 +78,7 @@ class MenuTableViewCell: UITableViewCell {
         menuDescription.text = nil
         previousPrice.text = nil
         price.text = nil
+        menuImage.image = nil
         
         for view in badgeStack.subviews {
             view.removeFromSuperview()
@@ -88,9 +89,9 @@ class MenuTableViewCell: UITableViewCell {
         guard let menu = menu else { return }
         menuTitle.text = menu.title
         menuDescription.text = menu.description
-        previousPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.n_price ?? ""))", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-        price.text = menu.s_price
-        guard let badges = menu.badge else { return }
+        previousPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.originPrice ?? ""))", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+        price.text = menu.salePrice
+        let badges = menu.badge ?? [""]
         for badge in badges {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
@@ -98,6 +99,20 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     // MARK:- private functions
+    
+    private func loadData(urlString: String) {
+        DispatchQueue.main.async {
+            ImageLoader.shared.load(urlString: urlString) { result in
+                switch result {
+                case .success(let data):
+                    self.menuImage.image = UIImage(data: data)
+                case .failure(let error):
+                    //error handling 필요
+                    print(error)
+                }
+            }
+        }
+    }
     
     private func makeBadgeLabel(badge: String) -> UILabel {
         let label = UILabel()
@@ -125,10 +140,11 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     private func configureConstraints() {
+        
         menuImage.translatesAutoresizingMaskIntoConstraints = false
         menuImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8).isActive = true
         menuImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8).isActive = true
-        menuImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.25).isActive = true
+        menuImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.2).isActive = true
         menuImage.heightAnchor.constraint(equalTo: menuImage.widthAnchor).isActive = true
         
         menuTitle.translatesAutoresizingMaskIntoConstraints = false

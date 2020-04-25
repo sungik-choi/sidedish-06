@@ -8,20 +8,35 @@
 
 import Foundation
 
-struct AllMenu: Codable {
-    var statusCode: Int
-    var body: [Menu]
+struct AllMenu: Codable, Hashable {
+    var menuIndex: Int
+    var menuType: String
+    var menuTypeTitle: String
+    var data: [Menu]
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(menuType)
+        hasher.combine(menuTypeTitle)
+        hasher.combine(data)
+    }
+    
+    static func == (lhs: AllMenu, rhs: AllMenu) -> Bool {
+        return lhs.menuType == rhs.menuType
+            && lhs.menuTypeTitle == rhs.menuTypeTitle
+            && lhs.data == rhs.data
+    }
+    
 }
 
-struct Menu: Codable {
-    var detail_hash: String
+struct Menu: Codable, Hashable {
+    var hash: String
     var image: String
     var alt: String
     var delivery_type: [String]
     var title: String
     var description: String
-    var n_price: String?
-    var s_price: String
+    var originPrice: String?
+    var salePrice: String
     var badge: [String]?
 }
 

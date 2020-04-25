@@ -10,19 +10,21 @@ import Foundation
 
 struct NetworkUseCase {
     
-    static func makeAllMenu(with manager: NetworkManager, completed: @escaping (AllMenu) -> ()) {
-        manager.getResource(url: EndPoints.AllMenu, methodType: .get, body: nil) { result in
-            switch result {
-            case .success(let data):
-                do {
-                    let decodedData = try? JSONDecoder().decode(AllMenu.self, from: data)
-                    completed(decodedData!)
-                }catch {
+    static func makeMenu(with manager: NetworkManageable, completed: @escaping (AllMenu) -> ()) {
+        EndPoints.allCases.map { EndPoints.BaseURL + $0.rawValue }.forEach { url in
+            manager.getResource(url: url , methodType: .get, body: nil) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let decodedData = try JSONDecoder().decode(AllMenu.self, from: data)
+                        completed(decodedData)
+                    }catch {
+                        print(error.localizedDescription)
+                    }
+                case .failure(let error):
+                    //error handling 필요
                     print(error.localizedDescription)
                 }
-            case .failure(let error):
-                //error handling 필요
-                print(error.localizedDescription)
             }
         }
     }
@@ -37,6 +39,25 @@ struct NetworkUseCase {
             case .failure(let error):
                 //error handling 필요8
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func makeStub (with manager: NetworkManager, completed: @escaping(AllMenu) -> ()) {
+        MockEndPoints.allCases.forEach { url in
+            manager.getResource(url: url.rawValue , methodType: .get, body: nil) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let decodedData = try JSONDecoder().decode(AllMenu.self, from: data)
+                        completed(decodedData)
+                    }catch {
+                        print(error.localizedDescription)
+                    }
+                case .failure(let error):
+                    //error handling 필요
+                    print(error.localizedDescription)
+                }
             }
         }
     }

@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: height/5).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
 
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(height/5)).isActive = true

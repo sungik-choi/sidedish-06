@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol NetworkManageable {
+    typealias Handler = (Result<Data, NetworkErrorCase>) -> Void
+    
+    func getResource(url: String, methodType: HTTPMethod, body: Data?, completion: @escaping Handler)
+}
+
 struct NetworkManager {
     
     func getResource(url: String, methodType: HTTPMethod, body: Data? = nil, completion: @escaping(Result<Data, NetworkErrorCase>) -> Void) {
@@ -25,3 +31,4 @@ struct NetworkManager {
         }.resume()
     }
 }
+

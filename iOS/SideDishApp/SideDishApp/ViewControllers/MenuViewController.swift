@@ -11,12 +11,12 @@ import Toaster
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: - properties
     static let networkManager = NetworkManager()
-    private let sections:[String] = ["국","찌개","반찬"]
+    private var allMenus: [Int : AllMenu] = [:]
     @IBOutlet var tableView: MenuTableView!
     
-    private var allMenu: AllMenu?
-    
+    // MARK: - functions
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -24,13 +24,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        //server에서 받아온 데이터로 변경하기
-        return sections.count
+        return allMenus.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderView") as! MenuHeaderView
-        header.configureHeaderData(badge: "국.찌개", title: "김이 모락모락 국.찌개")
+        header.configureHeaderData(badge: allMenus[section]?.menuType ?? "", title: allMenus[section]?.menuTypeTitle ?? "")
         return header
     }
     
@@ -39,25 +38,29 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMenu?.body.count ?? 0
+        return allMenus[section]?.data.count ??  0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
-        cell.configureCellData(menu: allMenu?.body[indexPath.row])
+        cell.configureCellData(menu: allMenus[indexPath.section]?.data[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(touchedSectionHeader(recognizer:)))
+        let gesture = SectionHeaderTapGestureRecognizer(target: self, action: #selector(touchedSectionHeader(recognizer:)))
+        gesture.index = section
+        
         view.addGestureRecognizer(gesture)
     }
     
-    @objc func touchedSectionHeader(recognizer: UITapGestureRecognizer) {
-        let toaster = Toast(text: "몇개 몇개 서버에서 받아서 띄워주기")
+    @objc func touchedSectionHeader(recognizer: SectionHeaderTapGestureRecognizer) {
+        guard let index = recognizer.index else { return }
+        let toaster = Toast(text: "\(allMenus[index]!.menuType) \(tableView.numberOfRows(inSection: index))개 재고 보유")
         toaster.show()
     }
     
+    // MARK: - private functions
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,12 +69,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func configureUsecase() {
-        NetworkUseCase.makeAllMenu(with: MenuViewController.networkManager) { data in
-            self.allMenu = data
+        
+        NetworkUseCase.makeStub(with: MenuViewController.networkManager) { data in
+            self.allMenus.updateValue(data, forKey: data.menuIndex)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+        
     }
 }
 

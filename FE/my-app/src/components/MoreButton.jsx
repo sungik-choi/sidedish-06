@@ -24,8 +24,7 @@ const MoreBtn = styled.button`
   }
 `;
 
-const MoreButton = ({ isClicked, onClick }) => {
-  if (isClicked) return null;
+const MoreButton = ({ onClick }) => {
   return (
     <MoreBtnWrap>
       <MoreBtn onClick={onClick}>

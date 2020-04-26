@@ -31,7 +31,7 @@ const App = () => {
       <Header lnbList={lnbList} menuList={menuList} />
       <ProductList list={sideList} />
       <ProductList list={mainList} />
-      {isMoreBtnClicked ? <ProductList list={soupList} /> : <MoreButton isClicked={isMoreBtnClicked} onClick={moreBtnClickHandler} />}
+      {isMoreBtnClicked ? <ProductList list={soupList} /> : <MoreButton onClick={moreBtnClickHandler} />}
       <FooterDiv />
     </>
   );

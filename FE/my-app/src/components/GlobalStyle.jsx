@@ -12,6 +12,7 @@ const variables = css`
     --gray-2: #666;
     --gray-3: #e9e9e9;
     --gray-4: #999;
+    --gray-5: #d7d7d7;
     --green: #1fcbc7;
     --brown: #483f35;
     --beige: #c6a8a5;

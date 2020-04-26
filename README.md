@@ -51,10 +51,9 @@ ex) [BE] 카드 추가 (라벨 BE, 프로젝트 추가)
 
 ## Wiki Contents
 
-- [API Document]()
-- [Data Information]()
-- [Daily Scrum]()
-- [BE Feature Requirements]()
-- [FE Feature Requirements]()
-- [iOS Feature Requirements]()
+- [API Document](https://github.com/codesquad-member-2020/sidedish-06/wiki/API-Document)
+- [Daily Scrum](https://github.com/codesquad-member-2020/sidedish-06/wiki/4%EC%9B%94-21%EC%9D%BC-%ED%99%94%EC%9A%94%EC%9D%BC-%EC%8A%A4%ED%81%AC%EB%9F%BC)
+- [BE Feature Requirements](https://github.com/codesquad-member-2020/sidedish-06/wiki/%EB%B0%B1%EC%97%94%EB%93%9C-%EC%82%AC%EC%A0%84%EB%85%BC%EC%9D%98)
+- [FE Feature Requirements](https://github.com/codesquad-member-2020/sidedish-06/wiki/FE-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD-%EB%B6%84%EC%84%9D)
+- [iOS Feature Requirements](https://github.com/codesquad-member-2020/sidedish-06/wiki/iOS-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD-%EB%B6%84%EC%84%9D)
 

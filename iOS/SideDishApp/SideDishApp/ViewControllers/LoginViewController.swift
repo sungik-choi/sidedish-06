@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signInGithub(_ sender: UIButton) {
-        guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") else { return }
+        guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
         self.present(menuViewController, animated: true)
     }
     

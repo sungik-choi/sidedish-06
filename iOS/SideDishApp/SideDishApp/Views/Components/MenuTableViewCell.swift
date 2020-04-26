@@ -96,6 +96,7 @@ class MenuTableViewCell: UITableViewCell {
             let label = makeBadgeLabel(badge: badge)
             addArrangedSubview(label: label)
         }
+        loadData(urlString: menu.image)
     }
     
     // MARK:- private functions

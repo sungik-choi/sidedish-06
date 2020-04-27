@@ -20,7 +20,7 @@ class DescriptionLabel: UILabel {
         configure()
     }
 
-    func configureData(string: String) {
+    func configureText(string: String) {
         self.text = string
     }
     

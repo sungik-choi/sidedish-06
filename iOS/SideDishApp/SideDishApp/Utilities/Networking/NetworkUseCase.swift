@@ -30,7 +30,8 @@ struct NetworkUseCase {
     }
     
     static func makeMenuDetail(with manager: NetworkManager, menuHash: String, completed: @escaping(MenuDetail) -> ()) {
-        let url = EndPoints.MenuDetail + "/\(menuHash)"
+//        let url = EndPoints.MenuDetail + "/\(menuHash)"
+        let url = "http://www.mocky.io/v2/5ea67ef23200006700ac2a40"
         manager.getResource(url: url, methodType: .get, body: nil) { result in
             switch result {
             case .success(let data):

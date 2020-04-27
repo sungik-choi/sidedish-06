@@ -59,10 +59,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     private let pageControl = UIPageControl()
     
-    private let priceTitle = ContentsTitleLabel()
-    private let savedMoneyTitle = ContentsTitleLabel()
-    private let deliveryMoneyTitle = ContentsTitleLabel()
-    private let deliveryInfoTitle = ContentsTitleLabel()
+    private let priceTitle = ContentsTitleLabel(text: "가격")
+    private let savedMoneyTitle = ContentsTitleLabel(text: "적립금")
+    private let deliveryMoneyTitle = ContentsTitleLabel(text: "배송비")
+    private let deliveryInfoTitle = ContentsTitleLabel(text: "배송정보")
     
     private let originalPrice = DescriptionLabel()
     private let savedMoney = DescriptionLabel()
@@ -106,6 +106,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         addSubViews()
         configureConstraints()
         thumbnailScrollView.delegate = self
+        
+        configureUsecase(menuHash)
+        
     }
     
     func makeImageView(image: UIImage) -> UIImageView {
@@ -163,13 +166,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             priceTitle.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 8),
             priceTitle.leadingAnchor.constraint(equalTo: menuDescription.leadingAnchor),
             
-            savedMoneyTitle.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 4),
+            savedMoneyTitle.topAnchor.constraint(equalTo: priceTitle.bottomAnchor, constant: 4),
             savedMoneyTitle.leadingAnchor.constraint(equalTo: menuDescription.leadingAnchor),
             
-            deliveryMoneyTitle.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 4),
+            deliveryMoneyTitle.topAnchor.constraint(equalTo: savedMoneyTitle.bottomAnchor, constant: 4),
             deliveryMoneyTitle.leadingAnchor.constraint(equalTo: menuDescription.leadingAnchor),
             
-            deliveryInfoTitle.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 4),
+            deliveryInfoTitle.topAnchor.constraint(equalTo: deliveryMoneyTitle.bottomAnchor, constant: 4),
             deliveryInfoTitle.leadingAnchor.constraint(equalTo: menuDescription.leadingAnchor),
             
             salePrice.topAnchor.constraint(equalTo: priceTitle.topAnchor),
@@ -198,16 +201,29 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             orderButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1)
             
         ]
-        
         constraints.forEach { $0.isActive = true }
     }
     
     private func configureUsecase(_ menuHash: String) {
-        NetworkUseCase.makeMenuDetail(with: MenuViewController.networkManager, menuHash: menuHash) { data in
+        NetworkUseCase.makeMenuDetail(with: MenuViewController.networkManager, menuHash: "") { data in
             self.menuDetail = data
-            self.pageControl.numberOfPages = self.menuDetail!.thumb_images.count
-
+            DispatchQueue.main.async {
+                self.pageControl.numberOfPages = self.menuDetail!.thumb_images.count
+            guard let menuDetail = self.menuDetail else { return }
+            self.configureData(menuDetail)
+            }
+            
         }
+    }
+    
+    private func configureData(_ menuDetail: MenuDetail) {
+        menuTitle.text = menuDetail.title
+        menuDescription.text = menuDetail.description
+        originalPrice.text = menuDetail.originPrice
+        salePrice.text = menuDetail.salePrice
+        savedMoney.text = menuDetail.point
+        deliveryMoney.text = menuDetail.delivery_fee
+        deliveryInfo.text = menuDetail.delivery_info
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

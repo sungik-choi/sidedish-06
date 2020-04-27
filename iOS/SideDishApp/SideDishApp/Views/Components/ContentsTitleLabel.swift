@@ -9,25 +9,25 @@
 import UIKit
 
 class ContentsTitleLabel: UILabel {
-
+    
+    convenience init(text: String) {
+        self.init()
+        configure(text: text)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configure()
-    }
-
-    func configureData(string: String) {
-        self.text = string
     }
     
-    private func configure() {
+    private func configure(text: String) {
         self.textColor = .black
         self.font = UIFont.boldSystemFont(ofSize: 16)
+        self.text = text
         self.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
 }

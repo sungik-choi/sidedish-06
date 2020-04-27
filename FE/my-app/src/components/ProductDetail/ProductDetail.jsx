@@ -14,7 +14,6 @@ const DimmedLayerDiv = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
   background-color: var(--black);
   opacity: 0.5;
 `;
@@ -34,16 +33,17 @@ const ProductDetailWrap = styled.div`
 const ProductDetail = ({ productType, hash, onClick }) => {
   const [detailData, setDetailData] = useState({ data: [] });
   const isDetailDataLoading = useFetch(API_URL(productType, hash), setDetailData);
-  console.log(detailData);
+  const { title, top_image, thumb_images, description, point, delivery_info, delivery_fee, originPrice, salePrice } = detailData;
+
   return (
     <>
       <DimmedLayerDiv onClick={() => onClick()} />
       <ProductDetailWrap>
-        <ProductImages />
-        <ProductInfo />
+        <ProductImages topImage={top_image} thumbImage={thumb_images} />
+        <ProductInfo title={title} description={description} deliveryInfo={delivery_info} deliveryFee={delivery_fee} point={point} />
         <Selector />
         <CartButton />
-        <TotalPrice />
+        <TotalPrice originPrice={originPrice} salePrice={salePrice} />
       </ProductDetailWrap>
     </>
   );

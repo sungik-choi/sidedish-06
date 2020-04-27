@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { lnbList, menuList } from './utils/mockData';
 import Header from './components/Header/Header';
@@ -15,9 +15,11 @@ const App = () => {
   const [isMoreBtnClicked, setIsMoreBtnClicked] = useState(false);
   const [targetProductHash, setTargetProductHash] = useState(null);
   const moreBtnClickHandler = () => setIsMoreBtnClicked(true);
-  const productClickHandler = (hash = null) => {
-    return setTargetProductHash(hash);
-  };
+  const productClickHandler = (hash = null) => setTargetProductHash(hash);
+
+  useEffect(() => {
+    targetProductHash ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
+  }, [targetProductHash]);
 
   return (
     <>

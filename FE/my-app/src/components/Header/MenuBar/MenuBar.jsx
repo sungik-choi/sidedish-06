@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Category from './Category';
 
-const MenuDiv = styled.div`
+const MenuWrap = styled.div`
   z-index: 10;
   background-color: var(--brown);
 `;
@@ -23,11 +23,11 @@ const MenuBar = ({ list }) => {
   const categories = list.map(category => <Category key={category.id} name={category.name} list={category.subList} />);
 
   return (
-    <MenuDiv>
+    <MenuWrap>
       <MenuNav>
         <CategoryUl>{categories}</CategoryUl>
       </MenuNav>
-    </MenuDiv>
+    </MenuWrap>
   );
 };
 

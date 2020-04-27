@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import Product from './Product/Product';
-import arrow from './arrow.svg';
+import arrow from '../../../assets/arrow.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 

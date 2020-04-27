@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { API_URL, useFetch } from '../../utils/useFetch';
 import ProductImages from './ProductImages/ProductImages';
 import ProductInfo from './ProductInfo/ProductInfo';
 import Selector from './Selector';
 import CartButton from './CartButton';
 import TotalPrice from './TotalPrice';
-
-const fadeIn = num => keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: num;
-  }
-`;
+import { fadeIn } from '../../utils/animation.js';
+import { IconContext } from 'react-icons';
+import { IoIosClose } from 'react-icons/io';
 
 const DimmedLayerDiv = styled.div`
   z-index: 50;
@@ -34,27 +28,67 @@ const ProductDetailWrap = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
   width: var(--width);
-  height: 10rem;
+  height: 45rem;
   padding: 2rem;
+  padding-top: 2.5rem;
   background-color: var(--white);
   animation: ${fadeIn(1)} 0.5s;
+`;
+
+const ProductImagesWrap = styled.div`
+  width: 40%;
+`;
+
+const ProductInfoWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: calc(60% - 2rem);
+  margin-left: 2rem;
+`;
+
+const CloseButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  background: none;
 `;
 
 const ProductDetail = ({ productType, hash, onClick }) => {
   const [detailData, setDetailData] = useState({ data: [] });
   const isDetailDataLoading = useFetch(API_URL(productType, hash), setDetailData);
-  const { title, top_image, thumb_images, description, point, delivery_info, delivery_fee, originPrice, salePrice } = detailData;
+  const { title, thumb_images, product_description, point, delivery_info, delivery_fee, prices, originPrice, salePrice } = detailData.data;
 
   return (
     <>
       <DimmedLayerDiv onClick={() => onClick()} />
       <ProductDetailWrap>
-        <ProductImages topImage={top_image} thumbImage={thumb_images} />
-        <ProductInfo title={title} description={description} deliveryInfo={delivery_info} deliveryFee={delivery_fee} point={point} />
-        <Selector />
-        <CartButton />
-        <TotalPrice originPrice={originPrice} salePrice={salePrice} />
+        <CloseButton onClick={() => onClick()}>
+          <IconContext.Provider value={{ size: '2rem' }}>
+            <IoIosClose />
+          </IconContext.Provider>
+        </CloseButton>
+        <ProductImagesWrap>
+          <ProductImages thumbImages={thumb_images} />
+        </ProductImagesWrap>
+        <ProductInfoWrap>
+          <ProductInfo
+            title={title}
+            description={product_description}
+            deliveryInfo={delivery_info}
+            deliveryFee={delivery_fee}
+            point={point}
+            prices={prices}
+            originPrice={originPrice}
+            salePrice={salePrice}
+          />
+          <Selector />
+          <CartButton />
+          <TotalPrice />
+        </ProductInfoWrap>
       </ProductDetailWrap>
     </>
   );

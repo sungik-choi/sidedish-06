@@ -27,6 +27,14 @@ const customReset = css`
     box-sizing: border-box;
   }
 
+  button {
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+  }
+
   ul,
   li {
     color: var(--gray-2);

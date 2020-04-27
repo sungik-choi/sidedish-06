@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import TopImage from './TopImage';
+import ThumbImages from './ThumbImages';
 
-const Images = () => {
-  return <div></div>;
+const ProductImages = ({ thumbImages = [] }) => {
+  const [topImage, setTopImage] = useState(null);
+  const imageMouseOverHandler = e => {
+    setTopImage(e.target.src);
+    e.target.focus();
+  };
+
+  useEffect(() => {
+    setTopImage(thumbImages[0]);
+    console.log('run');
+  }, [thumbImages]);
+
+  return (
+    <>
+      <TopImage topImage={topImage} />
+      <ThumbImages thumbImages={thumbImages} onMouseOver={imageMouseOverHandler} />
+    </>
+  );
 };
 
-export default Images;
+export default ProductImages;

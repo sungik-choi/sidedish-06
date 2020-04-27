@@ -137,7 +137,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         wholeScrollView.addSubview(salePrice)
         
         wholeScrollView.addSubview(detailImageStack)
-        wholeScrollView.addSubview(orderButton)
+        self.view.addSubview(orderButton)
     }
     
     private func configureConstraints() {
@@ -209,8 +209,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             self.menuDetail = data
             DispatchQueue.main.async {
                 self.pageControl.numberOfPages = self.menuDetail!.thumb_images.count
-            guard let menuDetail = self.menuDetail else { return }
-            self.configureData(menuDetail)
+                guard let menuDetail = self.menuDetail else { return }
+                self.configureData(menuDetail)
             }
             
         }
@@ -224,6 +224,21 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         savedMoney.text = menuDetail.point
         deliveryMoney.text = menuDetail.delivery_fee
         deliveryInfo.text = menuDetail.delivery_info
+        loadImage(urlStrings: menuDetail.thumb_images)
+    }
+    
+    private func loadImage(urlStrings: [String]) {
+        urlStrings.forEach { url in
+            ImageLoader.shared.load(urlString: url) { result in
+                switch result {
+                case .success(let data):
+                   let imageView = self.makeImageView(image: UIImage(data: data)!)
+                   self.thumbnailStackView.addArrangedSubview(imageView)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

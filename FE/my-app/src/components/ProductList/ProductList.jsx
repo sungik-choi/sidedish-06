@@ -3,13 +3,17 @@ import styled from 'styled-components';
 import { API_URL, useFetch } from '../../utils/useFetch';
 import Carousel from './Carousel/Carousel';
 import Title from './Title';
+import Placeholder from '../Placeholder';
 
 const ProductListWrap = styled.div`
   margin: 0 auto;
   padding-top: 6rem;
 `;
 
-const ProductListPlaceholder = styled.div`
+const PlaceholderWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 33.75rem; /* 540 / 16 */
 `;
 
@@ -19,7 +23,11 @@ const ProductList = ({ productType, onClick }) => {
 
   return (
     <>
-      {!isListLoading && <ProductListPlaceholder />}
+      {!isListLoading && (
+        <PlaceholderWrap>
+          <Placeholder />
+        </PlaceholderWrap>
+      )}
       <ProductListWrap>
         <Title />
         <Carousel list={list} onClick={onClick} />

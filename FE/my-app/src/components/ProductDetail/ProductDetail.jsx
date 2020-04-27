@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { API_URL, useFetch } from '../../utils/useFetch';
 import ProductImages from './ProductImages/ProductImages';
 import ProductInfo from './ProductInfo/ProductInfo';
 import Selector from './Selector';
 import CartButton from './CartButton';
 import TotalPrice from './TotalPrice';
+
+const fadeIn = num => keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: num;
+  }
+`;
 
 const DimmedLayerDiv = styled.div`
   z-index: 50;
@@ -16,6 +25,7 @@ const DimmedLayerDiv = styled.div`
   height: 100vh;
   background-color: var(--black);
   opacity: 0.5;
+  animation: ${fadeIn(0.5)} 0.3s;
 `;
 
 const ProductDetailWrap = styled.div`
@@ -28,6 +38,7 @@ const ProductDetailWrap = styled.div`
   height: 10rem;
   padding: 2rem;
   background-color: var(--white);
+  animation: ${fadeIn(1)} 0.5s;
 `;
 
 const ProductDetail = ({ productType, hash, onClick }) => {

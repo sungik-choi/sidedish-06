@@ -1,7 +1,7 @@
 import React from 'react';
 
-const TotalPrice = () => {
+const Info = () => {
   return <div></div>;
 };
 
-export default TotalPrice;
+export default Info;

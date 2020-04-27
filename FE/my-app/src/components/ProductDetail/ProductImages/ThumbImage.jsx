@@ -1,7 +1,7 @@
 import React from 'react';
 
-const TotalPrice = () => {
+const ThumbImage = () => {
   return <div></div>;
 };
 
-export default TotalPrice;
+export default ThumbImage;

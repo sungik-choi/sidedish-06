@@ -15,9 +15,9 @@ const ProductInfoDl = styled.dl`
   padding: 1rem 0.625rem 0.75rem 0.625rem;
 `;
 
-const Product = ({ list: { alt, badge, delivery_type, description, image, n_price, s_price, title } }) => {
+const Product = ({ list: { detail_hash, alt, badge, delivery_type, description, image, n_price, s_price, title }, onClick }) => {
   return (
-    <ProductDiv>
+    <ProductDiv onClick={() => onClick(detail_hash)}>
       <Image alt={alt} src={image} deliveryType={delivery_type} />
       <ProductInfoDl>
         <Title title={title} desc={description} />

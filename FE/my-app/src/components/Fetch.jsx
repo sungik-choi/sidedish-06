@@ -7,22 +7,19 @@ const getApiUrl = (categoryString, hash = null) => {
   return `${BASE_URL}/${categoryString}/`;
 };
 
-export const API_URL = {
-  main(hash = null) {
-    return getApiUrl('main', hash);
-  },
-
-  soup(hash = null) {
-    return getApiUrl('soup', hash);
-  },
-
-  side(hash = null) {
-    return getApiUrl('side', hash);
-  },
-
-  detail(hash) {
-    return getApiUrl('detail', hash);
-  },
+export const API_URL = (type, hash = null) => {
+  switch (type) {
+    case 'main':
+      return getApiUrl('main', hash);
+    case 'soup':
+      return getApiUrl('soup', hash);
+    case 'side':
+      return getApiUrl('side', hash);
+    case 'detail':
+      return getApiUrl('detail', hash);
+    default:
+      return null;
+  }
 };
 
 export const useFetch = (url, setState) => {

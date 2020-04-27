@@ -6,6 +6,7 @@ const MoreBtnWrap = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding: 2rem 0;
 `;
 
 const MoreBtn = styled.button`

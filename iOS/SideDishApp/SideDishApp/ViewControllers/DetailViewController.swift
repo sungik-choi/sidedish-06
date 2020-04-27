@@ -177,17 +177,17 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             salePrice.topAnchor.constraint(equalTo: priceTitle.topAnchor),
             salePrice.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             
-            originalPrice.topAnchor.constraint(equalTo: salePrice.topAnchor),
+            originalPrice.bottomAnchor.constraint(equalTo: salePrice.bottomAnchor),
             originalPrice.trailingAnchor.constraint(equalTo: salePrice.leadingAnchor, constant: -4),
             
             savedMoney.topAnchor.constraint(equalTo: savedMoneyTitle.topAnchor),
-            savedMoney.leadingAnchor.constraint(equalTo: savedMoneyTitle.trailingAnchor, constant: 4),
+            savedMoney.leadingAnchor.constraint(equalTo: deliveryInfo.leadingAnchor, constant: 4),
             
             deliveryMoney.topAnchor.constraint(equalTo: deliveryMoneyTitle.topAnchor),
-            deliveryMoney.leadingAnchor.constraint(equalTo: deliveryMoneyTitle.trailingAnchor, constant: 4),
+            deliveryMoney.leadingAnchor.constraint(equalTo: deliveryInfo.leadingAnchor, constant: 4),
             
             deliveryInfo.topAnchor.constraint(equalTo: deliveryInfoTitle.topAnchor),
-            deliveryInfo.leadingAnchor.constraint(equalTo: deliveryInfoTitle.trailingAnchor, constant: 4),
+            deliveryInfo.leadingAnchor.constraint(equalTo: deliveryInfoTitle.trailingAnchor, constant: 10),
             deliveryInfo.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             
             detailImageStack.topAnchor.constraint(equalTo: deliveryInfoTitle.bottomAnchor, constant: 20),
@@ -224,23 +224,28 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         savedMoney.text = menuDetail.point
         deliveryMoney.text = menuDetail.delivery_fee
         deliveryInfo.text = menuDetail.delivery_info
-        loadImage(urlStrings: menuDetail.thumb_images)
+        loadImage(urlStrings: menuDetail.thumb_images, to: self.thumbnailStackView)
+        loadImage(urlStrings: menuDetail.detail_section, to: self.detailImageStack)
     }
     
-    private func loadImage(urlStrings: [String]) {
+    private func loadImage(urlStrings: [String], to stackView: UIStackView) {
         urlStrings.forEach { url in
             ImageLoader.shared.load(urlString: url) { result in
                 switch result {
                 case .success(let data):
                     DispatchQueue.main.async {
                         let imageView = self.makeImageView(image: UIImage(data: data)!)
-                        self.thumbnailStackView.addArrangedSubview(imageView)
+                        self.addArrangedSubview(to: stackView, subView: imageView)
                     }
                 case .failure(let error):
                     print(error)
                 }
             }
         }
+    }
+    
+    private func addArrangedSubview(to stackView: UIStackView, subView: UIView) {
+        stackView.addArrangedSubview(subView)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

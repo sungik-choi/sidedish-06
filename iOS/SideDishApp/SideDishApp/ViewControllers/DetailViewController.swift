@@ -8,9 +8,12 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK:- properties
+    var menuHash = ""
+    private var menuDetail: MenuDetail?
+    
     private let wholeScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +26,8 @@ class DetailViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsHorizontalScrollIndicator = true
+        scrollView.isPagingEnabled = true
+        scrollView.alwaysBounceVertical = false
         return scrollView
     }()
     
@@ -51,6 +56,8 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private let pageControl = UIPageControl()
     
     private let priceTitle = ContentsTitleLabel()
     private let savedMoneyTitle = ContentsTitleLabel()
@@ -98,6 +105,7 @@ class DetailViewController: UIViewController {
         
         addSubViews()
         configureConstraints()
+        thumbnailScrollView.delegate = self
     }
     
     func makeImageView(image: UIImage) -> UIImageView {
@@ -193,5 +201,18 @@ class DetailViewController: UIViewController {
         
         constraints.forEach { $0.isActive = true }
     }
+    
+    private func configureUsecase(_ menuHash: String) {
+        NetworkUseCase.makeMenuDetail(with: MenuViewController.networkManager, menuHash: menuHash) { data in
+            self.menuDetail = data
+            self.pageControl.numberOfPages = self.menuDetail!.thumb_images.count
+
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(floor(thumbnailScrollView.contentOffset.x / UIScreen.main.bounds.width))
+    }
+    
     
 }

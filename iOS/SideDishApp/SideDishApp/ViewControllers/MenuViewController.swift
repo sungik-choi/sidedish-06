@@ -48,7 +48,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let detailViewController = self.storyboard?.instantiateViewController(identifier: "DetailViewController") else { return }
+        guard let detailViewController = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
+        detailViewController.menuHash = (allMenus[indexPath.section]?.data[indexPath.row].hash)!
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     

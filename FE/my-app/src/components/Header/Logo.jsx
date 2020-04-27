@@ -8,7 +8,8 @@ const LogoH1 = styled.h1`
 
 const LogoSvg = styled.object`
   pointer-events: none;
-  width: 194px;
+  width: 12.125rem; /* 194/16 */
+  height: 4.25rem; /* 68/16 */
 `;
 
 const Logo = () => {

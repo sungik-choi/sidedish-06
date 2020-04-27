@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { MORE_BTN_TEXT } from '../constants/constants';
 import { IoIosArrowForward } from 'react-icons/io';
 
 const MoreBtnWrap = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  padding-top: 4rem;
 `;
 
 const MoreBtn = styled.button`
@@ -29,7 +30,7 @@ const MoreButton = ({ onClick }) => {
   return (
     <MoreBtnWrap>
       <MoreBtn onClick={onClick}>
-        반찬 전체보기
+        {MORE_BTN_TEXT}
         <IoIosArrowForward />
       </MoreBtn>
     </MoreBtnWrap>

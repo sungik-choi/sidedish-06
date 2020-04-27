@@ -18,7 +18,7 @@ export const API_URL = (type, hash = null) => {
     case 'detail':
       return getApiUrl('detail', hash);
     default:
-      return null;
+      throw new Error('Unvalid API');
   }
 };
 
@@ -30,7 +30,6 @@ export const useFetch = (url, setState) => {
     const data = await response.json();
     setState(data);
     setIsLoading(true);
-    console.log(data);
   };
 
   useEffect(() => {

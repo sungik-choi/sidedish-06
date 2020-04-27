@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { API_URL, useFetch } from '../../utils/useFetch';
 import Carousel from './Carousel/Carousel';
 import Title from './Title';
-import { API_URL, useFetch } from '../Fetch';
 
 const ProductListWrap = styled.div`
   margin: 0 auto;
-  padding: 6rem 0 2rem 0;
+  padding-top: 6rem;
 `;
 
-const ProductList = ({ type, onClick }) => {
+const ProductListPlaceholder = styled.div`
+  height: 33.75rem; /* 540 / 16 */
+`;
+
+const ProductList = ({ productType, onClick }) => {
   const [list, setList] = useState({ body: [] });
-  const isListLoading = useFetch(API_URL(type), setList);
+  const isListLoading = useFetch(API_URL(productType), setList);
 
   return (
-    <ProductListWrap>
-      <Title />
-      <Carousel list={list} onClick={onClick} />
-    </ProductListWrap>
+    <>
+      {!isListLoading && <ProductListPlaceholder />}
+      <ProductListWrap>
+        <Title />
+        <Carousel list={list} onClick={onClick} />
+      </ProductListWrap>
+    </>
   );
 };
 

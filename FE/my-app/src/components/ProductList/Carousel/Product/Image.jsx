@@ -27,11 +27,20 @@ const ImageWrap = styled.div`
 `;
 
 const ThumbImage = styled.img`
+  width: var(--slider-width);
   height: var(--slider-width);
+  background-color: var(--gray-3);
   border-radius: 100%;
   &:hover {
     filter: brightness(50%);
   }
+`;
+
+const ThumbPlaceholderDiv = styled.div`
+  width: var(--slider-width);
+  height: var(--slider-width);
+  background-color: var(--black);
+  border-radius: 100%;
 `;
 
 const Image = ({ alt, src, deliveryType }) => {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { API_URL, useFetch } from '../../utils/useFetch';
 import ProductImages from './ProductImages/ProductImages';
 import ProductInfo from './ProductInfo/ProductInfo';
 import Selector from './Selector';
 import CartButton from './CartButton';
 import TotalPrice from './TotalPrice';
-import { API_URL, useFetch } from '../Fetch';
 
 const DimmedLayerDiv = styled.div`
   z-index: 50;
@@ -31,13 +31,13 @@ const ProductDetailWrap = styled.div`
   background-color: var(--white);
 `;
 
-const ProductDetail = ({ type, hash }) => {
+const ProductDetail = ({ productType, hash, onClick }) => {
   const [detailData, setDetailData] = useState({ data: [] });
-  const isDetailDataLoading = useFetch(API_URL(type, hash), setDetailData);
+  const isDetailDataLoading = useFetch(API_URL(productType, hash), setDetailData);
   console.log(detailData);
   return (
     <>
-      <DimmedLayerDiv />
+      <DimmedLayerDiv onClick={() => onClick()} />
       <ProductDetailWrap>
         <ProductImages />
         <ProductInfo />

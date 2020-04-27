@@ -14,11 +14,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     var menuHash = ""
     private var menuDetail: MenuDetail?
               
-    private let wholeScrollView: UIScrollView = {
+    private lazy var wholeScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.scrollsToTop = true
         scrollView.showsVerticalScrollIndicator = true
+        scrollView.contentSize = self.view.bounds.size
+        scrollView.autoresizingMask = .flexibleHeight
         return scrollView
     }()
     
@@ -106,21 +108,23 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         addSubViews()
         configureConstraints()
         thumbnailScrollView.delegate = self
-        
+        wholeScrollView.delegate = self
         configureUsecase(menuHash)
     }
     
     func makeImageView(image: UIImage) -> UIImageView {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/3))
         imageView.image = image
+        imageView.contentMode = .scaleToFill
         return imageView
     }
     
     private func addSubViews() {
         self.view.addSubview(wholeScrollView)
-        wholeScrollView.addSubview(thumbnailScrollView)
-        thumbnailScrollView.addSubview(thumbnailStackView)
         
+        wholeScrollView.addSubview(thumbnailScrollView)
+        
+        thumbnailScrollView.addSubview(thumbnailStackView)
         wholeScrollView.addSubview(menuTitle)
         wholeScrollView.addSubview(menuDescription)
         
@@ -145,15 +149,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             wholeScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wholeScrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             wholeScrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            
-            thumbnailScrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            thumbnailScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            thumbnailScrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                        
+            thumbnailScrollView.topAnchor.constraint(equalTo: wholeScrollView.topAnchor),
+            thumbnailScrollView.leadingAnchor.constraint(equalTo: wholeScrollView.leadingAnchor),
+            thumbnailScrollView.trailingAnchor.constraint(equalTo: wholeScrollView.trailingAnchor),
             thumbnailScrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3),
+            thumbnailScrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: thumbnailStackView.widthAnchor),
             
             thumbnailStackView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            thumbnailStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            thumbnailStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            thumbnailStackView.leadingAnchor.constraint(equalTo: thumbnailScrollView.leadingAnchor),
+            thumbnailStackView.trailingAnchor.constraint(equalTo: thumbnailScrollView.trailingAnchor),
             thumbnailStackView.bottomAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor),
             
             menuTitle.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 20),
@@ -193,7 +198,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             detailImageStack.topAnchor.constraint(equalTo: deliveryInfoTitle.bottomAnchor, constant: 20),
             detailImageStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             detailImageStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            detailImageStack.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            detailImageStack.bottomAnchor.constraint(equalTo: wholeScrollView.bottomAnchor),
             
             orderButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             orderButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),

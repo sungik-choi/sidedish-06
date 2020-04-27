@@ -44,6 +44,17 @@ struct NetworkUseCase {
         }
     }
     
+    static func makeImage(with manager: NetworkManager, urlString: String, completed: @escaping (Data) -> ()) {
+        manager.getResource(url: urlString, methodType: .get) { result in
+            switch result {
+            case .success(let data):
+                completed(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     static func makeStub (with manager: NetworkManager, completed: @escaping(AllMenu) -> ()) {
         MockEndPoints.allCases.forEach { url in
             manager.getResource(url: url.rawValue , methodType: .get, body: nil) { result in

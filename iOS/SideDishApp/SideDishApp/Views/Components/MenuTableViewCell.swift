@@ -102,15 +102,15 @@ class MenuTableViewCell: UITableViewCell {
     // MARK:- private functions
     
     private func loadData(urlString: String) {
-        DispatchQueue.main.async {
-            ImageLoader.shared.load(urlString: urlString) { result in
-                switch result {
-                case .success(let data):
+        ImageLoader.shared.load(urlString: urlString) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
                     self.menuImage.image = UIImage(data: data)
-                case .failure(let error):
-                    //error handling 필요
-                    print(error)
                 }
+            case .failure(let error):
+                //error handling 필요
+                print(error)
             }
         }
     }

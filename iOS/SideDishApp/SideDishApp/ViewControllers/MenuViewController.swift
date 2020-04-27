@@ -21,6 +21,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         configureTableView()
         configureUsecase()
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

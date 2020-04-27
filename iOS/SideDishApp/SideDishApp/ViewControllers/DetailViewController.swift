@@ -13,7 +13,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     //MARK:- properties
     var menuHash = ""
     private var menuDetail: MenuDetail?
-    
+              
     private let wholeScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,14 +101,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     //MARK:- functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         addSubViews()
         configureConstraints()
         thumbnailScrollView.delegate = self
         
         configureUsecase(menuHash)
-        
     }
     
     func makeImageView(image: UIImage) -> UIImageView {
@@ -157,13 +156,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             thumbnailStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             thumbnailStackView.bottomAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor),
             
-            menuTitle.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 8),
-            menuTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
+            menuTitle.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 20),
+            menuTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             
             menuDescription.topAnchor.constraint(equalTo: menuTitle.bottomAnchor, constant: 4),
             menuDescription.leadingAnchor.constraint(equalTo: menuTitle.leadingAnchor),
             
-            priceTitle.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 8),
+            priceTitle.topAnchor.constraint(equalTo: menuDescription.bottomAnchor, constant: 15),
             priceTitle.leadingAnchor.constraint(equalTo: menuDescription.leadingAnchor),
             
             savedMoneyTitle.topAnchor.constraint(equalTo: priceTitle.bottomAnchor, constant: 4),
@@ -176,7 +175,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             deliveryInfoTitle.leadingAnchor.constraint(equalTo: menuDescription.leadingAnchor),
             
             salePrice.topAnchor.constraint(equalTo: priceTitle.topAnchor),
-            salePrice.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8),
+            salePrice.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             
             originalPrice.topAnchor.constraint(equalTo: salePrice.topAnchor),
             originalPrice.trailingAnchor.constraint(equalTo: salePrice.leadingAnchor, constant: -4),
@@ -189,6 +188,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             
             deliveryInfo.topAnchor.constraint(equalTo: deliveryInfoTitle.topAnchor),
             deliveryInfo.leadingAnchor.constraint(equalTo: deliveryInfoTitle.trailingAnchor, constant: 4),
+            deliveryInfo.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             
             detailImageStack.topAnchor.constraint(equalTo: deliveryInfoTitle.bottomAnchor, constant: 20),
             detailImageStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -198,7 +198,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             orderButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             orderButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             orderButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-            orderButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1)
+            orderButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.08)
             
         ]
         constraints.forEach { $0.isActive = true }
@@ -232,8 +232,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             ImageLoader.shared.load(urlString: url) { result in
                 switch result {
                 case .success(let data):
-                   let imageView = self.makeImageView(image: UIImage(data: data)!)
-                   self.thumbnailStackView.addArrangedSubview(imageView)
+                    DispatchQueue.main.async {
+                        let imageView = self.makeImageView(image: UIImage(data: data)!)
+                        self.thumbnailStackView.addArrangedSubview(imageView)
+                    }
                 case .failure(let error):
                     print(error)
                 }

@@ -23,6 +23,7 @@ CREATE TABLE babchan
 CREATE TABLE food_type
 (
     hash VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    menu_index INTEGER,
     type VARCHAR(64),
     sub_title VARCHAR(64),
     main_title VARCHAR(64)
@@ -37,7 +38,8 @@ CREATE TABLE delivery
 CREATE TABLE badge
 (
     hash  VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
-    event VARCHAR(32)
+    badgeName VARCHAR(32),
+    badgeHexa VARCHAR(32)
 );
 
 CREATE TABLE thumb_image

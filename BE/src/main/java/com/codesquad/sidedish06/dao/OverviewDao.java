@@ -79,20 +79,14 @@ public class OverviewDao {
     }
 
     private void insertBadge(RequestOverview overview) {
-        String sql = "insert into badge(hash, event) VALUES (?, ?)";
+        String sql = "insert into badge(hash, badgeName, badgeHexa) VALUES (?, ?, ?)";
 
         for (Badge badge : overview.getBadge()) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getEvent());
+            jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getBadgeName(), badge.getBadgeHexa());
         }
     }
 
-    public List<String> listType() {
-        String sql = "select distinct type from food_type";
-
-        return this.jdbcTemplate.query(sql, getFirstColumns());
-    }
-
-    public ResponseOverview listMenu(String menu) {
+    public ResponseOverview listTitles(String menu) {
         String sql = "select distinct sub_title, main_title from food_type where type = ?";
 
         RowMapper<List<String>> rowMapper = new RowMapper<List<String>>() {
@@ -152,9 +146,19 @@ public class OverviewDao {
         return this.jdbcTemplate.query(sql, new Object[]{hash}, getFirstColumns());
     }
 
-    private List<String> badges(String hash) {
-        String sql = "select event from badge where hash = ?";
+    private List<Badge> badges(String hash) {
+        String sql = "select badgeName, badgeHexa from badge where hash = ?";
 
-        return this.jdbcTemplate.query(sql, new Object[]{hash}, getFirstColumns());
+        RowMapper<Badge> badgeRowMapper = new RowMapper<Badge>() {
+            @Override
+            public Badge mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Badge badge = new Badge();
+                badge.setBadgeName(rs.getString("badgeName"));
+                badge.setBadgeHexa("badgeHexa");
+                return badge;
+            }
+        };
+
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, badgeRowMapper);
     }
 }

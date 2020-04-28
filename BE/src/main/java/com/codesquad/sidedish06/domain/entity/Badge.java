@@ -9,5 +9,5 @@ import lombok.*;
 @ToString
 public class Badge {
 
-    private String event;
+    private String badgeName;
 }

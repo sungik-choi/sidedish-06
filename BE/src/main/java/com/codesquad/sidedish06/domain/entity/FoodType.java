@@ -11,6 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class FoodType {
 
+    private Integer menuIndex;
+
     private String type;
 
     private String subTitle;

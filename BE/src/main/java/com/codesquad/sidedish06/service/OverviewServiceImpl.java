@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.List;
 import static com.codesquad.sidedish06.utils.JsonUtils.BASE_URL;
 import static com.codesquad.sidedish06.utils.JsonUtils.data;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class OverviewServiceImpl implements OverviewService {
@@ -25,7 +27,8 @@ public class OverviewServiceImpl implements OverviewService {
 
     @Override
     public Object save() throws IOException, URISyntaxException {
-        List<String> menus = overviewDao.listType();
+
+        String[] menus = {"main", "soup", "side"};
 
         for (String menu : menus) {
             RequestOverview[] overviews = listOverview("/" + menu);
@@ -42,7 +45,7 @@ public class OverviewServiceImpl implements OverviewService {
 
     @Override
     public ResponseOverview listMenu(String menu) {
-        return overviewDao.listMenu(menu);
+        return overviewDao.listTitles(menu);
     }
 
     private void validate(RequestOverview overview) {

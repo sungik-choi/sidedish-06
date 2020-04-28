@@ -3,14 +3,19 @@ package com.codesquad.sidedish06.service;
 import com.codesquad.sidedish06.dao.OverviewDao;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
-import static com.codesquad.sidedish06.utils.JsonUtils.listOverview;
+import static com.codesquad.sidedish06.utils.JsonUtils.BASE_URL;
+import static com.codesquad.sidedish06.utils.JsonUtils.data;
 
 @RequiredArgsConstructor
 @Service
@@ -20,9 +25,11 @@ public class OverviewServiceImpl implements OverviewService {
 
     @Override
     public Object save() throws IOException, URISyntaxException {
-        String[] menus = {"main", "soup", "side"};
+        List<String> menus = overviewDao.listType();
+
         for (String menu : menus) {
             RequestOverview[] overviews = listOverview("/" + menu);
+
             for (int i = 0; i < overviews.length; i++) {
                 if (overviews[i] != null) {
                     validate(overviews[i]);
@@ -50,5 +57,17 @@ public class OverviewServiceImpl implements OverviewService {
         if (overview.getBadge() == null) {
             overview.setBadge(new ArrayList<>());
         }
+    }
+
+    private RequestOverview[] listOverview(String menu) throws URISyntaxException, IOException {
+        String url = BASE_URL + menu;
+        String data = data(url);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        JsonNode jsonNode = objectMapper.readValue(data, JsonNode.class).get("body");
+
+        return objectMapper.convertValue(jsonNode, RequestOverview[].class);
     }
 }

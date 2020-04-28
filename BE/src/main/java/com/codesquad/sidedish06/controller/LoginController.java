@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,10 +23,11 @@ public class LoginController {
 
     @GetMapping("/githublogin")
     public ResponseEntity<String> githubLogin(@RequestParam("code") String code,
-                                              HttpServletResponse response) {
+                                              HttpServletResponse response) throws IOException {
         logger.info("code : '{}'", code);
         GithubTokenDto token = loginService.requestAccessToken(code);
 //        response.setHeader("Authorization", loginService.getAuthorizationValue(token));
+        response.sendRedirect("http://52.79.117.147");
         return ResponseEntity.ok("login Ok");
     }
 }

@@ -7,7 +7,6 @@ import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
 import com.codesquad.sidedish06.utils.DaoUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -18,13 +17,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.codesquad.sidedish06.utils.DaoUtils.getFirstColumns;
+
 @Slf4j
 @Repository
 public class OverviewDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public OverviewDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -86,6 +86,12 @@ public class OverviewDao {
         }
     }
 
+    public List<String> listType() {
+        String sql = "select distinct type from food_type";
+
+        return this.jdbcTemplate.query(sql, getFirstColumns());
+    }
+
     public ResponseOverview listMenu(String menu) {
         String sql = "select distinct sub_title, main_title from food_type where type = ?";
 
@@ -143,12 +149,12 @@ public class OverviewDao {
     public List<String> deliveries(String hash) {
         String sql = "select type from delivery where hash = ?";
 
-        return this.jdbcTemplate.query(sql, new Object[]{hash}, DaoUtils.getFirstColumns());
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, getFirstColumns());
     }
 
     private List<String> badges(String hash) {
         String sql = "select event from badge where hash = ?";
 
-        return this.jdbcTemplate.query(sql, new Object[]{hash}, DaoUtils.getFirstColumns());
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, getFirstColumns());
     }
 }

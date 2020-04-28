@@ -38,13 +38,7 @@ extension ImageLoader: ImageLoadable {
 }
 
 extension ImageLoader {
-    func requestImage(urlString: String, completion: Handler) {
-        let url = URL(string: urlString)
-        do {
-             let data = try Data(contentsOf: url!)
-            completion(.success(data))
-        } catch {
-            completion(.failure(error))
-        }
+    func requestImage(urlString: String, completion: @escaping Handler) {
+        NetworkUseCase.makeImage(with: MenuViewController.networkManager, urlString: urlString) { completion(.success($0)) }
     }
 }

@@ -30,7 +30,8 @@ struct NetworkUseCase {
     }
     
     static func makeMenuDetail(with manager: NetworkManager, menuHash: String, completed: @escaping(MenuDetail) -> ()) {
-        let url = EndPoints.MenuDetail + "/\(menuHash)"
+//        let url = EndPoints.MenuDetail + "/\(menuHash)"
+        let url = "http://www.mocky.io/v2/5ea67ef23200006700ac2a40"
         manager.getResource(url: url, methodType: .get, body: nil) { result in
             switch result {
             case .success(let data):
@@ -39,6 +40,17 @@ struct NetworkUseCase {
             case .failure(let error):
                 //error handling 필요8
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func makeImage(with manager: NetworkManager, urlString: String, completed: @escaping (Data) -> ()) {
+        manager.getResource(url: urlString, methodType: .get) { result in
+            switch result {
+            case .success(let data):
+                completed(data)
+            case .failure(let error):
+                print(error)
             }
         }
     }

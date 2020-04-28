@@ -10,28 +10,15 @@ import Foundation
 
 struct MenuDetail: Decodable {
     var hash: String
-    var data: MenuDetailData
-}
-
-struct MenuDetailData: Decodable {
+    var title: String
     var top_image: String
-    var thumb_images: [ThumbImage]
-    var product_description: String
+    var thumb_images: [String]
+    var description: String
     var point: String
     var delivery_info: String
     var delivery_fee: String
-    var prices: [Price]
-    var detail_section: [DetailImage]
+    var originPrice: String
+    var salePrice: String
+    var detail_section: [String]
 }
 
-struct ThumbImage: Decodable {
-    var image: String
-}
-
-struct Price: Decodable {
-    var price: String
-}
-
-struct DetailImage: Decodable {
-    var detailImage: String
-}

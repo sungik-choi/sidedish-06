@@ -126,17 +126,28 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="BgA-az-SHj">
+                                <rect key="frame" x="177" y="418" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5uH-fF-DRU"/>
+                                    <constraint firstAttribute="width" secondItem="BgA-az-SHj" secondAttribute="height" multiplier="1:1" id="ZIB-hq-pNE"/>
+                                    <constraint firstAttribute="width" constant="60" id="c0o-ji-VdY"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="pqh-bI-05d" secondAttribute="bottom" constant="20" symbolic="YES" id="CIH-qy-IN7"/>
                             <constraint firstItem="pqh-bI-05d" firstAttribute="leading" secondItem="CfV-KG-0sI" secondAttribute="leading" id="FgM-W4-m2B"/>
+                            <constraint firstItem="BgA-az-SHj" firstAttribute="centerY" secondItem="Bze-Om-9zb" secondAttribute="centerY" id="eqs-qm-jpc"/>
+                            <constraint firstItem="BgA-az-SHj" firstAttribute="centerX" secondItem="Bze-Om-9zb" secondAttribute="centerX" id="nfj-0F-JgE"/>
                             <constraint firstItem="pqh-bI-05d" firstAttribute="trailing" secondItem="CfV-KG-0sI" secondAttribute="trailing" id="vs2-Gg-6Tw"/>
                             <constraint firstItem="pqh-bI-05d" firstAttribute="top" secondItem="Bze-Om-9zb" secondAttribute="top" constant="20" symbolic="YES" id="yZg-Io-JMc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CfV-KG-0sI"/>
                     </view>
                     <connections>
+                        <outlet property="indicator" destination="BgA-az-SHj" id="5hA-bX-Qra"/>
                         <outlet property="webView" destination="pqh-bI-05d" id="EZ6-Vy-h63"/>
                     </connections>
                 </viewController>

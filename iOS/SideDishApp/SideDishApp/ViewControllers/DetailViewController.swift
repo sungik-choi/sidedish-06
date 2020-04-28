@@ -180,7 +180,7 @@ class DetailViewController: UIViewController {
     
     private func configureElementsConstraints() {
         let constraints = [
-            menuTitle.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 20),
+            menuTitle.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 30),
             menuTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             
             menuDescription.topAnchor.constraint(equalTo: menuTitle.bottomAnchor, constant: 4),
@@ -242,18 +242,18 @@ class DetailViewController: UIViewController {
         savedMoney.text = menuDetail.point
         deliveryMoney.text = menuDetail.delivery_fee
         deliveryInfo.text = menuDetail.delivery_info
-        loadImage(urlStrings: menuDetail.thumb_images, to: self.thumbnailStackView)
-        loadImage(urlStrings: menuDetail.detail_section, to: self.detailImageStack)
+        loadImage(urlStrings: menuDetail.thumb_images, to: self.thumbnailStackView, isThumbnail: true)
+        loadImage(urlStrings: menuDetail.detail_section, to: self.detailImageStack, isThumbnail: false)
     }
     
-    private func loadImage(urlStrings: [String], to stackView: UIStackView) {
+    private func loadImage(urlStrings: [String], to stackView: UIStackView, isThumbnail: Bool) {
         urlStrings.forEach { url in
             ImageLoader.shared.load(urlString: url) { result in
                 switch result {
                 case .success(let data):
                     DispatchQueue.main.async {
                         let imageView = self.makeImageView(image: UIImage(data: data)!)
-                        self.addArrangedSubview(to: stackView, subView: imageView)
+                        self.addArrangedSubview(to: stackView, subView: imageView, isThumbnail: isThumbnail)
                     }
                 case .failure(let error):
                     print(error)
@@ -268,9 +268,13 @@ class DetailViewController: UIViewController {
         return imageView
     }
     
-    private func addArrangedSubview(to stackView: UIStackView, subView: UIImageView) {
+    private func addArrangedSubview(to stackView: UIStackView, subView: UIImageView, isThumbnail: Bool) {
+        if isThumbnail {
+            subView.heightAnchor.constraint(equalToConstant: height/3).isActive = true
+        }else {
+            subView.heightAnchor.constraint(equalToConstant: height/3 + 300.0).isActive = true
+        }
         subView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        subView.heightAnchor.constraint(equalToConstant: height/3).isActive = true
         stackView.addArrangedSubview(subView)
     }
     

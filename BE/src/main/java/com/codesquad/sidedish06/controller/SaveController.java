@@ -20,7 +20,7 @@ public class SaveController {
     @GetMapping("/save")
     public String saveOverview() throws IOException, URISyntaxException {
         overviewService.save();
-//        detailService.save();
+        detailService.save();
         return "OK";
     }
 }

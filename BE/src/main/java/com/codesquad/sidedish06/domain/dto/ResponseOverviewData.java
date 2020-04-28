@@ -28,6 +28,6 @@ public class ResponseOverviewData {
 
     private String salePrice;
 
-    private List<Badge> badge;
+    private List<ResponseBadge> badge;
 
 }

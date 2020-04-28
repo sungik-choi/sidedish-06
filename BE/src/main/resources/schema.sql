@@ -5,9 +5,18 @@ DROP TABLE IF EXISTS thumb_image;
 DROP TABLE IF EXISTS detail_section;
 DROP TABLE IF EXISTS food_type;
 
+CREATE TABLE food_type
+(
+    type VARCHAR(64),
+    menu_index INTEGER PRIMARY KEY AUTO_INCREMENT,
+    sub_title VARCHAR(64),
+    main_title VARCHAR(64)
+);
+
 CREATE TABLE babchan
 (
     hash          VARCHAR(32) PRIMARY KEY,
+    menu_index INTEGER REFERENCES food_type (menu_index) ON UPDATE CASCADE ON DELETE CASCADE,
     image         VARCHAR(128),
     alt           VARCHAR(64),
     title         VARCHAR(128),
@@ -18,15 +27,6 @@ CREATE TABLE babchan
     point         VARCHAR(128),
     delivery_info VARCHAR(128),
     delivery_fee  VARCHAR(128)
-);
-
-CREATE TABLE food_type
-(
-    hash VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
-    menu_index INTEGER,
-    type VARCHAR(64),
-    sub_title VARCHAR(64),
-    main_title VARCHAR(64)
 );
 
 CREATE TABLE delivery

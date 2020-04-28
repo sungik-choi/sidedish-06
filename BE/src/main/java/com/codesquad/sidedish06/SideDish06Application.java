@@ -11,5 +11,6 @@ public class SideDish06Application {
     public static void main(String[] args) {
         SpringApplication.run(SideDish06Application.class, args);
         DaoUtils.setTitles();
+        DaoUtils.setHexa();
     }
 }

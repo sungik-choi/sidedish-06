@@ -13,7 +13,7 @@ public class Babchan {
 
     private String hash;
 
-    private List<FoodType> food_type;
+    private FoodType food_type;
 
     private String image;
 

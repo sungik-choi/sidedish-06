@@ -1,6 +1,7 @@
 package com.codesquad.sidedish06.dao;
 
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
+import com.codesquad.sidedish06.domain.dto.ResponseBadge;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.dto.ResponseOverviewData;
 import com.codesquad.sidedish06.domain.entity.Badge;
@@ -61,13 +62,16 @@ public class OverviewDao {
         );
     }
 
-    private void insertFoodType(RequestOverview overview, String menu) {
-        String[] titles = DaoUtils.menuInfo.get(menu);
-        String subTitle = titles[0];
-        String mainTitle = titles[1];
+    private void insertFoodType() {
+        String[] type = {"side", "main", "soup"};
+        String[] subTitle = {"밑반찬", "밥과 함께", "국, 찌개"};
+        String[] mainTitle = {"언제 먹어도 든든한 밑반찬", "언제 먹어도 든든한 반찬", "김이 모락모락 국, 찌개"};
 
-        String sql = "insert into food_type(hash, type, sub_title, main_title) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, overview.getDetail_hash(), menu, subTitle, mainTitle);
+        String sql = "insert into food_type(type, menu_index, sub_title, main_title) VALUES (?, ?, ?, ?)";
+
+        for (int i = 0; i < type.length; i++) {
+            jdbcTemplate.update(sql, type[i], i, subTitle[i], mainTitle[i]);
+        }
     }
 
     private void insertDelivery(RequestOverview overview) {
@@ -82,7 +86,8 @@ public class OverviewDao {
         String sql = "insert into badge(hash, badgeName, badgeHexa) VALUES (?, ?, ?)";
 
         for (Badge badge : overview.getBadge()) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getBadgeName(), badge.getBadgeHexa());
+            String badgeName = badge.getBadgeName();
+            jdbcTemplate.update(sql, overview.getDetail_hash(), badgeName, DaoUtils.hexaMap.get(badgeName));
         }
     }
 
@@ -146,15 +151,15 @@ public class OverviewDao {
         return this.jdbcTemplate.query(sql, new Object[]{hash}, getFirstColumns());
     }
 
-    private List<Badge> badges(String hash) {
+    private List<ResponseBadge> badges(String hash) {
         String sql = "select badgeName, badgeHexa from badge where hash = ?";
 
-        RowMapper<Badge> badgeRowMapper = new RowMapper<Badge>() {
+        RowMapper<ResponseBadge> badgeRowMapper = new RowMapper<ResponseBadge>() {
             @Override
-            public Badge mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Badge badge = new Badge();
+            public ResponseBadge mapRow(ResultSet rs, int rowNum) throws SQLException {
+                ResponseBadge badge = new ResponseBadge();
                 badge.setBadgeName(rs.getString("badgeName"));
-                badge.setBadgeHexa("badgeHexa");
+                badge.setBadgeHexa(rs.getString("badgeHexa"));
                 return badge;
             }
         };

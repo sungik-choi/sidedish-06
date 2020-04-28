@@ -24,8 +24,8 @@ public class DaoUtils {
 
     public static void setHexa() {
         DaoUtils.hexaMap = new HashMap<>();
-        DaoUtils.hexaMap.put("이벤트 특가", "#9676F7");
-        DaoUtils.hexaMap.put("이벤트 특가", "#E48276");
+        DaoUtils.hexaMap.put("이벤트특가", "#9676F7");
+        DaoUtils.hexaMap.put("론칭특가", "#E48276");
     }
 
     public static RowMapper<String> getFirstColumns() {

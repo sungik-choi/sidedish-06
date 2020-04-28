@@ -7,16 +7,16 @@ DROP TABLE IF EXISTS food_type;
 
 CREATE TABLE food_type
 (
-    type VARCHAR(64) PRIMARY KEY,
+    type       VARCHAR(64) PRIMARY KEY,
     menu_index INTEGER,
-    sub_title VARCHAR(64),
+    sub_title  VARCHAR(64),
     main_title VARCHAR(64)
 );
 
 CREATE TABLE babchan
 (
     hash          VARCHAR(32) PRIMARY KEY,
-    type VARCHAR(64) REFERENCES food_type (type) ON UPDATE CASCADE ON DELETE CASCADE,
+    type          VARCHAR(64) REFERENCES food_type (type) ON UPDATE CASCADE ON DELETE CASCADE,
     image         VARCHAR(128),
     alt           VARCHAR(64),
     title         VARCHAR(128),
@@ -37,7 +37,7 @@ CREATE TABLE delivery
 
 CREATE TABLE badge
 (
-    hash  VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
+    hash      VARCHAR(32) REFERENCES babchan (hash) ON UPDATE CASCADE ON DELETE CASCADE,
     badgeName VARCHAR(32),
     badgeHexa VARCHAR(32)
 );

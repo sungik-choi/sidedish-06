@@ -1,6 +1,5 @@
 package com.codesquad.sidedish06;
 
-import com.codesquad.sidedish06.utils.DaoUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

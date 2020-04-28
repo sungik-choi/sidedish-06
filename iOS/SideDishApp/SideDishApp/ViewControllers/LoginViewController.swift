@@ -10,7 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var logo: UIImageView!
     @IBOutlet var signInButton: UIButton!
     
     override func viewDidLoad() {
@@ -26,10 +27,17 @@ class LoginViewController: UIViewController {
     private func configureConstraints() {
         let height = self.view.bounds.height
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: height/5).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
-        titleLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        backgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        logo.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
+        logo.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
+        logo.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: -(height/9)).isActive = true
 
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(height/5)).isActive = true

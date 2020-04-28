@@ -20,8 +20,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signInGithub(_ sender: UIButton) {
-        guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
-        self.present(menuViewController, animated: true)
+        guard let githubLoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "GithubLoginViewController") as? GithubLoginViewController else { return }
+               self.present(githubLoginViewController, animated: true)
     }
     
     private func configureConstraints() {

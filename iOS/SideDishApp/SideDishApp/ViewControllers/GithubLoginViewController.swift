@@ -10,8 +10,9 @@ import UIKit
 import WebKit
 
 class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
-
+    
     @IBOutlet var webView: WKWebView!
+    let successResponse = "http://52.79.117.147/"
     
     override func loadView() {
         super.loadView()
@@ -27,6 +28,14 @@ class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDel
         let request = URLRequest(url: url!)
         webView.load(request)
     }
-   
-
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        if let responseURL = navigationResponse.response.url, responseURL.absoluteString == successResponse {
+            self.dismiss(animated: true)
+            guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
+            self.present(menuViewController, animated: true)
+        }
+        decisionHandler(.allow)
+    }
+    
 }

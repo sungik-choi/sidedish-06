@@ -3,12 +3,12 @@ import Title from './Title';
 import Details from './Details';
 import Price from './Price';
 
-const ProductInfo = ({ title, description, deliveryInfo, deliveryFee, point, prices, originPrice, salePrice }) => {
+const ProductInfo = ({ title, description, deliveryInfo, deliveryFee, point, salePrice }) => {
   return (
     <>
       <Title title={title} description={description} />
       <Details deliveryInfo={deliveryInfo} deliveryFee={deliveryFee} point={point} />
-      <Price prices={prices} originPrice={originPrice} salePrice={salePrice} />
+      <Price salePrice={salePrice} />
     </>
   );
 };

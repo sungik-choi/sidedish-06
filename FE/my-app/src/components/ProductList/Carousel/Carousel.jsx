@@ -45,8 +45,8 @@ const CarouselWrap = styled.div`
   }
 `;
 
-const Carousel = ({ list, onClick }) => {
-  const products = list.body.map(productData => <Product key={productData.detail_hash} list={productData} onClick={onClick} />);
+const Carousel = ({ list = [], onClick }) => {
+  const products = list.map(productData => <Product key={productData.detail_hash} list={productData} onClick={onClick} />);
 
   const setting = {
     dots: false,

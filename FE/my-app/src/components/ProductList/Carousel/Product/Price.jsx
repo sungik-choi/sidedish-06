@@ -29,11 +29,10 @@ const UnitSpan = styled.span`
 `;
 
 const Price = ({ originPrice, salePrice }) => {
-  const salePriceNum = salePrice.replace('원', '');
   return (
     <PriceDd>
       <SalePriceP>
-        {salePriceNum}
+        {salePrice}
         <UnitSpan>원</UnitSpan>
       </SalePriceP>
       {originPrice && <OriginPriceP>{originPrice}</OriginPriceP>}

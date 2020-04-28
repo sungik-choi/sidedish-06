@@ -20,8 +20,8 @@ const MenuTypeTitle = styled.h2`
 const Title = ({ menuType, menuTypeTitle }) => {
   return (
     <TitleWrap>
-      <MenuType>배민찬 추천</MenuType>
-      <MenuTypeTitle>고르고 골라 배민찬이 추천합니다</MenuTypeTitle>
+      <MenuType>{menuType}</MenuType>
+      <MenuTypeTitle>{menuTypeTitle}</MenuTypeTitle>
     </TitleWrap>
   );
 };

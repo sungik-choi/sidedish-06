@@ -20,6 +20,7 @@ const PlaceholderWrap = styled.div`
 const ProductList = ({ productType, onClick }) => {
   const [list, setList] = useState({ body: [] });
   const isListLoading = useFetch(API_URL(productType), setList);
+  const { data, menuType, menuTypeTitle } = list;
 
   return (
     <>
@@ -29,8 +30,8 @@ const ProductList = ({ productType, onClick }) => {
         </PlaceholderWrap>
       )}
       <ProductListWrap>
-        <Title />
-        <Carousel list={list} onClick={onClick} />
+        <Title menuType={menuType} menuTypeTitle={menuTypeTitle} />
+        <Carousel list={data} onClick={onClick} />
       </ProductListWrap>
     </>
   );

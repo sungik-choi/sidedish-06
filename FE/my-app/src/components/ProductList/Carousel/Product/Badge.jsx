@@ -16,7 +16,7 @@ const BadgeDiv = styled.div`
 
 const Badge = ({ list }) => {
   if (list) {
-    const badgeDivs = list.map((badge, index) => <BadgeDiv key={index}>{badge}</BadgeDiv>);
+    const badgeDivs = list.map((obj, index) => <BadgeDiv key={index}>{obj.badgeName}</BadgeDiv>);
     return <BadgeWrap>{badgeDivs}</BadgeWrap>;
   }
   return <></>;

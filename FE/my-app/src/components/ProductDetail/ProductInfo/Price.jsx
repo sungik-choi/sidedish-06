@@ -15,10 +15,10 @@ const UnitSpan = styled.span`
   transform: translateY(-0.1rem);
 `;
 
-const Price = ({ prices, salePrice }) => {
+const Price = ({ salePrice }) => {
   return (
     <PriceWrap>
-      {prices}
+      {salePrice}
       <UnitSpan>원</UnitSpan>
     </PriceWrap>
   );

@@ -74,22 +74,22 @@ const PlaceholderWrap = styled.div`
 const ProductDetail = ({ productType, hash, onClick }) => {
   const [detailData, setDetailData] = useState({ data: [] });
   const isDetailDataLoading = useFetch(API_URL(productType, hash), setDetailData);
-  const { title, thumb_images, product_description, point, delivery_info, delivery_fee, salePrice } = detailData.data;
+  const { title, thumb_images, description, point, delivery_info, delivery_fee, salePrice } = detailData.data;
 
   const MAX_QUANTITY = 99;
   const MIN_QUANTITY = 1;
+  const UNIT = '원';
 
-  const mockPrice = 5000;
+  const salePriceNum = salePrice.replace(UNIT, '');
   const [quantity, setQuantity] = useState(MIN_QUANTITY);
-  const [totalPrice, setTotalPrice] = useState(quantity * mockPrice);
-  // const salePriceNum = salePrice.replace('원', '');
+  const [totalPrice, setTotalPrice] = useState(quantity * salePriceNum);
 
   const priceChangeHandler = e => {
     if (e.target.value > MAX_QUANTITY) e.target.value = MIN_QUANTITY;
     setQuantity(e.target.value);
   };
 
-  useEffect(() => setTotalPrice(quantity * mockPrice), [quantity]);
+  useEffect(() => setTotalPrice(quantity * salePriceNum), [quantity]);
 
   return (
     <>
@@ -109,7 +109,7 @@ const ProductDetail = ({ productType, hash, onClick }) => {
           <ProductImages thumbImages={thumb_images} />
         </ProductImagesWrap>
         <ProductInfoWrap>
-          <ProductInfo title={title} description={product_description} deliveryInfo={delivery_info} deliveryFee={delivery_fee} point={point} prices={mockPrice} salePrice={salePrice} />
+          <ProductInfo title={title} description={description} deliveryInfo={delivery_info} deliveryFee={delivery_fee} point={point} salePrice={salePriceNum} />
           <Selector quantity={quantity} min={MIN_QUANTITY} max={MAX_QUANTITY} onChange={priceChangeHandler} />
           <TotalPrice price={totalPrice} />
           <CartButton onClick={onClick} />

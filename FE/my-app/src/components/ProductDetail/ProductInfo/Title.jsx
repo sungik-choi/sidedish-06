@@ -15,7 +15,7 @@ const DescB = styled.b`
 const Title = ({ title, description }) => {
   return (
     <>
-      <TitleH2>[집밥의 완성] 맛있는 요리 500g 겁나게 맛있습니다 진짜!!!</TitleH2>
+      <TitleH2>{title}</TitleH2>
       <DescB>{description}</DescB>
     </>
   );

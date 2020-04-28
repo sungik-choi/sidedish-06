@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MORE_BTN_TEXT } from '../constants/constants';
 import { IoIosArrowForward } from 'react-icons/io';
 
 const MoreBtnWrap = styled.div`
@@ -25,6 +24,8 @@ const MoreBtn = styled.button`
     border: 1px solid var(--gray-4);
   }
 `;
+
+const MORE_BTN_TEXT = '반찬 전체보기';
 
 const MoreButton = ({ onClick }) => {
   return (

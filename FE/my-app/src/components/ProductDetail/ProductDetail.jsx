@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { API_URL, useFetch } from '../../utils/useFetch';
 import ProductImages from './ProductImages/ProductImages';
@@ -6,6 +6,7 @@ import ProductInfo from './ProductInfo/ProductInfo';
 import Selector from './Selector';
 import CartButton from './CartButton';
 import TotalPrice from './TotalPrice';
+import Placeholder from '../Placeholder';
 import { fadeIn } from '../../utils/animation.js';
 import { IconContext } from 'react-icons';
 import { IoIosClose } from 'react-icons/io';
@@ -32,7 +33,7 @@ const ProductDetailWrap = styled.div`
   width: var(--width);
   height: 45rem;
   padding: 2rem;
-  padding-top: 2.5rem;
+  padding-top: 3rem;
   background-color: var(--white);
   animation: ${fadeIn(1)} 0.5s;
 `;
@@ -57,10 +58,38 @@ const CloseButton = styled.button`
   background: none;
 `;
 
+const PlaceholderWrap = styled.div`
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  width: 100%;
+  height: 100%;
+`;
+
 const ProductDetail = ({ productType, hash, onClick }) => {
   const [detailData, setDetailData] = useState({ data: [] });
   const isDetailDataLoading = useFetch(API_URL(productType, hash), setDetailData);
-  const { title, thumb_images, product_description, point, delivery_info, delivery_fee, prices, originPrice, salePrice } = detailData.data;
+  const { title, thumb_images, product_description, point, delivery_info, delivery_fee, salePrice } = detailData.data;
+
+  const MAX_QUANTITY = 99;
+  const MIN_QUANTITY = 1;
+
+  const mockPrice = 5000;
+  const [quantity, setQuantity] = useState(MIN_QUANTITY);
+  const [totalPrice, setTotalPrice] = useState(quantity * mockPrice);
+  // const salePriceNum = salePrice.replace('원', '');
+
+  const priceChangeHandler = e => {
+    if (e.target.value > MAX_QUANTITY) e.target.value = MIN_QUANTITY;
+    setQuantity(e.target.value);
+  };
+
+  useEffect(() => setTotalPrice(quantity * mockPrice), [quantity]);
 
   return (
     <>
@@ -71,23 +100,19 @@ const ProductDetail = ({ productType, hash, onClick }) => {
             <IoIosClose />
           </IconContext.Provider>
         </CloseButton>
+        {!isDetailDataLoading && (
+          <PlaceholderWrap>
+            <Placeholder />
+          </PlaceholderWrap>
+        )}
         <ProductImagesWrap>
           <ProductImages thumbImages={thumb_images} />
         </ProductImagesWrap>
         <ProductInfoWrap>
-          <ProductInfo
-            title={title}
-            description={product_description}
-            deliveryInfo={delivery_info}
-            deliveryFee={delivery_fee}
-            point={point}
-            prices={prices}
-            originPrice={originPrice}
-            salePrice={salePrice}
-          />
-          <Selector />
-          <CartButton />
-          <TotalPrice />
+          <ProductInfo title={title} description={product_description} deliveryInfo={delivery_info} deliveryFee={delivery_fee} point={point} prices={mockPrice} salePrice={salePrice} />
+          <Selector quantity={quantity} min={MIN_QUANTITY} max={MAX_QUANTITY} onChange={priceChangeHandler} />
+          <TotalPrice price={totalPrice} />
+          <CartButton onClick={onClick} />
         </ProductInfoWrap>
       </ProductDetailWrap>
     </>

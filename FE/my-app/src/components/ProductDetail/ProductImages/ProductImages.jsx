@@ -9,10 +9,7 @@ const ProductImages = ({ thumbImages = [] }) => {
     e.target.focus();
   };
 
-  useEffect(() => {
-    setTopImage(thumbImages[0]);
-    console.log('run');
-  }, [thumbImages]);
+  useEffect(() => setTopImage(thumbImages[0]), [thumbImages]);
 
   return (
     <>

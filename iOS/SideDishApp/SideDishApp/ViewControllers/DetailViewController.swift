@@ -13,8 +13,18 @@ class DetailViewController: UIViewController {
     //MARK:- properties
     var menuHash = ""
     private var menuDetail: MenuDetail?
-    var width: CGFloat = 0
-    var height: CGFloat = 0
+    private var width: CGFloat = 0
+    private var height: CGFloat = 0
+    
+    private let priceTitle = ContentsTitleLabel(text: "가격")
+    private let savedMoneyTitle = ContentsTitleLabel(text: "적립금")
+    private let deliveryMoneyTitle = ContentsTitleLabel(text: "배송비")
+    private let deliveryInfoTitle = ContentsTitleLabel(text: "배송정보")
+    
+    private let originalPrice = DescriptionLabel()
+    private let savedMoney = DescriptionLabel()
+    private let deliveryMoney = DescriptionLabel()
+    private let deliveryInfo = DescriptionLabel()
     
     private lazy var wholeScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -63,18 +73,6 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    private let pageControl = UIPageControl()
-    
-    private let priceTitle = ContentsTitleLabel(text: "가격")
-    private let savedMoneyTitle = ContentsTitleLabel(text: "적립금")
-    private let deliveryMoneyTitle = ContentsTitleLabel(text: "배송비")
-    private let deliveryInfoTitle = ContentsTitleLabel(text: "배송정보")
-    
-    private let originalPrice = DescriptionLabel()
-    private let savedMoney = DescriptionLabel()
-    private let deliveryMoney = DescriptionLabel()
-    private let deliveryInfo = DescriptionLabel()
-    
     private let salePrice: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -116,6 +114,8 @@ class DetailViewController: UIViewController {
         configureUsecase(menuHash)
         width = self.view.frame.width
         height = self.view.frame.height
+        
+        orderButton.addTarget(self, action: #selector(pressOrderButton(button:)), for: .touchUpInside)
     }
     
     private func addSubViews() {
@@ -226,11 +226,9 @@ class DetailViewController: UIViewController {
         NetworkUseCase.makeMenuDetail(with: MenuViewController.networkManager, menuHash: "") { data in
             self.menuDetail = data
             DispatchQueue.main.async {
-                self.pageControl.numberOfPages = self.menuDetail!.thumb_images.count
                 guard let menuDetail = self.menuDetail else { return }
                 self.configureData(menuDetail)
             }
-            
         }
     }
     
@@ -262,7 +260,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func makeImageView(image: UIImage) -> UIImageView {
+    private func makeImageView(image: UIImage) -> UIImageView {
         let imageView = UIImageView()
         imageView.image = image
         return imageView
@@ -278,5 +276,18 @@ class DetailViewController: UIViewController {
         stackView.addArrangedSubview(subView)
     }
     
+    @objc func pressOrderButton(button: UIButton) {
+        let alert = makeOrderCheckAlert()
+        present(alert, animated: true)
+    }
     
+    private func makeOrderCheckAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "주문", message: "주문하시겠습니까?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "네", style: .default) 
+        let cancel = UIAlertAction(title: "아니오", style: .cancel)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        return alert
+    }
 }

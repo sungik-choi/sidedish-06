@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Item = ({ name }) => {
+  return <ItemLi>{name}</ItemLi>;
+};
+
 const ItemLi = styled.li`
   cursor: pointer;
   padding: 0 0.5rem;
@@ -12,9 +16,5 @@ const ItemLi = styled.li`
     color: var(--green);
   }
 `;
-
-const Item = ({ name }) => {
-  return <ItemLi>{name}</ItemLi>;
-};
 
 export default Item;

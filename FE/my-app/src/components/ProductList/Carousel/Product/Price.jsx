@@ -1,5 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { UNIT } from 'constants/constants';
+
+const Price = ({ originPrice, salePrice }) => {
+  return (
+    <PriceDd>
+      <SalePriceP>
+        {salePrice}
+        <UnitSpan>{UNIT}</UnitSpan>
+      </SalePriceP>
+      {originPrice && <OriginPriceP>{originPrice}</OriginPriceP>}
+    </PriceDd>
+  );
+};
 
 const PriceDd = styled.dd`
   display: flex;
@@ -27,17 +40,5 @@ const UnitSpan = styled.span`
   margin-left: 0.1rem;
   transform: translateY(-0.1rem);
 `;
-
-const Price = ({ originPrice, salePrice }) => {
-  return (
-    <PriceDd>
-      <SalePriceP>
-        {salePrice}
-        <UnitSpan>원</UnitSpan>
-      </SalePriceP>
-      {originPrice && <OriginPriceP>{originPrice}</OriginPriceP>}
-    </PriceDd>
-  );
-};
 
 export default Price;

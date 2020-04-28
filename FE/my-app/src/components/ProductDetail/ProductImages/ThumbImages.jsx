@@ -1,6 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const ThumbImages = ({ thumbImages, onMouseOver }) => {
+  const images = [...thumbImages].map((imageSrc, index) => (
+    <ImageWrap key={index}>
+      <Image key={index} src={imageSrc} onMouseOver={onMouseOver} tabIndex="-1" />
+    </ImageWrap>
+  ));
+
+  return <ThumbImagesWrap>{images}</ThumbImagesWrap>;
+};
+
 const Image = styled.img`
   position: absolute;
   width: 100%;
@@ -13,7 +23,7 @@ const Image = styled.img`
 
 const ImageWrap = styled.div`
   position: relative;
-  width: calc(25% - 0.375rem); /* 1.5 / 3 */
+  width: calc(25% - 0.375rem); /* 1.5 / 4 */
   padding-bottom: calc(25% - 0.375rem);
   line-height: 0;
   margin-right: 0.5rem;
@@ -29,15 +39,5 @@ const ThumbImagesWrap = styled.div`
     margin-right: 0;
   }
 `;
-
-const ThumbImages = ({ thumbImages = [], onMouseOver }) => {
-  const images = thumbImages.map((imageSrc, index) => (
-    <ImageWrap key={index}>
-      <Image key={index} src={imageSrc} onMouseOver={onMouseOver} tabIndex="-1" />
-    </ImageWrap>
-  ));
-
-  return <ThumbImagesWrap>{images}</ThumbImagesWrap>;
-};
 
 export default ThumbImages;

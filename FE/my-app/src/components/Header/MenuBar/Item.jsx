@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Item = ({ name }) => {
+  return <ItemLi>{name}</ItemLi>;
+};
+
 const ItemLi = styled.li`
   cursor: pointer;
   padding: 0.5rem 0;
@@ -10,9 +14,5 @@ const ItemLi = styled.li`
     text-decoration: underline;
   }
 `;
-
-const Item = ({ name }) => {
-  return <ItemLi>{name}</ItemLi>;
-};
 
 export default Item;

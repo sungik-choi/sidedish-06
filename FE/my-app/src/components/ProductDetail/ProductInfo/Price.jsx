@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Price = ({ salePrice }) => {
+  return (
+    <PriceWrap>
+      {salePrice}
+      <UnitSpan>원</UnitSpan>
+    </PriceWrap>
+  );
+};
+
 const PriceWrap = styled.div`
   text-align: right;
   margin-top: 2rem;
@@ -14,14 +23,5 @@ const UnitSpan = styled.span`
   margin-left: 0.1rem;
   transform: translateY(-0.1rem);
 `;
-
-const Price = ({ salePrice }) => {
-  return (
-    <PriceWrap>
-      {salePrice}
-      <UnitSpan>원</UnitSpan>
-    </PriceWrap>
-  );
-};
 
 export default Price;

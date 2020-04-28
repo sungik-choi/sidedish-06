@@ -1,6 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Details = ({ deliveryInfo, deliveryFee, point }) => {
+  return (
+    <DetailsWrap>
+      <DetailsUl>
+        <DetailsLi>
+          <CategoryB>{CATEGORY_TEXT.point}</CategoryB>
+          <span>{point}</span>
+        </DetailsLi>
+        <DetailsLi>
+          <CategoryB>{CATEGORY_TEXT.deliveryInfo}</CategoryB>
+          {deliveryInfo}
+        </DetailsLi>
+        <DetailsLi>
+          <CategoryB>{CATEGORY_TEXT.deliveryFee}</CategoryB>
+          {deliveryFee}
+        </DetailsLi>
+      </DetailsUl>
+    </DetailsWrap>
+  );
+};
+
+const CATEGORY_TEXT = {
+  point: '적립금',
+  deliveryInfo: '배송정보',
+  deliveryFee: '배송비',
+};
+
 const DetailsWrap = styled.div`
   margin-top: 2rem;
 `;
@@ -24,32 +51,5 @@ const DetailsUl = styled.ul`
     margin-top: 1rem;
   }
 `;
-
-const CATEGORY_TEXT = {
-  point: '적립금',
-  deliveryInfo: '배송정보',
-  deliveryFee: '배송비',
-};
-
-const Details = ({ deliveryInfo, deliveryFee, point }) => {
-  return (
-    <DetailsWrap>
-      <DetailsUl>
-        <DetailsLi>
-          <CategoryB>{CATEGORY_TEXT.point}</CategoryB>
-          <span>{point}</span>
-        </DetailsLi>
-        <DetailsLi>
-          <CategoryB>{CATEGORY_TEXT.deliveryInfo}</CategoryB>
-          {deliveryInfo}
-        </DetailsLi>
-        <DetailsLi>
-          <CategoryB>{CATEGORY_TEXT.deliveryFee}</CategoryB>
-          {deliveryFee}
-        </DetailsLi>
-      </DetailsUl>
-    </DetailsWrap>
-  );
-};
 
 export default Details;

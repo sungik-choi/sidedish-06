@@ -12,6 +12,7 @@ const variables = css`
     --gray-2: #666;
     --gray-3: #e9e9e9;
     --gray-4: #999;
+    --gray-5: #d7d7d7;
     --green: #1fcbc7;
     --brown: #483f35;
     --beige: #c6a8a5;
@@ -24,6 +25,14 @@ const customReset = css`
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     box-sizing: border-box;
+  }
+
+  button {
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
   }
 
   ul,

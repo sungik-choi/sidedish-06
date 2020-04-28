@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from './logo.svg';
+import logo from '../../assets/logo.svg';
 
 const LogoH1 = styled.h1`
   font-size: 0;
 `;
 
 const LogoSvg = styled.object`
-  pointer-events: none;
-  width: 194px;
+  width: 12.125rem; /* 194/16 */
+  height: 4.25rem; /* 68/16 */
 `;
 
 const Logo = () => {

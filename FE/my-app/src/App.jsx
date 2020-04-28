@@ -1,27 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { lnbList, menuList } from './utils/mockData';
 import Header from './components/Header/Header';
 import ProductList from './components/ProductList/ProductList';
+import ProductDetail from './components/ProductDetail/ProductDetail';
+import MoreButton from './components/MoreButton';
 import GlobalStyle from './components/GlobalStyle';
-import { API_URL, useFetch } from './components/Fetch';
-import { lnbList, menuList } from './components/MockData';
 
 const FooterDiv = styled.div`
-  height: 6rem;
+  height: 8rem;
 `;
 
 const App = () => {
-  const [mainList, setMainList] = useState({ body: [] });
-  const [soupList, setSoupList] = useState({ body: [] });
-  const isMainListLoading = useFetch(API_URL.main(), setMainList);
-  const isSoupListLoading = useFetch(API_URL.soup(), setSoupList);
+  const [isMoreBtnClicked, setIsMoreBtnClicked] = useState(false);
+  const [targetProductHash, setTargetProductHash] = useState(null);
+  const moreBtnClickHandler = () => setIsMoreBtnClicked(true);
+  const productClickHandler = (hash = null) => setTargetProductHash(hash);
+
+  useEffect(() => {
+    targetProductHash ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
+  }, [targetProductHash]);
 
   return (
     <>
       <GlobalStyle />
+      {targetProductHash && <ProductDetail productType={'detail'} hash={targetProductHash} onClick={productClickHandler} />}
       <Header lnbList={lnbList} menuList={menuList} />
-      <ProductList list={mainList} />
-      <ProductList list={soupList} />
+      <ProductList productType={'side'} onClick={productClickHandler} />
+      <ProductList productType={'main'} onClick={productClickHandler} />
+      {isMoreBtnClicked ? <ProductList productType={'soup'} onClick={productClickHandler} /> : <MoreButton onClick={moreBtnClickHandler} />}
       <FooterDiv />
     </>
   );

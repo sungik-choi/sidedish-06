@@ -22,9 +22,8 @@ const SearchBarButton = styled.button`
   box-sizing: border-box;
   position: absolute;
   right: 0;
+  width: 2.5rem;
   height: 2.5rem;
-  padding-top: 0.3rem;
-  appearance: none;
   font-size: 1.5rem;
   color: var(--gray-2);
   background-color: transparent;

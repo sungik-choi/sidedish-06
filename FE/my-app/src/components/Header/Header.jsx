@@ -5,6 +5,11 @@ import Logo from './Logo';
 import SearchBar from './SearchBar';
 import MenuBar from './MenuBar/MenuBar';
 
+const HeaderWrap = styled.header`
+  width: 100vw;
+  min-width: var(--width);
+`;
+
 const LogoWrap = styled.div`
   display: flex;
   align-items: center;
@@ -15,14 +20,14 @@ const LogoWrap = styled.div`
 
 const Header = ({ lnbList, menuList }) => {
   return (
-    <header>
+    <HeaderWrap>
       <LocalNavBar list={lnbList} />
       <LogoWrap>
         <Logo />
         <SearchBar />
       </LogoWrap>
       <MenuBar list={menuList} />
-    </header>
+    </HeaderWrap>
   );
 };
 

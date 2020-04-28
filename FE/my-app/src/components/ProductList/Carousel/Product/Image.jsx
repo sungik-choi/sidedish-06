@@ -10,7 +10,7 @@ const DeliveryTypeSpan = styled.span`
 
 const DeliveryTypeWrap = styled.div`
   pointer-events: none;
-  display: ${props => (props.isMouseOver ? 'flex' : 'none')};
+  display: flex;
   flex-direction: column;
   position: absolute;
   top: 50%;
@@ -27,7 +27,9 @@ const ImageWrap = styled.div`
 `;
 
 const ThumbImage = styled.img`
+  width: var(--slider-width);
   height: var(--slider-width);
+  background-color: var(--gray-3);
   border-radius: 100%;
   &:hover {
     filter: brightness(50%);
@@ -38,7 +40,7 @@ const Image = ({ alt, src, deliveryType }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const deliveryTypeSpans = deliveryType.map((type, index) => <DeliveryTypeSpan key={index}>{type}</DeliveryTypeSpan>);
 
-  const mouseEnterHandler = () => {
+  const mouseOverHandler = () => {
     setIsMouseOver(true);
   };
 
@@ -48,8 +50,8 @@ const Image = ({ alt, src, deliveryType }) => {
 
   return (
     <ImageWrap>
-      <ThumbImage alt={alt} src={src} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler} />
-      <DeliveryTypeWrap isMouseOver={isMouseOver}>{deliveryTypeSpans}</DeliveryTypeWrap>
+      <ThumbImage alt={alt} src={src} onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler} />
+      {isMouseOver && <DeliveryTypeWrap>{deliveryTypeSpans}</DeliveryTypeWrap>}
     </ImageWrap>
   );
 };

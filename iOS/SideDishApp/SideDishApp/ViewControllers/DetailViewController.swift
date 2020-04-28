@@ -8,11 +8,13 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UIScrollViewDelegate {
+class DetailViewController: UIViewController {
     
     //MARK:- properties
     var menuHash = ""
     private var menuDetail: MenuDetail?
+    var width: CGFloat = 0
+    var height: CGFloat = 0
     
     private lazy var wholeScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -111,16 +113,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         configureScrollViewConstraints()
         configureStackViewConstraints()
         configureElementsConstraints()
-        thumbnailScrollView.delegate = self
-        wholeScrollView.delegate = self
         configureUsecase(menuHash)
-    }
-    
-    func makeImageView(image: UIImage) -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
-        imageView.image = image
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+        width = self.view.frame.width
+        height = self.view.frame.height
     }
     
     private func addSubViews() {
@@ -152,7 +147,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             wholeScrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             wholeScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wholeScrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            wholeScrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            wholeScrollView.bottomAnchor.constraint(equalTo: orderButton.topAnchor),
             
             wholeScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: self.view.topAnchor),
             wholeScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -173,6 +168,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             thumbnailStackView.leadingAnchor.constraint(equalTo: thumbnailScrollView.leadingAnchor),
             thumbnailStackView.trailingAnchor.constraint(equalTo: thumbnailScrollView.trailingAnchor),
             thumbnailStackView.bottomAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor),
+            thumbnailStackView.heightAnchor.constraint(equalTo: thumbnailScrollView.heightAnchor),
             
             detailImageStack.topAnchor.constraint(equalTo: deliveryInfoTitle.bottomAnchor, constant: 10),
             detailImageStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -266,12 +262,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    private func addArrangedSubview(to stackView: UIStackView, subView: UIView) {
-        stackView.addArrangedSubview(subView)
+    func makeImageView(image: UIImage) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.image = image
+        return imageView
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageControl.currentPage = Int(floor(thumbnailScrollView.contentOffset.x / UIScreen.main.bounds.width))
+    private func addArrangedSubview(to stackView: UIStackView, subView: UIImageView) {
+        subView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        subView.heightAnchor.constraint(equalToConstant: height/3).isActive = true
+        stackView.addArrangedSubview(subView)
     }
     
     

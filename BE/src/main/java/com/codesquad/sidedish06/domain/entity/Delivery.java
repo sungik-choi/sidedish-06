@@ -1,12 +1,10 @@
 package com.codesquad.sidedish06.domain.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Delivery {
 
     private String type;

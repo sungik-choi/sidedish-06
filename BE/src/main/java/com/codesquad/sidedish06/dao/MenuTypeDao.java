@@ -1,6 +1,6 @@
 package com.codesquad.sidedish06.dao;
 
-import lombok.extern.slf4j.Slf4j;
+import com.codesquad.sidedish06.utils.DaoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,9 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.codesquad.sidedish06.utils.JsonUtils.BASE_URL;
+import static com.codesquad.sidedish06.utils.UrlUtils.BASE_URL;
 
-@Slf4j
 @Repository
 public class MenuTypeDao {
 
@@ -22,6 +21,11 @@ public class MenuTypeDao {
     @Autowired
     public MenuTypeDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public List<String> listMenu() {
+        String sql = "SELECT type FROM food_type";
+        return this.jdbcTemplate.query(sql, DaoUtils.getFirstColumns());
     }
 
     public List<String> listMenuUrl() {

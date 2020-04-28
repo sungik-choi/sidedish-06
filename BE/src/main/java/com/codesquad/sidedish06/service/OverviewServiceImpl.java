@@ -1,5 +1,6 @@
 package com.codesquad.sidedish06.service;
 
+import com.codesquad.sidedish06.dao.MenuTypeDao;
 import com.codesquad.sidedish06.dao.OverviewDao;
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
@@ -13,21 +14,23 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
-import static com.codesquad.sidedish06.utils.JsonUtils.BASE_URL;
 import static com.codesquad.sidedish06.utils.JsonUtils.data;
+import static com.codesquad.sidedish06.utils.UrlUtils.BASE_URL;
 
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class OverviewServiceImpl implements OverviewService {
 
+    private final MenuTypeDao menuTypeDao;
+
     private final OverviewDao overviewDao;
 
     @Override
-    public Object save() throws IOException, URISyntaxException {
+    public void save() throws IOException, URISyntaxException {
 
-        String[] menus = {"main", "soup", "side"};
+        List<String> menus = menuTypeDao.listMenu();
 
         for (String menu : menus) {
             RequestOverview[] overviews = listOverview("/" + menu);
@@ -39,11 +42,16 @@ public class OverviewServiceImpl implements OverviewService {
                 }
             }
         }
-        return "OK";
     }
 
     @Override
     public ResponseOverview listMenu(String menu) {
+        boolean isNotExist = menuTypeDao.listMenu().contains(menu);
+
+        if (!isNotExist) {
+            throw new IllegalArgumentException();
+        }
+
         return overviewDao.listOverview(menu);
     }
 

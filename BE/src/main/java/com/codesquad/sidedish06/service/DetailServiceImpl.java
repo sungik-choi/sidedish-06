@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-import static com.codesquad.sidedish06.utils.JsonUtils.*;
+import static com.codesquad.sidedish06.utils.DaoUtils.HASHES;
+import static com.codesquad.sidedish06.utils.JsonUtils.data;
+import static com.codesquad.sidedish06.utils.UrlUtils.BASE_URL;
 
 @RequiredArgsConstructor
 @Service
@@ -22,15 +24,14 @@ public class DetailServiceImpl implements DetailService {
     private final DetailDao detailDao;
 
     @Override
-    public Object save() throws URISyntaxException, JsonProcessingException {
+    public void save() throws URISyntaxException, JsonProcessingException {
         RequestDetail[] details = listDetail();
         for (RequestDetail detail : details) {
-            if(detail!=null) {
+            if (detail != null) {
                 validate(detail);
                 detailDao.insert(detail);
             }
         }
-        return details;
     }
 
     @Override
@@ -39,11 +40,11 @@ public class DetailServiceImpl implements DetailService {
     }
 
     private void validate(RequestDetail detail) {
-        if(detail.getThumb_images()==null) {
+        if (detail.getThumb_images() == null) {
             detail.setThumb_images(new ArrayList<>());
         }
 
-        if(detail.getDetail_section()==null) {
+        if (detail.getDetail_section() == null) {
             detail.setDetail_section(new ArrayList<>());
         }
     }

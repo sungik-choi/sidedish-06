@@ -1,14 +1,10 @@
 package com.codesquad.sidedish06.domain.entity;
 
-import lombok.*;
+import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class Babchan {
 
     private String hash;

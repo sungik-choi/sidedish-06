@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public interface OverviewService {
-    Object save() throws IOException, URISyntaxException;
+    void save() throws IOException, URISyntaxException;
 
     ResponseOverview listMenu(String menu);
 }

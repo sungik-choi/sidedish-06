@@ -4,29 +4,23 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DaoUtils {
 
-    public static Map<String, String[]> menuInfo;
-
-    public static Map<String, String> hexaMap;
+    public static final String[] HASHES = {
+            "H9881", "HDF4C", "H7F20", "HA567", "H206E",
+            "H75A2", "H4AAA", "H206E", "HA8B9", "E055F",
+            "FDAEB", "H762E", "H05FB", "H0699", "HBDEF",
+            "H82A2", "H213E", "H7A16", "HBDEF", "HDF73",
+            "HF778", "HFB53", "H077F", "H4665", "H1AA9",
+            "HEDFB", "H4C5E", "H8676", "HAE92", "HAA29",
+            "H296C", "H5152", "HAC68", "HBDEF", "H72C3",
+            "HA6EE", "H8CD0", "HE2E9", "HAA47", "H3254",
+            "H26C7", "HFFF9", "HBBCC", "H1939", "H8EA5",
+            "H602F", "H9F0B", "H0FC6", "HCCFE", "HB9C1"
+    };
 
     private DaoUtils() {}
-
-    public static void setTitles() {
-        DaoUtils.menuInfo = new HashMap<>();
-        DaoUtils.menuInfo.put("main", new String[]{"밥과 함께", "언제 먹어도 든든한 반찬"});
-        DaoUtils.menuInfo.put("soup", new String[]{"국, 찌개", "김이 모락모락 국, 찌개"});
-        DaoUtils.menuInfo.put("side", new String[]{"밑반찬", "언제 먹어도 든든한 밑반찬"});
-    }
-
-    public static void setHexa() {
-        DaoUtils.hexaMap = new HashMap<>();
-        DaoUtils.hexaMap.put("이벤트특가", "#9676F7");
-        DaoUtils.hexaMap.put("론칭특가", "#E48276");
-    }
 
     public static RowMapper<String> getFirstColumns() {
         return new RowMapper<String>() {

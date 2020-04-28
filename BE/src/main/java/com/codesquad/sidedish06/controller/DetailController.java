@@ -14,7 +14,7 @@ public class DetailController {
     private final DetailService detailService;
 
     @GetMapping("/detail/{hash}")
-    public ResponseDetail reade(@PathVariable String hash) {
+    public ResponseDetail read(@PathVariable String hash) {
         return detailService.read(hash);
     }
 }

@@ -5,8 +5,6 @@ import com.codesquad.sidedish06.domain.dto.ResponseDetail;
 import com.codesquad.sidedish06.domain.entity.DetailSection;
 import com.codesquad.sidedish06.domain.entity.ThumbImage;
 import com.codesquad.sidedish06.utils.DaoUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -16,13 +14,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Slf4j
 @Repository
 public class DetailDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public DetailDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }

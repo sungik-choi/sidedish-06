@@ -1,6 +1,6 @@
 package com.codesquad.sidedish06.service;
 
-import com.codesquad.sidedish06.config.PropertyConfig;
+import com.codesquad.sidedish06.config.GithubPropertyConfig;
 import com.codesquad.sidedish06.domain.dto.GithubTokenDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -17,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class LoginService {
 
-    private final PropertyConfig propertyConfig;
+    private final GithubPropertyConfig githubPropertyConfig;
 
     public GithubTokenDto requestAccessToken(String code) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
@@ -27,13 +27,13 @@ public class LoginService {
 
         MultiValueMap<String, String> requestPayloads = new LinkedMultiValueMap<>();
         Map<String, String> requestPayload = new HashMap<>();
-        requestPayload.put("client_id", propertyConfig.getClientId());
-        requestPayload.put("client_secret", propertyConfig.getClientSecret());
+        requestPayload.put("client_id", githubPropertyConfig.getClientId());
+        requestPayload.put("client_secret", githubPropertyConfig.getClientSecret());
         requestPayload.put("code", code);
         requestPayloads.setAll(requestPayload);
 
         HttpEntity<?> request = new HttpEntity<>(requestPayloads, headers);
-        ResponseEntity<?> response = new RestTemplate().postForEntity(propertyConfig.getUrl(), request, GithubTokenDto.class);
+        ResponseEntity<?> response = new RestTemplate().postForEntity(githubPropertyConfig.getUrl(), request, GithubTokenDto.class);
         return (GithubTokenDto) response.getBody();
     }
 

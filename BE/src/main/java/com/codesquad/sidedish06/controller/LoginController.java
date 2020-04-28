@@ -1,16 +1,15 @@
 package com.codesquad.sidedish06.controller;
 
-import com.codesquad.sidedish06.domain.dto.GithubTokenDto;
+import com.codesquad.sidedish06.config.GithubPropertyConfig;
 import com.codesquad.sidedish06.service.LoginService;
+import com.codesquad.sidedish06.utils.UrlUtils;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,11 +20,16 @@ public class LoginController {
 
 
     @GetMapping("/githublogin")
-    public ResponseEntity<String> githubLogin(@RequestParam("code") String code,
-                                              HttpServletResponse response) {
+    public RedirectView githubLogin(@RequestParam("code") String code) {
         logger.info("code : '{}'", code);
-        GithubTokenDto token = loginService.requestAccessToken(code);
-//        response.setHeader("Authorization", loginService.getAuthorizationValue(token));
-        return ResponseEntity.ok("login Ok");
+        loginService.requestAccessToken(code);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl(UrlUtils.MAIN_URL);
+        try {
+            return redirectView;
+        } catch (RuntimeException e) {
+            redirectView.setUrl(UrlUtils.GITHUB_LOGIN_URL);
+            return redirectView;
+        }
     }
 }

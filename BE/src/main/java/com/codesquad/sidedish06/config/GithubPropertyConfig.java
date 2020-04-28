@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:github.properties")
 @Getter
-public class PropertyConfig {
+public class GithubPropertyConfig {
 
     @Value("${github.accessTokenUrl}")
     private String url;

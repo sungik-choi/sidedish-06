@@ -31,7 +31,7 @@ const App = () => {
 };
 
 const FooterDiv = styled.div`
-  height: 8rem;
+  height: 10rem;
 `;
 
 export default App;

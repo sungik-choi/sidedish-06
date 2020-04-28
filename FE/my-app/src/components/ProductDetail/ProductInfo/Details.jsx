@@ -29,7 +29,7 @@ const CATEGORY_TEXT = {
 };
 
 const DetailsWrap = styled.div`
-  margin-top: 2rem;
+  margin: 2.5rem 0;
 `;
 
 const CategoryB = styled.b`

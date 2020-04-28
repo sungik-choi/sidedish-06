@@ -10,15 +10,13 @@ const getApiUrl = (categoryString, hash = null) => {
 export const API_URL = (type, hash = null) => {
   switch (type) {
     case 'main':
-      return getApiUrl('main', hash);
+      return getApiUrl('main');
     case 'soup':
-      return getApiUrl('soup', hash);
+      return getApiUrl('soup');
     case 'side':
-      return getApiUrl('side', hash);
+      return getApiUrl('side');
     case 'detail':
       return getApiUrl('detail', hash);
-    case 'url':
-      return getApiUrl('banchan-url', hash);
     default:
       throw new Error('Unvalid API');
   }
@@ -33,7 +31,6 @@ export const useFetch = (url, setState) => {
     if (!response.ok) throw new Error('Fetch Failed');
     setState(data);
     setIsLoading(true);
-    console.log(data);
   };
 
   useEffect(() => {

@@ -12,7 +12,6 @@ const Price = ({ salePrice }) => {
 
 const PriceWrap = styled.div`
   text-align: right;
-  margin-top: 2rem;
   font-size: 2.5rem;
   font-weight: 600;
 `;

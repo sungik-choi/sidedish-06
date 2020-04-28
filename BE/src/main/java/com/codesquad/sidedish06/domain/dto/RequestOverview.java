@@ -4,7 +4,9 @@ import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.hibernate.validator.constraints.ScriptAssert;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -23,7 +25,6 @@ public class RequestOverview {
     @JsonProperty
     private String alt;
 
-    @JsonProperty
     private List<Delivery> delivery_type;
 
     @JsonProperty
@@ -38,6 +39,5 @@ public class RequestOverview {
     @JsonProperty
     private String s_price;
 
-    @JsonProperty
     private List<Badge> badge;
 }

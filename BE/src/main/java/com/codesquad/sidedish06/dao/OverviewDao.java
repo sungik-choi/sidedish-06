@@ -1,12 +1,14 @@
 package com.codesquad.sidedish06.dao;
 
 import com.codesquad.sidedish06.domain.dto.RequestOverview;
+import com.codesquad.sidedish06.domain.dto.ResponseBadge;
 import com.codesquad.sidedish06.domain.dto.ResponseOverview;
 import com.codesquad.sidedish06.domain.dto.ResponseOverviewData;
 import com.codesquad.sidedish06.domain.entity.Badge;
 import com.codesquad.sidedish06.domain.entity.Delivery;
+import com.codesquad.sidedish06.domain.entity.FoodType;
+import com.codesquad.sidedish06.utils.DaoUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -15,9 +17,9 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static com.codesquad.sidedish06.utils.DaoUtils.getFirstColumns;
 
 @Slf4j
 @Repository
@@ -25,28 +27,29 @@ public class OverviewDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    private final Map<String, String[]> menuInfo;
-
-    @Autowired
     public OverviewDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.menuInfo = new HashMap<>();
-
-        this.menuInfo.put("main", new String[]{"밥과 함께", "언제먹어도 든든한 반찬"});
-        this.menuInfo.put("soup", new String[]{"국, 찌개", "김이 모락모락 국, 찌개"});
-        this.menuInfo.put("side", new String[]{"밑반찬", "언제먹어도 든든한 밑반찬"});
     }
 
     public void insert(RequestOverview overview, String menu) {
-
-        String sql = "insert into babchan (hash, food_type, image, alt, title, description, n_price, s_price)" +
-                "values (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        String normalPrice = overview.getN_price();
-
-        if(normalPrice!=null) {
-            normalPrice += "원";
+        if (isNotDuplicatedHash(overview)) {
+            insertOverview(overview, menu);
+            insertDelivery(overview);
+            insertBadge(overview);
         }
+    }
+
+
+    private boolean isNotDuplicatedHash(RequestOverview overview) {
+        String sql = "select count(*) from babchan where hash = ?";
+
+        return this.jdbcTemplate.queryForObject(sql, new Object[]{overview.getDetail_hash()}, Integer.class) == 0;
+    }
+
+    private void insertOverview(RequestOverview overview, String menu) {
+
+        String sql = "INSERT INTO babchan (hash, type, image, alt, title, description, n_price, s_price)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
                 overview.getDetail_hash(),
@@ -55,43 +58,49 @@ public class OverviewDao {
                 overview.getAlt(),
                 overview.getTitle(),
                 overview.getDescription(),
-                normalPrice,
+                overview.getN_price(),
                 overview.getS_price()
         );
+    }
 
-        sql = "insert into delivery(hash, type) VALUES (?, ?)";
+    private void insertDelivery(RequestOverview overview) {
+        String sql = "insert into delivery(hash, type) VALUES (?, ?)";
 
-        if (overview.getDelivery_type() == null) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), null);
-        } else {
-            for (Delivery delivery : overview.getDelivery_type()) {
-                jdbcTemplate.update(sql, overview.getDetail_hash(), delivery.getType());
-            }
-        }
-
-        sql = "insert into badge(hash, event) VALUES (?, ?)";
-
-        if (overview.getBadge() == null) {
-            jdbcTemplate.update(sql, overview.getDetail_hash(), null);
-        } else {
-            for (Badge badge : overview.getBadge()) {
-                jdbcTemplate.update(sql, overview.getDetail_hash(), badge.getEvent());
-            }
+        for (Delivery delivery : overview.getDelivery_type()) {
+            jdbcTemplate.update(sql, overview.getDetail_hash(), delivery.getType());
         }
     }
 
-    public ResponseOverview listMenuOverview(String menu) {
-        String[] informations = menuInfo.get(menu);
+    private void insertBadge(RequestOverview overview) {
+        String sql = "insert into badge(hash, badgeName, badgeHexa) VALUES (?, ?, ?)";
 
-        return new ResponseOverview(
-                informations[0],
-                informations[1],
-                listMenuOverviewData(menu)
-        );
+        for (Badge badge : overview.getBadge()) {
+            String badgeName = badge.getBadgeName();
+            jdbcTemplate.update(sql, overview.getDetail_hash(), badgeName, DaoUtils.hexaMap.get(badgeName));
+        }
+    }
+
+    public ResponseOverview listOverview(String menu) {
+        String sql = "select menu_index, sub_title, main_title from food_type where type = ?";
+
+        RowMapper<ResponseOverview> rowMapper = new RowMapper<ResponseOverview>() {
+            @Override
+            public ResponseOverview mapRow(ResultSet rs, int rowNum) throws SQLException {
+                ResponseOverview overview = new ResponseOverview();
+                overview.setMenuIndex(rs.getInt("menu_index"));
+                overview.setMenuType(rs.getString("sub_title"));
+                overview.setMenuTypeTitle(rs.getString("main_title"));
+                overview.setData(listMenuOverviewData(menu));
+                return overview;
+            }
+        };
+
+        return this.jdbcTemplate.queryForObject(sql, new Object[]{menu}, rowMapper);
     }
 
     public List<ResponseOverviewData> listMenuOverviewData(String menu) {
-        String sql = "select * from babchan where food_type = ?";
+        String sql = "SELECT hash, image, alt, title, description, n_price, s_price " +
+                "FROM babchan WHERE type = ?";
 
         RowMapper<ResponseOverviewData> responseOverviewRowMapper = new RowMapper<ResponseOverviewData>() {
             @Override
@@ -116,49 +125,25 @@ public class OverviewDao {
         return this.jdbcTemplate.query(sql, new Object[]{menu}, responseOverviewRowMapper);
     }
 
-    private List<String> deliveries(String hash) {
+    public List<String> deliveries(String hash) {
         String sql = "select type from delivery where hash = ?";
 
-        RowMapper<Delivery> deliveryRowMapper = new RowMapper<Delivery>() {
-            @Override
-            public Delivery mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Delivery delivery = new Delivery();
-                delivery.setType(rs.getString("type"));
-                return delivery;
-            }
-        };
-
-        List<Delivery> deliveries = this.jdbcTemplate.query(sql, new Object[]{hash}, deliveryRowMapper);
-
-        List<String> types = new ArrayList<>();
-
-        for (Delivery delivery : deliveries) {
-            types.add(delivery.getType());
-        }
-
-        return types;
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, getFirstColumns());
     }
 
-    private List<String> badges(String hash) {
-        String sql = "select event from badge where hash = ?";
+    private List<ResponseBadge> badges(String hash) {
+        String sql = "select badgeName, badgeHexa from badge where hash = ?";
 
-        RowMapper<Badge> badgeRowMapper = new RowMapper<Badge>() {
+        RowMapper<ResponseBadge> badgeRowMapper = new RowMapper<ResponseBadge>() {
             @Override
-            public Badge mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Badge badge = new Badge();
-                badge.setEvent(rs.getString("event"));
+            public ResponseBadge mapRow(ResultSet rs, int rowNum) throws SQLException {
+                ResponseBadge badge = new ResponseBadge();
+                badge.setBadgeName(rs.getString("badgeName"));
+                badge.setBadgeHexa(rs.getString("badgeHexa"));
                 return badge;
             }
         };
 
-        List<Badge> badges = this.jdbcTemplate.query(sql, new Object[]{hash}, badgeRowMapper);
-
-        List<String> events = new ArrayList<>();
-
-        for (Badge badge : badges) {
-            events.add(badge.getEvent());
-        }
-
-        return events;
+        return this.jdbcTemplate.query(sql, new Object[]{hash}, badgeRowMapper);
     }
 }

@@ -1,6 +1,6 @@
 package com.codesquad.sidedish06.controller;
 
-import com.codesquad.sidedish06.utils.UrlUtils;
+import com.codesquad.sidedish06.dao.MenuTypeDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +11,10 @@ import java.util.List;
 @RestController
 public class MainController {
 
+    private final MenuTypeDao menuTypeDao;
+
     @GetMapping("/babchan-url")
     public List<String> urls() {
-        return UrlUtils.urls();
+        return menuTypeDao.listMenuUrl();
     }
 }

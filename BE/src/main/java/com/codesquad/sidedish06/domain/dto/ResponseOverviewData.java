@@ -1,5 +1,6 @@
 package com.codesquad.sidedish06.domain.dto;
 
+import com.codesquad.sidedish06.domain.entity.Badge;
 import lombok.*;
 
 import java.util.List;
@@ -27,6 +28,6 @@ public class ResponseOverviewData {
 
     private String salePrice;
 
-    private List<String> badge;
+    private List<ResponseBadge> badge;
 
 }

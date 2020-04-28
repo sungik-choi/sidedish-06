@@ -11,6 +11,8 @@ import java.util.List;
 @ToString
 public class ResponseOverview {
 
+    private int menuIndex;
+
     private String menuType;
 
     private String menuTypeTitle;

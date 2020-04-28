@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.codesquad.sidedish06.utils.JsonUtils.BASE_URL;
 import static com.codesquad.sidedish06.utils.JsonUtils.data;
@@ -45,7 +44,7 @@ public class OverviewServiceImpl implements OverviewService {
 
     @Override
     public ResponseOverview listMenu(String menu) {
-        return overviewDao.listTitles(menu);
+        return overviewDao.listOverview(menu);
     }
 
     private void validate(RequestOverview overview) {

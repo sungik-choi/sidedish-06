@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS food_type;
 
 CREATE TABLE food_type
 (
-    type VARCHAR(64),
-    menu_index INTEGER PRIMARY KEY AUTO_INCREMENT,
+    type VARCHAR(64) PRIMARY KEY,
+    menu_index INTEGER,
     sub_title VARCHAR(64),
     main_title VARCHAR(64)
 );
@@ -16,7 +16,7 @@ CREATE TABLE food_type
 CREATE TABLE babchan
 (
     hash          VARCHAR(32) PRIMARY KEY,
-    menu_index INTEGER REFERENCES food_type (menu_index) ON UPDATE CASCADE ON DELETE CASCADE,
+    type VARCHAR(64) REFERENCES food_type (type) ON UPDATE CASCADE ON DELETE CASCADE,
     image         VARCHAR(128),
     alt           VARCHAR(64),
     title         VARCHAR(128),

@@ -13,7 +13,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     //MARK:- properties
     var menuHash = ""
     private var menuDetail: MenuDetail?
-              
+    
     private lazy var wholeScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +21,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = true
         scrollView.contentSize = self.view.bounds.size
         scrollView.autoresizingMask = .flexibleHeight
+        scrollView.showsVerticalScrollIndicator = true
         return scrollView
     }()
     
@@ -28,6 +29,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsHorizontalScrollIndicator = true
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.isPagingEnabled = true
         scrollView.alwaysBounceVertical = false
         return scrollView
@@ -46,7 +48,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     private let menuTitle: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 17.0)
+        label.font = UIFont.boldSystemFont(ofSize: 19.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -93,7 +95,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         let button = UIButton()
         button.setTitle("주문하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.titleLabel?.textAlignment = .center
         button.backgroundColor = #colorLiteral(red: 0.4551282529, green: 0.9278236041, blue: 0.8855857598, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -106,16 +108,18 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         addSubViews()
-        configureConstraints()
+        configureScrollViewConstraints()
+        configureStackViewConstraints()
+        configureElementsConstraints()
         thumbnailScrollView.delegate = self
         wholeScrollView.delegate = self
         configureUsecase(menuHash)
     }
     
     func makeImageView(image: UIImage) -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/3))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
         imageView.image = image
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }
     
@@ -143,24 +147,43 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(orderButton)
     }
     
-    private func configureConstraints() {
+    private func configureScrollViewConstraints() {
         let constraints = [
             wholeScrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             wholeScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wholeScrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             wholeScrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                        
+            
+            wholeScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: self.view.topAnchor),
+            wholeScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            wholeScrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            
             thumbnailScrollView.topAnchor.constraint(equalTo: wholeScrollView.topAnchor),
             thumbnailScrollView.leadingAnchor.constraint(equalTo: wholeScrollView.leadingAnchor),
             thumbnailScrollView.trailingAnchor.constraint(equalTo: wholeScrollView.trailingAnchor),
-            thumbnailScrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3),
-            thumbnailScrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: thumbnailStackView.widthAnchor),
+            thumbnailScrollView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height/3),
             
-            thumbnailStackView.topAnchor.constraint(equalTo: self.view.topAnchor),
+        ]
+        constraints.forEach { $0.isActive = true }
+    }
+    
+    private func configureStackViewConstraints() {
+        let constraints = [
+            thumbnailStackView.topAnchor.constraint(equalTo: thumbnailScrollView.topAnchor),
             thumbnailStackView.leadingAnchor.constraint(equalTo: thumbnailScrollView.leadingAnchor),
             thumbnailStackView.trailingAnchor.constraint(equalTo: thumbnailScrollView.trailingAnchor),
             thumbnailStackView.bottomAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor),
             
+            detailImageStack.topAnchor.constraint(equalTo: deliveryInfoTitle.bottomAnchor, constant: 10),
+            detailImageStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            detailImageStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            detailImageStack.bottomAnchor.constraint(equalTo: wholeScrollView.bottomAnchor),
+        ]
+        constraints.forEach { $0.isActive = true }
+    }
+    
+    private func configureElementsConstraints() {
+        let constraints = [
             menuTitle.topAnchor.constraint(equalTo: thumbnailScrollView.bottomAnchor, constant: 20),
             menuTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             
@@ -195,16 +218,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             deliveryInfo.leadingAnchor.constraint(equalTo: deliveryInfoTitle.trailingAnchor, constant: 10),
             deliveryInfo.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             
-            detailImageStack.topAnchor.constraint(equalTo: deliveryInfoTitle.bottomAnchor, constant: 20),
-            detailImageStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            detailImageStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            detailImageStack.bottomAnchor.constraint(equalTo: wholeScrollView.bottomAnchor),
-            
             orderButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             orderButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             orderButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
             orderButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.08)
-            
         ]
         constraints.forEach { $0.isActive = true }
     }

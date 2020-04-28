@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Start-Class: com.codesquad.sidedish06.SideDish06Application
+Spring-Boot-Classes: WEB-INF/classes/
+Spring-Boot-Lib: WEB-INF/lib/
+Spring-Boot-Version: 2.2.6.RELEASE
+Main-Class: org.springframework.boot.loader.WarLauncher
+

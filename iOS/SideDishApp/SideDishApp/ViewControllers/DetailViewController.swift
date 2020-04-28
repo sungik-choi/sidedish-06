@@ -105,8 +105,7 @@ class DetailViewController: UIViewController {
     //MARK:- functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
+
         addSubViews()
         configureScrollViewConstraints()
         configureStackViewConstraints()
@@ -114,7 +113,8 @@ class DetailViewController: UIViewController {
         configureUsecase(menuHash)
         width = self.view.frame.width
         height = self.view.frame.height
-        
+
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         orderButton.addTarget(self, action: #selector(pressOrderButton(button:)), for: .touchUpInside)
     }
     
@@ -223,7 +223,7 @@ class DetailViewController: UIViewController {
     }
     
     private func configureUsecase(_ menuHash: String) {
-        NetworkUseCase.makeMenuDetail(with: MenuViewController.networkManager, menuHash: "") { data in
+        NetworkUseCase.makeMenuDetail(with: MenuViewController.networkManager, menuHash: menuHash) { data in
             self.menuDetail = data
             DispatchQueue.main.async {
                 guard let menuDetail = self.menuDetail else { return }
@@ -277,17 +277,23 @@ class DetailViewController: UIViewController {
     }
     
     @objc func pressOrderButton(button: UIButton) {
-        let alert = makeOrderCheckAlert()
-        present(alert, animated: true)
+        let noStockAlert = makeAlert(title: "재고없음", message: "재고가 없어 주문이 취소되었습니다", insideAlert: nil) {
+            self.navigationController?.popViewController(animated: true)
+        }
+        let defaultAlert = makeAlert(title: "주문", message: "주문하시겠습니까?", insideAlert: noStockAlert) { }
+        present(defaultAlert, animated: true)
     }
     
-    private func makeOrderCheckAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "주문", message: "주문하시겠습니까?", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "네", style: .default) 
+    private func makeAlert(title: String, message: String, insideAlert: UIAlertController?, handler: @escaping () -> ()) -> UIAlertController {
+        let defaultAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "네", style: .default) { ok in
+            if let alert = insideAlert { self.present(alert, animated: true) }
+            handler()
+        }
         let cancel = UIAlertAction(title: "아니오", style: .cancel)
         
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        return alert
+        defaultAlert.addAction(ok)
+        defaultAlert.addAction(cancel)
+        return defaultAlert
     }
 }

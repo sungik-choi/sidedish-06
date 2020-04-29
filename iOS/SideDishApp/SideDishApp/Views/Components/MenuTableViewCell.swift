@@ -91,9 +91,9 @@ class MenuTableViewCell: UITableViewCell {
         menuDescription.text = menu.description
         previousPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.originPrice ?? ""))", attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
         price.text = menu.salePrice
-        let badges = menu.badge ?? [""]
+        guard let badges = menu.badge else { return }
         for badge in badges {
-            let label = makeBadgeLabel(badge: badge)
+            let label = makeBadgeLabel(badge: badge.badgeName, backgroundColor: badge.badgeHexa)
             addArrangedSubview(label: label)
         }
         loadData(urlString: menu.image)
@@ -115,10 +115,10 @@ class MenuTableViewCell: UITableViewCell {
         }
     }
     
-    private func makeBadgeLabel(badge: String) -> UILabel {
+    private func makeBadgeLabel(badge: String, backgroundColor: String) -> UILabel {
         let label = UILabel()
         label.textColor = .white
-        label.backgroundColor = #colorLiteral(red: 0.7156945001, green: 0.5062116534, blue: 0.9173937183, alpha: 1)
+        label.backgroundColor = UIColor(hexString: backgroundColor.data(using: .utf8)!.map{ String(format: "%02x", $0)}.joined())
         label.font = UIFont.systemFont(ofSize: 14.0)
         label.text = badge
         
@@ -174,4 +174,23 @@ class MenuTableViewCell: UITableViewCell {
         
     }
     
+}
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt64()
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
 }

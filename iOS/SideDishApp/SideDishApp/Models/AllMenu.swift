@@ -25,7 +25,6 @@ struct AllMenu: Codable, Hashable {
             && lhs.menuTypeTitle == rhs.menuTypeTitle
             && lhs.data == rhs.data
     }
-    
 }
 
 struct Menu: Codable, Hashable {
@@ -37,7 +36,35 @@ struct Menu: Codable, Hashable {
     var description: String
     var originPrice: String?
     var salePrice: String
-    var badge: [String]?
+    var badge: [Badge]?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(hash)
+        hasher.combine(image)
+        hasher.combine(alt)
+        hasher.combine(delivery_type)
+        hasher.combine(title)
+        hasher.combine(description)
+        hasher.combine(originPrice)
+        hasher.combine(salePrice)
+        hasher.combine(badge)
+    }
+    
+    static func == (lhs: Menu, rhs: Menu) -> Bool {
+        return lhs.hash == rhs.hash
+            && lhs.image == rhs.image
+            && lhs.alt == rhs.alt
+            && lhs.delivery_type == rhs.delivery_type
+            && lhs.title == rhs.title
+            && lhs.description == rhs.description
+            && lhs.originPrice == rhs.originPrice
+            && lhs.salePrice == rhs.salePrice
+            && lhs.badge == rhs.badge
+    }
 }
 
+struct Badge: Codable, Hashable {
+    var badgeName: String
+    var badgeHexa: String
+}
 

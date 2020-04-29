@@ -32,7 +32,6 @@ class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDel
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         if let responseURL = navigationResponse.response.url, responseURL.absoluteString == successResponse {
-            self.dismiss(animated: true)
             guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
             self.present(menuViewController, animated: true)
         }

@@ -126,7 +126,7 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="BgA-az-SHj">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="BgA-az-SHj">
                                 <rect key="frame" x="177" y="418" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="5uH-fF-DRU"/>

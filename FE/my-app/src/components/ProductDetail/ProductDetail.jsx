@@ -81,7 +81,7 @@ const ProductDetailWrap = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   width: var(--width);
-  height: 45rem;
+  height: 38rem;
   padding: 2rem;
   padding-top: 3rem;
   background-color: var(--white);

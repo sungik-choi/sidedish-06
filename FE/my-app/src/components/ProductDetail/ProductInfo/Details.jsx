@@ -29,7 +29,7 @@ const CATEGORY_TEXT = {
 };
 
 const DetailsWrap = styled.div`
-  margin: 2.5rem 0;
+  margin: 1.5rem 0;
 `;
 
 const CategoryB = styled.b`
@@ -48,7 +48,7 @@ const DetailsUl = styled.ul`
   display: flex;
   flex-direction: column;
   ${DetailsLi} + ${DetailsLi} {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 `;
 

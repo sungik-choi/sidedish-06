@@ -2,7 +2,7 @@ export const lnbList = [
   {
     id: 0,
     name: '로그인',
-    type: 'none',
+    type: 'login',
   },
   {
     id: 1,

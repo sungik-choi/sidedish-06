@@ -13,6 +13,7 @@ class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDel
     
     @IBOutlet var webView: WKWebView!
     @IBOutlet var indicator: UIActivityIndicatorView!
+    let successResponseURL = URL(string: "http://52.79.117.147/")
     
     override func loadView() {
         super.loadView()
@@ -30,22 +31,22 @@ class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDel
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        guard let response = navigationResponse.response as? HTTPURLResponse else { return }
-        let allHeader = response.allHeaderFields
-//        if allHeader["login-check"] == "true" {
-//            print("okkkkkkkkk")
-//        }
-        if response.statusCode == 200 {
-//            let successAlert = networkAlert(title: "알림", message: "로그인에 성공했습니다!"){
-//                guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
-//                self.present(menuViewController, animated: true)
-//            }
-//            present(successAlert, animated: true)
+        
+        WKWebsiteDataStore.default().httpCookieStore.getAllCookies { (cookies) in
+            for cookie in cookies {
+                if cookie.name == "login-check", cookie.value == "true" {
+                    let successAlert = self.networkAlert(title: "알림", message: "로그인에 성공했습니다!"){
+                        guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
+                        self.present(menuViewController, animated: true)
+                    }
+                    self.present(successAlert, animated: true)
+                }
+            }
         }
-
         decisionHandler(.allow)
     }
     
+   
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         indicator.isHidden = false

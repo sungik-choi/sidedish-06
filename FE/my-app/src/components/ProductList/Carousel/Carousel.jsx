@@ -2,9 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import Product from './Product/Product';
-import arrow from '../../../assets/arrow.svg';
+import arrow from 'assets/arrow.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+const Carousel = ({ list, onClick }) => {
+  const products = list.map(productData => <Product key={productData.hash} list={productData} onClick={onClick} />);
+
+  const setting = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    nextArrow: <Arrow arrowType="next" />,
+    prevArrow: <Arrow arrowType="prev" />,
+  };
+
+  return (
+    <CarouselWrap>
+      <Slider {...setting}>{products}</Slider>
+    </CarouselWrap>
+  );
+};
 
 const ArrowSvg = styled.object`
   pointer-events: none;
@@ -44,25 +64,5 @@ const CarouselWrap = styled.div`
     margin: 0 auto;
   }
 `;
-
-const Carousel = ({ list, onClick }) => {
-  const products = list.body.map(productData => <Product key={productData.detail_hash} list={productData} onClick={onClick} />);
-
-  const setting = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    nextArrow: <Arrow arrowType="next" />,
-    prevArrow: <Arrow arrowType="prev" />,
-  };
-
-  return (
-    <CarouselWrap>
-      <Slider {...setting}>{products}</Slider>
-    </CarouselWrap>
-  );
-};
 
 export default Carousel;

@@ -1,36 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DetailsWrap = styled.div`
-  margin-top: 2rem;
-`;
-
-const CategoryB = styled.b`
-  flex: 0 0 10rem;
-  font-weight: 600;
-  color: var(--gray-2);
-`;
-
-const DetailsLi = styled.li`
-  display: flex;
-  color: var(--black);
-  line-height: 1.4;
-`;
-
-const DetailsUl = styled.ul`
-  display: flex;
-  flex-direction: column;
-  ${DetailsLi} + ${DetailsLi} {
-    margin-top: 1rem;
-  }
-`;
-
-const CATEGORY_TEXT = {
-  point: '적립금',
-  deliveryInfo: '배송정보',
-  deliveryFee: '배송비',
-};
-
 const Details = ({ deliveryInfo, deliveryFee, point }) => {
   return (
     <DetailsWrap>
@@ -51,5 +21,35 @@ const Details = ({ deliveryInfo, deliveryFee, point }) => {
     </DetailsWrap>
   );
 };
+
+const CATEGORY_TEXT = {
+  point: '적립금',
+  deliveryInfo: '배송정보',
+  deliveryFee: '배송비',
+};
+
+const DetailsWrap = styled.div`
+  margin: 1.5rem 0;
+`;
+
+const CategoryB = styled.b`
+  flex: 0 0 10rem;
+  font-weight: 600;
+  color: var(--gray-2);
+`;
+
+const DetailsLi = styled.li`
+  display: flex;
+  color: var(--black);
+  line-height: 1.4;
+`;
+
+const DetailsUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  ${DetailsLi} + ${DetailsLi} {
+    margin-top: 0.5rem;
+  }
+`;
 
 export default Details;

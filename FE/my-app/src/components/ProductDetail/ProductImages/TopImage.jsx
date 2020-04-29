@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const TopImage = ({ topImage }) => {
+  return (
+    <TopImageWrap>
+      <Image src={topImage} />
+    </TopImageWrap>
+  );
+};
+
 const TopImageWrap = styled.div`
   position: relative;
   width: 100%;
@@ -14,13 +22,5 @@ const Image = styled.img`
   position: absolute;
   width: 100%;
 `;
-
-const TopImage = ({ topImage }) => {
-  return (
-    <TopImageWrap>
-      <Image src={topImage} />
-    </TopImageWrap>
-  );
-};
 
 export default TopImage;

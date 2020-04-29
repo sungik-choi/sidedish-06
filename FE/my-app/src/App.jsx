@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { lnbList, menuList } from './utils/mockData';
-import Header from './components/Header/Header';
-import ProductList from './components/ProductList/ProductList';
-import ProductDetail from './components/ProductDetail/ProductDetail';
-import MoreButton from './components/MoreButton';
-import GlobalStyle from './components/GlobalStyle';
-
-const FooterDiv = styled.div`
-  height: 8rem;
-`;
+import { lnbList, menuList } from 'utils/mockData';
+import Header from 'components/Header/Header';
+import ProductList from 'components/ProductList/ProductList';
+import ProductDetail from 'components/ProductDetail/ProductDetail';
+import MoreButton from 'components/MoreButton';
+import GlobalStyle from 'components/GlobalStyle';
 
 const App = () => {
   const [isMoreBtnClicked, setIsMoreBtnClicked] = useState(false);
@@ -33,5 +29,9 @@ const App = () => {
     </>
   );
 };
+
+const FooterDiv = styled.div`
+  height: 10rem;
+`;
 
 export default App;

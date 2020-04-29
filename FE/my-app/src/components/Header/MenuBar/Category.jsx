@@ -2,6 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import SubList from './SubList';
 
+const Category = ({ name, list }) => {
+  return (
+    <CategoryLi>
+      {name}
+      <SubListUl>
+        <SubList list={list} />
+      </SubListUl>
+    </CategoryLi>
+  );
+};
+
 const SubListUl = styled.ul`
   cursor: default;
   z-index: 20;
@@ -50,16 +61,5 @@ const CategoryLi = styled.li`
     }
   }
 `;
-
-const Category = ({ name, list }) => {
-  return (
-    <CategoryLi>
-      {name}
-      <SubListUl>
-        <SubList list={list} />
-      </SubListUl>
-    </CategoryLi>
-  );
-};
 
 export default Category;

@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const CartButton = ({ onClick }) => {
+  return <CartBtn onClick={() => onClick()}>{BUTTON_TEXT}</CartBtn>;
+};
+
+const BUTTON_TEXT = '장바구니 담기';
+
 const CartBtn = styled.button`
   cursor: pointer;
   width: 100%;
@@ -11,11 +17,5 @@ const CartBtn = styled.button`
   font-size: 1.5rem;
   font-weight: 600;
 `;
-
-const BUTTON_TEXT = '장바구니 담기';
-
-const CartButton = ({ onClick }) => {
-  return <CartBtn onClick={() => onClick()}>{BUTTON_TEXT}</CartBtn>;
-};
 
 export default CartButton;

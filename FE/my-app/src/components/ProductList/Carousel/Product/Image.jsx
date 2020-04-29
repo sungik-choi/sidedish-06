@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+const Image = ({ alt, src, deliveryType }) => {
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const deliveryTypeSpans = deliveryType.map((type, index) => <DeliveryTypeSpan key={index}>{type}</DeliveryTypeSpan>);
+
+  const mouseOverHandler = () => {
+    setIsMouseOver(true);
+  };
+
+  const mouseLeaveHandler = () => {
+    setIsMouseOver(false);
+  };
+
+  return (
+    <ImageWrap>
+      <ThumbImage alt={alt} src={src} onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler} />
+      {isMouseOver && <DeliveryTypeWrap>{deliveryTypeSpans}</DeliveryTypeWrap>}
+    </ImageWrap>
+  );
+};
+
 const DeliveryTypeSpan = styled.span`
   font-size: 1.25rem;
   font-weight: 600;
@@ -35,25 +55,5 @@ const ThumbImage = styled.img`
     filter: brightness(50%);
   }
 `;
-
-const Image = ({ alt, src, deliveryType }) => {
-  const [isMouseOver, setIsMouseOver] = useState(false);
-  const deliveryTypeSpans = deliveryType.map((type, index) => <DeliveryTypeSpan key={index}>{type}</DeliveryTypeSpan>);
-
-  const mouseOverHandler = () => {
-    setIsMouseOver(true);
-  };
-
-  const mouseLeaveHandler = () => {
-    setIsMouseOver(false);
-  };
-
-  return (
-    <ImageWrap>
-      <ThumbImage alt={alt} src={src} onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler} />
-      {isMouseOver && <DeliveryTypeWrap>{deliveryTypeSpans}</DeliveryTypeWrap>}
-    </ImageWrap>
-  );
-};
 
 export default Image;

@@ -1,24 +1,26 @@
 import { useState, useEffect } from 'react';
 
-const BASE_URL = 'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan';
+const BASE_URL = 'http://52.79.117.147/api';
+
+export const OAUTH_LINK = 'https://github.com/login/oauth/authorize/?client_id=4946b46078dcaa5adfa6&scope=user%20public_repo';
 
 const getApiUrl = (categoryString, hash = null) => {
   if (hash) return `${BASE_URL}/${categoryString}/${hash}`;
-  return `${BASE_URL}/${categoryString}/`;
+  return `${BASE_URL}/menu/${categoryString}`;
 };
 
 export const API_URL = (type, hash = null) => {
   switch (type) {
     case 'main':
-      return getApiUrl('main', hash);
+      return getApiUrl('main');
     case 'soup':
-      return getApiUrl('soup', hash);
+      return getApiUrl('soup');
     case 'side':
-      return getApiUrl('side', hash);
+      return getApiUrl('side');
     case 'detail':
       return getApiUrl('detail', hash);
     default:
-      throw new Error('Unvalid API');
+      throw new Error('Unvalid URL');
   }
 };
 
@@ -28,6 +30,7 @@ export const useFetch = (url, setState) => {
   const fetchData = async () => {
     const response = await fetch(url);
     const data = await response.json();
+    if (!response.ok) throw new Error('Fetch Failed');
     setState(data);
     setIsLoading(true);
   };

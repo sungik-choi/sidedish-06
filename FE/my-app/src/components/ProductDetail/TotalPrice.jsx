@@ -1,5 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { UNIT } from 'constants/constants';
+
+const TotalPrice = ({ price }) => {
+  const convertedPrice = price.toLocaleString();
+
+  return (
+    <PriceWrap>
+      <PriceTextSpan>{TOTAL_PRICE_TEXT}</PriceTextSpan>
+      <span>
+        {convertedPrice}
+        <UnitSpan>{UNIT}</UnitSpan>
+      </span>
+    </PriceWrap>
+  );
+};
+
+const TOTAL_PRICE_TEXT = '총 상품금액';
 
 const PriceWrap = styled.div`
   display: flex;
@@ -23,19 +40,5 @@ const PriceTextSpan = styled.span`
   color: var(--black);
   font-size: 1rem;
 `;
-
-const TOTAL_PRICE_TEXT = '총 상품금액';
-
-const TotalPrice = ({ price }) => {
-  return (
-    <PriceWrap>
-      <PriceTextSpan>{TOTAL_PRICE_TEXT}</PriceTextSpan>
-      <span>
-        {price}
-        <UnitSpan>원</UnitSpan>
-      </span>
-    </PriceWrap>
-  );
-};
 
 export default TotalPrice;

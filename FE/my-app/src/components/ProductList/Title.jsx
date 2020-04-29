@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Title = ({ menuType, menuTypeTitle }) => {
+  return (
+    <TitleWrap>
+      <MenuType>{menuType}</MenuType>
+      <MenuTypeTitle>{menuTypeTitle}</MenuTypeTitle>
+    </TitleWrap>
+  );
+};
+
 const TitleWrap = styled.div`
   text-align: center;
   margin-bottom: 2.5rem;
@@ -16,14 +25,5 @@ const MenuTypeTitle = styled.h2`
   font-size: 2.125rem;
   font-weight: 300;
 `;
-
-const Title = ({ menuType, menuTypeTitle }) => {
-  return (
-    <TitleWrap>
-      <MenuType>배민찬 추천</MenuType>
-      <MenuTypeTitle>고르고 골라 배민찬이 추천합니다</MenuTypeTitle>
-    </TitleWrap>
-  );
-};
 
 export default Title;

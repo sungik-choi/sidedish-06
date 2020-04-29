@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Title = ({ title, desc }) => {
+  return (
+    <>
+      <TitleDt>{title}</TitleDt>
+      <DescDd>{desc}</DescDd>
+    </>
+  );
+};
+
 const TitleDt = styled.dt`
   padding-bottom: 0.5rem;
   color: var(--black);
@@ -12,14 +21,5 @@ const DescDd = styled.dd`
   color: var(--gray-2);
   font-size: 0.8125rem;
 `;
-
-const Title = ({ title, desc }) => {
-  return (
-    <>
-      <TitleDt>{title}</TitleDt>
-      <DescDd>{desc}</DescDd>
-    </>
-  );
-};
 
 export default Title;

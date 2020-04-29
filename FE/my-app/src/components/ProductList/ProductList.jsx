@@ -1,9 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { API_URL, useFetch } from '../../utils/useFetch';
 import Carousel from './Carousel/Carousel';
 import Title from './Title';
-import Placeholder from '../Placeholder';
+import Placeholder from 'components/Placeholder';
+import { API_URL, useFetch } from 'utils/useFetch';
+
+const ProductList = ({ productType, onClick }) => {
+  const [list, setList] = useState({});
+  const isListLoading = useFetch(API_URL(productType), setList);
+  const { data = [], menuType, menuTypeTitle } = list;
+
+  return (
+    <>
+      {!isListLoading && (
+        <PlaceholderWrap>
+          <Placeholder />
+        </PlaceholderWrap>
+      )}
+      <ProductListWrap>
+        <Title menuType={menuType} menuTypeTitle={menuTypeTitle} />
+        <Carousel list={data} onClick={onClick} />
+      </ProductListWrap>
+    </>
+  );
+};
 
 const ProductListWrap = styled.div`
   margin: 0 auto;
@@ -16,24 +36,5 @@ const PlaceholderWrap = styled.div`
   align-items: center;
   height: 33.75rem; /* 540 / 16 */
 `;
-
-const ProductList = ({ productType, onClick }) => {
-  const [list, setList] = useState({ body: [] });
-  const isListLoading = useFetch(API_URL(productType), setList);
-
-  return (
-    <>
-      {!isListLoading && (
-        <PlaceholderWrap>
-          <Placeholder />
-        </PlaceholderWrap>
-      )}
-      <ProductListWrap>
-        <Title />
-        <Carousel list={list} onClick={onClick} />
-      </ProductListWrap>
-    </>
-  );
-};
 
 export default ProductList;

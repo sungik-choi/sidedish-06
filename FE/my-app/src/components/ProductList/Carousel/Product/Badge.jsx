@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Badge = ({ list }) => {
+  if (list) {
+    const badgeDivs = list.map((obj, index) => <BadgeDiv key={index}>{obj.badgeName}</BadgeDiv>);
+    return <BadgeWrap>{badgeDivs}</BadgeWrap>;
+  }
+  return <></>;
+};
+
 const BadgeWrap = styled.div`
   text-align: center;
 `;
@@ -13,13 +21,5 @@ const BadgeDiv = styled.div`
   font-size: 0.75rem;
   color: var(--white);
 `;
-
-const Badge = ({ list }) => {
-  if (list) {
-    const badgeDivs = list.map((badge, index) => <BadgeDiv key={index}>{badge}</BadgeDiv>);
-    return <BadgeWrap>{badgeDivs}</BadgeWrap>;
-  }
-  return <></>;
-};
 
 export default Badge;

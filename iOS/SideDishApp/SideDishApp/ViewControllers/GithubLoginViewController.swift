@@ -13,7 +13,6 @@ class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDel
     
     @IBOutlet var webView: WKWebView!
     @IBOutlet var indicator: UIActivityIndicatorView!
-    let successResponse = "http://52.79.117.147/"
     
     override func loadView() {
         super.loadView()
@@ -31,10 +30,15 @@ class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDel
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        if let responseURL = navigationResponse.response.url, responseURL.absoluteString == successResponse {
-            guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
-            self.present(menuViewController, animated: true)
+        guard let response = navigationResponse.response as? HTTPURLResponse else { return }
+        if response.statusCode == 200 {
+            let successAlert = networkAlert(title: "알림", message: "로그인에 성공했습니다!"){
+                guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
+                self.present(menuViewController, animated: true)
+            }
+            present(successAlert, animated: true)
         }
+        
         decisionHandler(.allow)
     }
     
@@ -51,13 +55,16 @@ class GithubLoginViewController: UIViewController, WKUIDelegate, WKNavigationDel
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         indicator.isHidden = true
         indicator.stopAnimating()
-        present(networkErrorAlert(), animated: true)
+        let errorAlert = networkAlert(title: "알림", message: "네트워크에 오류가 생겼습니다. 잠시후 다시 시도해주세요") {
+            self.dismiss(animated: true)
+        }
+        present(errorAlert, animated: true)
     }
     
-    private func networkErrorAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "알림", message: "네트워크에 오류가 생겼습니다. 잠시후 다시 시도해주세요", preferredStyle: .alert)
+    private func networkAlert(title: String, message: String, handler: @escaping () -> ()) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { _ in
-            self.dismiss(animated: true)
+            handler()
         }
         alert.addAction(ok)
         return alert

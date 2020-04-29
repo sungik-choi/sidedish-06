@@ -147,6 +147,8 @@ class MenuTableViewCell: UITableViewCell {
         menuImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8).isActive = true
         menuImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.2).isActive = true
         menuImage.heightAnchor.constraint(equalTo: menuImage.widthAnchor).isActive = true
+        menuImage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
+
         
         menuTitle.translatesAutoresizingMaskIntoConstraints = false
         menuTitle.topAnchor.constraint(equalTo: menuImage.topAnchor).isActive = true

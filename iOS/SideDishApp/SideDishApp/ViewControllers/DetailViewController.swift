@@ -250,7 +250,8 @@ class DetailViewController: UIViewController {
                 switch result {
                 case .success(let data):
                     DispatchQueue.main.async {
-                        let imageView = self.makeImageView(image: UIImage(data: data)!)
+                        guard let image = UIImage(data: data) else { return }
+                        let imageView = self.makeImageView(image: image)
                         self.addArrangedSubview(to: stackView, subView: imageView, isThumbnail: isThumbnail)
                     }
                 case .failure(let error):

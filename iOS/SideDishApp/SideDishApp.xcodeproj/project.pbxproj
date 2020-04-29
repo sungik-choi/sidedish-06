@@ -10,6 +10,7 @@
 		3008E7752454923C00E3EAF2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008E7742454923C00E3EAF2 /* DetailViewController.swift */; };
 		3008E79D24557B3B00E3EAF2 /* DescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008E79C24557B3B00E3EAF2 /* DescriptionLabel.swift */; };
 		3008E79F24557CD800E3EAF2 /* ContentsTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008E79E24557CD800E3EAF2 /* ContentsTitleLabel.swift */; };
+		307BF1AE24591F8800AA0A41 /* ExtendedUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307BF1AD24591F8800AA0A41 /* ExtendedUIColor.swift */; };
 		307EE45D2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307EE45C2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift */; };
 		30955F8A24531533004D8940 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30955F8924531533004D8940 /* ImageCache.swift */; };
 		30B27E6C24582A5C00DB820D /* GithubLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B27E6B24582A5C00DB820D /* GithubLoginViewController.swift */; };
@@ -38,6 +39,7 @@
 		3008E7742454923C00E3EAF2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3008E79C24557B3B00E3EAF2 /* DescriptionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionLabel.swift; sourceTree = "<group>"; };
 		3008E79E24557CD800E3EAF2 /* ContentsTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTitleLabel.swift; sourceTree = "<group>"; };
+		307BF1AD24591F8800AA0A41 /* ExtendedUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedUIColor.swift; sourceTree = "<group>"; };
 		307EE45C2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		30955F8924531533004D8940 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		30B27E6B24582A5C00DB820D /* GithubLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLoginViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		307BF1AC24591F5C00AA0A41 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				307BF1AD24591F8800AA0A41 /* ExtendedUIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		307EE4592451C00C004C6A29 /* ImageLoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +141,7 @@
 		30F2E9A0244EBE9000C8D289 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				307BF1AC24591F5C00AA0A41 /* Extensions */,
 				307EE4592451C00C004C6A29 /* ImageLoader */,
 				30F2E9A2244EBEA600C8D289 /* Networking */,
 			);
@@ -313,6 +324,7 @@
 				30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */,
 				30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */,
 				30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */,
+				307BF1AE24591F8800AA0A41 /* ExtendedUIColor.swift in Sources */,
 				30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */,
 				30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */,
 				30C18E32245406D00087F83E /* ImageLoader.swift in Sources */,

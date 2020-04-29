@@ -36,6 +36,20 @@
                                         <rect key="frame" x="96" y="211" width="223" height="243"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nly-Dp-ke3">
+                                        <rect key="frame" x="52" y="579" width="311" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="50" minY="10" maxX="50" maxY="10"/>
+                                        <state key="normal" title="로그인 없이 이용하기">
+                                            <color key="titleColor" red="0.3406607385" green="0.75541996320000004" blue="0.73081690749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ca5-nO-T86"/>
+                                            <action selector="signInGithub:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xl3-GQ-3jo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.3406607385348378" green="0.75541996317360405" blue="0.73081690754722661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -45,6 +59,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="Nz8-eO-YqM" id="NLW-Cz-RDU"/>
+                        <outlet property="goMenuButton" destination="Nly-Dp-ke3" id="6nC-Y9-gIM"/>
                         <outlet property="logo" destination="UDC-NW-CfL" id="8i5-Pb-ki5"/>
                         <outlet property="signInButton" destination="59I-Tu-WRi" id="tRO-lR-y4c"/>
                     </connections>

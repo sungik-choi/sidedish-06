@@ -62,13 +62,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let gesture = SectionHeaderTapGestureRecognizer(target: self, action: #selector(touchedSectionHeader(recognizer:)))
         gesture.index = section
-        
         view.addGestureRecognizer(gesture)
     }
     
     @objc func touchedSectionHeader(recognizer: SectionHeaderTapGestureRecognizer) {
         guard let index = recognizer.index else { return }
-        let toaster = Toast(text: "\(allMenus[index]!.menuType) \(tableView.numberOfRows(inSection: index))개 재고 보유")
+        let toaster = Toast(text: "\(allMenus[index]!.menuType) \(tableView.numberOfRows(inSection: index)) 종류가 있습니다")
         toaster.show()
     }
     
@@ -82,7 +81,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private func configureUsecase() {
         
-        NetworkUseCase.makeStub(with: MenuViewController.networkManager) { data in
+        NetworkUseCase.makeMenu(with: MenuViewController.networkManager) { data in
             self.allMenus.updateValue(data, forKey: data.menuIndex)
             DispatchQueue.main.async {
                 self.tableView.reloadData()

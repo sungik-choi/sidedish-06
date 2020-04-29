@@ -9,9 +9,10 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var logo: UIImageView!
+    @IBOutlet var goMenuButton: UIButton!
     @IBOutlet var signInButton: UIButton!
     
     override func viewDidLoad() {
@@ -21,7 +22,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInGithub(_ sender: UIButton) {
         guard let githubLoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "GithubLoginViewController") as? GithubLoginViewController else { return }
-               self.present(githubLoginViewController, animated: true)
+        self.present(githubLoginViewController, animated: true)
+    }
+    
+    @IBAction func goMenu(_ sender: UIButton) {
+        guard let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewController") as? UINavigationController else { return }
+        self.present(menuViewController, animated: true)
     }
     
     private func configureConstraints() {
@@ -38,10 +44,15 @@ class LoginViewController: UIViewController {
         logo.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
         logo.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
         logo.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: -(height/9)).isActive = true
-
+        
+        goMenuButton.translatesAutoresizingMaskIntoConstraints = false
+        goMenuButton.leadingAnchor.constraint(equalTo: signInButton.leadingAnchor).isActive = true
+        goMenuButton.trailingAnchor.constraint(equalTo: signInButton.trailingAnchor).isActive = true
+        goMenuButton.bottomAnchor.constraint(equalTo: self.signInButton.topAnchor, constant: -30).isActive = true
+ 
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(height/5)).isActive = true
         signInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
     }
-
+    
 }

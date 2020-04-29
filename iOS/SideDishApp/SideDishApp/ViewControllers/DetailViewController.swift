@@ -99,6 +99,7 @@ class DetailViewController: UIViewController {
         button.titleLabel?.textAlignment = .center
         button.backgroundColor = #colorLiteral(red: 0.4551282529, green: 0.9278236041, blue: 0.8855857598, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 20.0
         return button
     }()
     
@@ -147,7 +148,7 @@ class DetailViewController: UIViewController {
             wholeScrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             wholeScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wholeScrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            wholeScrollView.bottomAnchor.constraint(equalTo: orderButton.topAnchor),
+            wholeScrollView.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: 20),
             
             wholeScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: self.view.topAnchor),
             wholeScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -214,10 +215,10 @@ class DetailViewController: UIViewController {
             deliveryInfo.leadingAnchor.constraint(equalTo: deliveryInfoTitle.trailingAnchor, constant: 10),
             deliveryInfo.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             
-            orderButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            orderButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            orderButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             orderButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-            orderButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.08)
+            orderButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.08),
+            orderButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
         ]
         constraints.forEach { $0.isActive = true }
     }

@@ -136,22 +136,20 @@ class MenuTableViewCell: UITableViewCell {
         self.contentView.addSubview(previousPrice)
         self.contentView.addSubview(price)
         self.contentView.addSubview(badgeStack)
-        
+      
         configureConstraints()
     }
     
     private func configureConstraints() {
         
         menuImage.translatesAutoresizingMaskIntoConstraints = false
-        menuImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8).isActive = true
         menuImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8).isActive = true
         menuImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.2).isActive = true
         menuImage.heightAnchor.constraint(equalTo: menuImage.widthAnchor).isActive = true
-        menuImage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
-
+        menuImage.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         
         menuTitle.translatesAutoresizingMaskIntoConstraints = false
-        menuTitle.topAnchor.constraint(equalTo: menuImage.topAnchor).isActive = true
+        menuTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8).isActive = true
         menuTitle.leadingAnchor.constraint(equalTo: menuImage.trailingAnchor, constant: 8).isActive = true
         menuTitle.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8).isActive = true
         

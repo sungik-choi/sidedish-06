@@ -17,7 +17,7 @@ struct MenuDetail: Decodable {
     var point: String
     var delivery_info: String
     var delivery_fee: String
-    var originPrice: String
+    var originPrice: String?
     var salePrice: String
     var detail_section: [String]
 }

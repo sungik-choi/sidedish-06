@@ -20,8 +20,8 @@ enum EndPoints: String, CaseIterable {
     case soup = "soup"
     case side = "side"
     
-    static let BaseURL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
-    static let MenuDetail = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/detail"
+    static let BaseURL = "http://52.79.117.147/api/menu/"
+    static let MenuDetail = "http://52.79.117.147/api/detail/"
 }
 
 enum MockEndPoints: String, CaseIterable {

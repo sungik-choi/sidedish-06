@@ -20,9 +20,7 @@ class ImageLoader {
 extension ImageLoader: ImageLoadable {
     func load(urlString: String, completion: @escaping Handler) {
         if let cachedData = ImageCache.shared.find(urlString) {
-            DispatchQueue.main.async {
                 completion(.success(cachedData))
-            }
         } else {
             requestImage(urlString: urlString) { result in
                 switch result {

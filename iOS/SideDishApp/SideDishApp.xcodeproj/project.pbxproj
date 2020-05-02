@@ -16,6 +16,7 @@
 		30B27E6C24582A5C00DB820D /* GithubLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B27E6B24582A5C00DB820D /* GithubLoginViewController.swift */; };
 		30C18E32245406D00087F83E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C18E31245406D00087F83E /* ImageLoader.swift */; };
 		30CB3DC2245021710022C15E /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB3DC1245021710022C15E /* MenuHeaderView.swift */; };
+		30E2E1C4245D5272002BE789 /* MenuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2E1C3245D5272002BE789 /* MenuDetailView.swift */; };
 		30E2F0C6244DBEFA00E45C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */; };
 		30E2F0C8244DBEFA00E45C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */; };
 		30E2F0CA244DBEFA00E45C03 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F0C9244DBEFA00E45C03 /* MenuViewController.swift */; };
@@ -45,6 +46,7 @@
 		30B27E6B24582A5C00DB820D /* GithubLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLoginViewController.swift; sourceTree = "<group>"; };
 		30C18E31245406D00087F83E /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		30CB3DC1245021710022C15E /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
+		30E2E1C3245D5272002BE789 /* MenuDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailView.swift; sourceTree = "<group>"; };
 		30E2F0C2244DBEFA00E45C03 /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E2F0C5244DBEFA00E45C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30E2F0C7244DBEFA00E45C03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				30EF1610244EAD290074E4A4 /* MenuTableView.swift */,
+				30E2E1C3245D5272002BE789 /* MenuDetailView.swift */,
 				30F2E9B2244EEA4700C8D289 /* Components */,
 			);
 			path = Views;
@@ -320,6 +323,7 @@
 				3008E79D24557B3B00E3EAF2 /* DescriptionLabel.swift in Sources */,
 				30955F8A24531533004D8940 /* ImageCache.swift in Sources */,
 				30F2E9AA244ECBDD00C8D289 /* NetworkUseCase.swift in Sources */,
+				30E2E1C4245D5272002BE789 /* MenuDetailView.swift in Sources */,
 				30F2E9A8244EC2F800C8D289 /* NetworkManager.swift in Sources */,
 				30E2F0DA244DC8C100E45C03 /* LoginViewController.swift in Sources */,
 				30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */,

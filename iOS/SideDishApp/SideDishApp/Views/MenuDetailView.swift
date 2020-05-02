@@ -141,7 +141,6 @@ class MenuDetailView: UIView {
             wholeScrollView.topAnchor.constraint(equalTo: self.topAnchor),
             wholeScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             wholeScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            wholeScrollView.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: 20),
             
             wholeScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: self.topAnchor),
             wholeScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -150,7 +149,7 @@ class MenuDetailView: UIView {
             thumbnailScrollView.topAnchor.constraint(equalTo: wholeScrollView.topAnchor),
             thumbnailScrollView.leadingAnchor.constraint(equalTo: wholeScrollView.leadingAnchor),
             thumbnailScrollView.trailingAnchor.constraint(equalTo: wholeScrollView.trailingAnchor),
-            thumbnailScrollView.heightAnchor.constraint(equalToConstant: self.frame.size.height/3),
+            thumbnailScrollView.heightAnchor.constraint(equalTo: wholeScrollView.heightAnchor, multiplier: 0.3),
         ]
         constraints.forEach { $0.isActive = true }
     }

@@ -18,10 +18,15 @@ class DetailViewController: UIViewController {
     //MARK:- functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
         configureUsecase(menuHash)
+        configureConstraints()
+    }
+    
+    private func configure() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.view.addSubview(detailView)
-        configureConstraints()
+        NotificationCenter.default.addObserver(self, selector: #selector(pressOrderButton(button:)), name: .pressOrderButton, object: nil)
     }
     
     private func configureConstraints() {
@@ -41,8 +46,6 @@ class DetailViewController: UIViewController {
             }
         }
     }
-    
-  
     
     @objc func pressOrderButton(button: UIButton) {
         let noStockAlert = makeAlert(title: "재고없음", message: "재고가 없어 주문이 취소되었습니다", insideAlert: nil) {
@@ -64,4 +67,8 @@ class DetailViewController: UIViewController {
         defaultAlert.addAction(cancel)
         return defaultAlert
     }
+}
+
+extension Notification.Name {
+    static let pressOrderButton = Notification.Name(rawValue: "pressOrderButton")
 }

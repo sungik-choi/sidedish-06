@@ -105,11 +105,23 @@ class MenuDetailView: UIView {
         configureStackViewConstraints()
         configureElementsConstraints()
         
-        //        orderButton.addTarget(self, action: #selector(pressOrderButton(button:)), for: .touchUpInside)
+        orderButton.addTarget(self, action: #selector(postPressedNoti(button:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    func configureData(_ menuDetail: MenuDetail) {
+        menuTitle.text = menuDetail.title
+        menuDescription.text = menuDetail.description
+        originalPrice.text = menuDetail.originPrice
+        salePrice.text = menuDetail.salePrice
+        savedMoney.text = menuDetail.point
+        deliveryMoney.text = menuDetail.delivery_fee
+        deliveryInfo.text = menuDetail.delivery_info
+        loadImage(urlStrings: menuDetail.thumb_images, to: self.thumbnailStackView, isThumbnail: true)
+        loadImage(urlStrings: menuDetail.detail_section, to: self.detailImageStack, isThumbnail: false)
     }
     
     private func addSubViews() {
@@ -214,18 +226,6 @@ class MenuDetailView: UIView {
         constraints.forEach { $0.isActive = true }
     }
     
-    func configureData(_ menuDetail: MenuDetail) {
-        menuTitle.text = menuDetail.title
-        menuDescription.text = menuDetail.description
-        originalPrice.text = menuDetail.originPrice
-        salePrice.text = menuDetail.salePrice
-        savedMoney.text = menuDetail.point
-        deliveryMoney.text = menuDetail.delivery_fee
-        deliveryInfo.text = menuDetail.delivery_info
-        loadImage(urlStrings: menuDetail.thumb_images, to: self.thumbnailStackView, isThumbnail: true)
-        loadImage(urlStrings: menuDetail.detail_section, to: self.detailImageStack, isThumbnail: false)
-    }
-    
     private func loadImage(urlStrings: [String], to stackView: UIStackView, isThumbnail: Bool) {
         urlStrings.forEach { url in
             ImageLoader.shared.load(urlString: url) { result in
@@ -257,4 +257,7 @@ class MenuDetailView: UIView {
         stackView.addArrangedSubview(subView)
     }
     
+    @objc func postPressedNoti(button: UIButton) {
+        NotificationCenter.default.post(name: .pressOrderButton, object: button)
+    }
 }

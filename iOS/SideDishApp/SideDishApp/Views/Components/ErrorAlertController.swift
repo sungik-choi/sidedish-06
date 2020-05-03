@@ -1,5 +1,5 @@
 //
-//  ErrorAlert.swift
+//  ErrorAlertController.swift
 //  SideDishApp
 //
 //  Created by delma on 2020/05/03.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ErrorAlertContoller: UIAlertController {
+class ErrorAlertController: UIAlertController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

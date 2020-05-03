@@ -33,6 +33,7 @@
 		30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */; };
 		30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */; };
 		30F7E6C9245E9720003CB2AD /* ErrorAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F7E6C8245E9720003CB2AD /* ErrorAlertController.swift */; };
+		30F7E6CB245EA4EC003CB2AD /* ExtendedNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F7E6CA245EA4EC003CB2AD /* ExtendedNotificationName.swift */; };
 		B9AED54F524AF2D6179B0215 /* libPods-SideDishApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95A19B1BF397AE6384399C4 /* libPods-SideDishApp.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetail.swift; sourceTree = "<group>"; };
 		30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		30F7E6C8245E9720003CB2AD /* ErrorAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertController.swift; sourceTree = "<group>"; };
+		30F7E6CA245EA4EC003CB2AD /* ExtendedNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedNotificationName.swift; sourceTree = "<group>"; };
 		DB4D7076D4EFE94E69D59E80 /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F95A19B1BF397AE6384399C4 /* libPods-SideDishApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SideDishApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 		307BF1AC24591F5C00AA0A41 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				30F7E6CA245EA4EC003CB2AD /* ExtendedNotificationName.swift */,
 				307BF1AD24591F8800AA0A41 /* ExtendedUIColor.swift */,
 			);
 			path = Extensions;
@@ -322,6 +325,7 @@
 			files = (
 				30F2E9AD244EDCDE00C8D289 /* AllMenu.swift in Sources */,
 				3008E7752454923C00E3EAF2 /* DetailViewController.swift in Sources */,
+				30F7E6CB245EA4EC003CB2AD /* ExtendedNotificationName.swift in Sources */,
 				307EE45D2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift in Sources */,
 				3008E79D24557B3B00E3EAF2 /* DescriptionLabel.swift in Sources */,
 				30F7E6C9245E9720003CB2AD /* ErrorAlertController.swift in Sources */,

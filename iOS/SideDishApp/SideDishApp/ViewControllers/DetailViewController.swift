@@ -69,6 +69,3 @@ class DetailViewController: UIViewController {
     }
 }
 
-extension Notification.Name {
-    static let pressOrderButton = Notification.Name(rawValue: "pressOrderButton")
-}

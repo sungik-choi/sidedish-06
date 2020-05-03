@@ -8,19 +8,22 @@
 
 import UIKit
 
-class ErrorAlert: UIAlertController {
+class ErrorAlertContoller: UIAlertController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    func set(title: String) {
-        self.title = title
+        self.title = "오류 알림"
     }
     
     func set(message: NetworkErrorCase) {
-        self.message = message.description
+        self.message = message.description + "다시 시도해 주세요"
     }
     
+    func makeDefaultAction(handler:@escaping () -> Void) {
+        let ok = UIAlertAction(title: "확인", style: .default) { ok in
+            handler()
+        }
+        self.addAction(ok)
+    }
     
 }

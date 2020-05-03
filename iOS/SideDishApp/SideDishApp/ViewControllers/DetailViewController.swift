@@ -48,7 +48,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @objc func pressOrderButton(button: UIButton) {
+    @objc private func pressOrderButton(button: UIButton) {
         let noStockAlert = makeAlert(title: "재고없음", message: "재고가 없어 주문이 취소되었습니다", insideAlert: nil) {
             self.navigationController?.popViewController(animated: true)
         }

@@ -9,7 +9,7 @@
 import UIKit
 import Toaster
 
-class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MenuViewController: UIViewController {
     
     // MARK: - properties
     private var allMenus: [Int : AllMenu] = [:]
@@ -29,28 +29,64 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return allMenus.count
+    // MARK: - private functions
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuTableViewCell")
+        tableView.register(MenuHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuHeaderView")
+    }
+    
+    private func configureUsecase() {
+        NetworkUseCase.makeMenu(with:  AppDelegate.networkManager) { data in
+            self.allMenus.updateValue(data, forKey: data.menuIndex)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    private func configureObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showAlert(notification:)), name: .showErrorAlert, object: nil)
+    }
+    
+    @objc private func showAlert(notification: Notification) {
+        guard let error = notification.object as? NetworkErrorCase else { return }
+        let alert = AppDelegate.errorAlert
+        alert.set(message: error)
+        alert.makeDefaultAction {
+            self.configureUsecase()
+        }
+        present(alert, animated: true)
+    }
+}
+
+extension MenuViewController: UITableViewDataSource {
+      func numberOfSections(in tableView: UITableView) -> Int {
+          return allMenus.count
+      }
+      
+      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          return allMenus[section]?.data.count ??  0
+      }
+      
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
+          cell.configureCellData(menu: allMenus[indexPath.section]?.data[indexPath.row])
+          return cell
+      }
+}
+
+extension MenuViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 80
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderView") as! MenuHeaderView
         header.configureHeaderData(badge: allMenus[section]?.menuType ?? "", title: allMenus[section]?.menuTypeTitle ?? "")
         return header
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMenus[section]?.data.count ??  0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
-        cell.configureCellData(menu: allMenus[indexPath.section]?.data[indexPath.row])
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -71,36 +107,4 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         toaster.show()
     }
     
-    // MARK: - private functions
-    private func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuTableViewCell")
-        tableView.register(MenuHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuHeaderView")
-    }
-    
-    private func configureUsecase() {
-        
-        NetworkUseCase.makeMenu(with:  AppDelegate.networkManager) { data in
-            self.allMenus.updateValue(data, forKey: data.menuIndex)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    private func configureObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(showAlert(notification:)), name: .showErrorAlert, object: nil)
-    }
-    
-    @objc func showAlert(notification: Notification) {
-        guard let error = notification.object as? NetworkErrorCase else { return }
-        let alert = AppDelegate.errorAlert
-        alert.set(message: error)
-        alert.makeDefaultAction {
-            self.configureUsecase()
-        }
-        present(alert, animated: true)
-    }
 }
-

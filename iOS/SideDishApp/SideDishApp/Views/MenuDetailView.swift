@@ -237,7 +237,7 @@ class MenuDetailView: UIView {
                         self.addArrangedSubview(to: stackView, subView: imageView, isThumbnail: isThumbnail)
                     }
                 case .failure(let error):
-                    print(error)
+                    NotificationCenter.default.post(name: .showErrorAlert, object: error)
                 }
             }
         }

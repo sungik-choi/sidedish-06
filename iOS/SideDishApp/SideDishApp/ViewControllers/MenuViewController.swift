@@ -12,7 +12,6 @@ import Toaster
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - properties
-    static let networkManager = NetworkManager()
     private var allMenus: [Int : AllMenu] = [:]
     @IBOutlet var tableView: MenuTableView!
     
@@ -81,7 +80,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private func configureUsecase() {
         
-        NetworkUseCase.makeMenu(with: MenuViewController.networkManager) { data in
+        NetworkUseCase.makeMenu(with:  AppDelegate.networkManager) { data in
             self.allMenus.updateValue(data, forKey: data.menuIndex)
             DispatchQueue.main.async {
                 self.tableView.reloadData()

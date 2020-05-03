@@ -38,7 +38,7 @@ class DetailViewController: UIViewController {
     }
     
     private func configureUsecase(_ menuHash: String) {
-        NetworkUseCase.makeMenuDetail(with: MenuViewController.networkManager, menuHash: menuHash) { data in
+        NetworkUseCase.makeMenuDetail(with: AppDelegate.networkManager, menuHash: menuHash) { data in
             self.menuDetail = data
             DispatchQueue.main.async {
                 guard let menuDetail = self.menuDetail else { return }

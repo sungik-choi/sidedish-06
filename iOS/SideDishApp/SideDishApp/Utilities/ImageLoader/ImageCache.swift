@@ -12,7 +12,7 @@ struct ImageCache {
     private let cacheDirectoryURL: URL = {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
     }()
-    
+
     static let shared = ImageCache()
 }
 

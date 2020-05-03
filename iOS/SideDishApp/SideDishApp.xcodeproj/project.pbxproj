@@ -32,6 +32,7 @@
 		30F2E9AD244EDCDE00C8D289 /* AllMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9AC244EDCDE00C8D289 /* AllMenu.swift */; };
 		30F2E9AF244EDEFB00C8D289 /* MenuDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */; };
 		30F6A187244DD90700EAD976 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */; };
+		30F7E6C9245E9720003CB2AD /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F7E6C8245E9720003CB2AD /* ErrorAlert.swift */; };
 		B9AED54F524AF2D6179B0215 /* libPods-SideDishApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95A19B1BF397AE6384399C4 /* libPods-SideDishApp.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		30F2E9AC244EDCDE00C8D289 /* AllMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMenu.swift; sourceTree = "<group>"; };
 		30F2E9AE244EDEFB00C8D289 /* MenuDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetail.swift; sourceTree = "<group>"; };
 		30F6A186244DD90700EAD976 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		30F7E6C8245E9720003CB2AD /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
 		DB4D7076D4EFE94E69D59E80 /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F95A19B1BF397AE6384399C4 /* libPods-SideDishApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SideDishApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -199,6 +201,7 @@
 				307EE45C2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift */,
 				3008E79C24557B3B00E3EAF2 /* DescriptionLabel.swift */,
 				3008E79E24557CD800E3EAF2 /* ContentsTitleLabel.swift */,
+				30F7E6C8245E9720003CB2AD /* ErrorAlert.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				3008E7752454923C00E3EAF2 /* DetailViewController.swift in Sources */,
 				307EE45D2451C5B6004C6A29 /* SectionHeaderTapGestureRecognizer.swift in Sources */,
 				3008E79D24557B3B00E3EAF2 /* DescriptionLabel.swift in Sources */,
+				30F7E6C9245E9720003CB2AD /* ErrorAlert.swift in Sources */,
 				30955F8A24531533004D8940 /* ImageCache.swift in Sources */,
 				30F2E9AA244ECBDD00C8D289 /* NetworkUseCase.swift in Sources */,
 				30E2E1C4245D5272002BE789 /* MenuDetailView.swift in Sources */,

@@ -20,6 +20,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         configureTableView()
         configureUsecase()
+        configureObserver()
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
@@ -86,7 +87,20 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.tableView.reloadData()
             }
         }
-        
+    }
+    
+    private func configureObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showAlert(notification:)), name: .showErrorAlert, object: nil)
+    }
+    
+    @objc func showAlert(notification: Notification) {
+        guard let error = notification.object as? NetworkErrorCase else { return }
+        let alert = AppDelegate.errorAlert
+        alert.set(message: error)
+        alert.makeDefaultAction {
+            self.configureUsecase()
+        }
+        present(alert, animated: true)
     }
 }
 

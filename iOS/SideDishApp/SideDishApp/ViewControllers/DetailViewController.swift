@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
         configure()
         configureUsecase(menuHash)
         configureConstraints()
+        configureObserver()
     }
     
     private func configure() {
@@ -66,6 +67,20 @@ class DetailViewController: UIViewController {
         defaultAlert.addAction(ok)
         defaultAlert.addAction(cancel)
         return defaultAlert
+    }
+    
+    private func configureObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showAlert(notification:)), name: .showErrorAlert, object: nil)
+    }
+    
+    @objc func showAlert(notification: Notification) {
+        guard let error = notification.object as? NetworkErrorCase else { return }
+        let alert = AppDelegate.errorAlert
+        alert.set(message: error)
+        alert.makeDefaultAction {
+            self.configureUsecase(self.menuHash)
+        }
+        present(alert, animated: true)
     }
 }
 

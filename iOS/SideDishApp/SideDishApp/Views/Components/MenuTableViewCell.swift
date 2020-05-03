@@ -109,8 +109,7 @@ class MenuTableViewCell: UITableViewCell {
                     self.menuImage.image = UIImage(data: data)
                 }
             case .failure(let error):
-                //error handling 필요
-                print(error)
+                NotificationCenter.default.post(name: .showErrorAlert, object: error)
             }
         }
     }

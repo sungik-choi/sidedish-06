@@ -19,11 +19,10 @@ struct NetworkUseCase {
                         let decodedData = try JSONDecoder().decode(AllMenu.self, from: data)
                         completed(decodedData)
                     }catch {
-                        print(error.localizedDescription)
+                        NotificationCenter.default.post(name: .showErrorAlert, object: error)
                     }
                 case .failure(let error):
-                    //error handling 필요
-                    print(error.localizedDescription)
+                    NotificationCenter.default.post(name: .showErrorAlert, object: error)
                 }
             }
         }
@@ -37,8 +36,7 @@ struct NetworkUseCase {
                 guard let decodedData = try? JSONDecoder().decode(MenuDetail.self, from: data) else { return }
                 completed(decodedData)
             case .failure(let error):
-                //error handling 필요8
-                print(error.localizedDescription)
+                NotificationCenter.default.post(name: .showErrorAlert, object: error)
             }
         }
     }
@@ -49,7 +47,7 @@ struct NetworkUseCase {
             case .success(let data):
                 completed(data)
             case .failure(let error):
-                print(error)
+                NotificationCenter.default.post(name: .showErrorAlert, object: error)
             }
         }
     }
@@ -63,11 +61,9 @@ struct NetworkUseCase {
                         let decodedData = try JSONDecoder().decode(AllMenu.self, from: data)
                         completed(decodedData)
                     }catch {
-                        print(error.localizedDescription)
-                    }
+                        NotificationCenter.default.post(name: .showErrorAlert, object: error)                    }
                 case .failure(let error):
-                    //error handling 필요
-                    print(error.localizedDescription)
+                    NotificationCenter.default.post(name: .showErrorAlert, object: error)
                 }
             }
         }

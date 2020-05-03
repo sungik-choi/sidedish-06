@@ -20,9 +20,7 @@ class ImageLoader {
 extension ImageLoader: ImageLoadable {
     func load(urlString: String, completion: @escaping Handler) {
         if let cachedData = ImageCache.shared.find(urlString) {
-            DispatchQueue.main.async {
                 completion(.success(cachedData))
-            }
         } else {
             requestImage(urlString: urlString) { result in
                 switch result {
@@ -39,6 +37,6 @@ extension ImageLoader: ImageLoadable {
 
 extension ImageLoader {
     func requestImage(urlString: String, completion: @escaping Handler) {
-        NetworkUseCase.makeImage(with: MenuViewController.networkManager, urlString: urlString) { completion(.success($0)) }
+        NetworkUseCase.makeImage(with: AppDelegate.networkManager, urlString: urlString) { completion(.success($0)) }
     }
 }
